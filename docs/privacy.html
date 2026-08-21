@@ -3,229 +3,614 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Chính sách quyền riêng tư — AOV Poster Cá Nhân</title>
-<meta name="description" content="Chính sách quyền riêng tư của tiện ích AOV Poster Cá Nhân: dữ liệu nào được xử lý, lưu ở đâu, giữ bao lâu và cách yêu cầu xoá.">
+<title>Privacy Policy — AOV Poster Cá Nhân (Chrome Extension)</title>
+<meta name="description" content="Privacy Policy for the AOV Poster Cá Nhân browser extension. Bilingual English / Vietnamese. What data is processed, why, where it is stored, how long it is kept, and how to request deletion.">
+<meta name="robots" content="index,follow">
 <style>
-:root{--bg:#fff;--fg:#1a1a2e;--mut:#5a5a72;--line:#e2e2ee;--acc:#3b4270}
-@media(prefers-color-scheme:dark){:root{--bg:#0f1230;--fg:#e8ebff;--mut:#a0a4c8;--line:#2a3060;--acc:#7bb8ff}}
+:root{
+  --bg:#ffffff; --fg:#15172b; --mut:#5c5f7a; --line:#e3e4ef;
+  --acc:#2f3a7a; --acc2:#e8ebff; --warn:#8a4b00; --warnbg:#fff5e6; --warnline:#f0c98a;
+  --ok:#0f5c3f; --okbg:#e9f7f0; --okline:#a8ddc5;
+  --danger:#8b1d2c; --dangerbg:#fdecef; --dangerline:#f0b4bf;
+  --code:#f1f2f8;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#0d1030; --fg:#e9ecff; --mut:#a3a7cc; --line:#282e5e;
+  --acc:#8fbcff; --acc2:#182050; --warn:#ffcf8a; --warnbg:#2e2410; --warnline:#5c471c;
+  --ok:#8fe3c0; --okbg:#0f2a22; --okline:#1f5544;
+  --danger:#ff9fae; --dangerbg:#2e1218; --dangerline:#5c2430;
+  --code:#1a1f4a;
+}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.7 system-ui,-apple-system,Segoe UI,sans-serif}
-.wrap{max-width:780px;margin:auto;padding:28px 20px 60px}
-nav{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:26px;font-size:14px}
-nav a{color:var(--acc);text-decoration:none;margin-right:16px}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.75 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  word-wrap:break-word;overflow-wrap:anywhere}
+.wrap{max-width:820px;margin:0 auto;padding:24px 18px 72px}
+header.top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:22px}
+nav a{color:var(--acc);text-decoration:none;margin-right:14px;font-size:14px;white-space:nowrap}
 nav a:hover{text-decoration:underline}
-h1{font-size:26px;margin:0 0 6px;line-height:1.3}
-h2{font-size:19px;margin:32px 0 10px;padding-top:6px;border-top:1px solid var(--line)}
-h3{font-size:16px;margin:20px 0 6px}
-.meta{color:var(--mut);font-size:14px;margin-bottom:22px}
-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:15px}
-th,td{text-align:left;padding:9px 10px;border:1px solid var(--line);vertical-align:top}
-th{background:rgba(128,128,160,.1);font-size:13px}
-code{background:rgba(128,128,160,.15);padding:2px 6px;border-radius:4px;font-size:14px}
-.box{border-left:3px solid var(--acc);background:rgba(128,128,160,.08);padding:12px 16px;margin:16px 0;border-radius:0 6px 6px 0}
-ul{padding-left:22px}
-footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);color:var(--mut);font-size:13px}
-.en{margin-top:50px;padding-top:24px;border-top:3px double var(--line)}
+.langbar{display:flex;gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.langbar button{appearance:none;border:0;background:transparent;color:var(--fg);
+  font:600 13px/1 system-ui,sans-serif;padding:9px 14px;cursor:pointer;white-space:nowrap}
+.langbar button[aria-pressed="true"]{background:var(--acc);color:#fff}
+.langbar button:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
+h1{font-size:27px;margin:0 0 8px;line-height:1.3}
+h2{font-size:19px;margin:34px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
+h3{font-size:16px;margin:22px 0 6px}
+.meta{color:var(--mut);font-size:14px;margin-bottom:20px;line-height:1.6}
+p{margin:10px 0}
+ul,ol{padding-left:22px;margin:10px 0}
+li{margin:5px 0}
+code{background:var(--code);padding:2px 6px;border-radius:4px;font-size:.9em;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.tablewrap{overflow-x:auto;margin:14px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:10px 11px;border:1px solid var(--line);vertical-align:top}
+th{background:var(--acc2);font-size:13px;font-weight:700}
+.box{border-left:4px solid var(--acc);background:var(--acc2);padding:13px 16px;margin:16px 0;border-radius:0 8px 8px 0}
+.box.warn{border-left-color:var(--warnline);background:var(--warnbg);color:var(--warn)}
+.box.ok{border-left-color:var(--okline);background:var(--okbg);color:var(--ok)}
+.box.danger{border-left-color:var(--dangerline);background:var(--dangerbg);color:var(--danger)}
+.box b,.box strong{color:inherit}
+footer{margin-top:46px;padding-top:16px;border-top:1px solid var(--line);color:var(--mut);font-size:13px;line-height:1.7}
+footer a{color:var(--acc)}
+[data-lang]{display:none}
+html[data-active="vi"] [data-lang="vi"]{display:block}
+html[data-active="en"] [data-lang="en"]{display:block}
+html:not([data-active]) [data-lang="vi"]{display:block}
+@media print{.langbar,nav{display:none}[data-lang]{display:block !important}}
+@media(max-width:520px){.wrap{padding:18px 14px 56px}h1{font-size:23px}h2{font-size:17px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<nav>
-  <a href="./index.html">Trang chủ</a>
-  <a href="./privacy.html">Quyền riêng tư</a>
-  <a href="./terms.html">Điều khoản</a>
-  <a href="./support.html">Hỗ trợ &amp; Khiếu nại</a>
-</nav>
+<header class="top">
+  <nav>
+    <a href="./index.html">Home</a>
+    <a href="./privacy.html">Privacy Policy</a>
+    <a href="./terms.html">Terms of Service</a>
+    <a href="./support.html">Support</a>
+  </nav>
+  <div class="langbar" role="group" aria-label="Language / Ngôn ngữ">
+    <button type="button" id="btn-vi" aria-pressed="true">Tiếng Việt</button>
+    <button type="button" id="btn-en" aria-pressed="false">English</button>
+  </div>
+</header>
+
+<!-- ══════════════════════════════ TIẾNG VIỆT ══════════════════════════════ -->
+<section data-lang="vi">
 
 <h1>Chính sách quyền riêng tư</h1>
 <div class="meta">
-  Tiện ích <b>AOV Poster — Cá Nhân</b> (Chrome Extension)<br>
-  Ngày hiệu lực: <b>16/08/2026</b> · Cập nhật lần cuối: <b>16/08/2026</b><br>
+  Áp dụng cho tiện ích trình duyệt <b>AOV Poster — Cá Nhân</b> (Chrome Extension, Manifest V3)<br>
+  Phiên bản chính sách: <b>2.1</b> · Ngày hiệu lực: <b>21/08/2026</b> · Áp dụng từ bản tiện ích <b>1.3.9</b> trở đi<br>
+  Đơn vị vận hành: nhà phát triển cá nhân, bút danh <b>NFSK</b><br>
   Liên hệ: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b>
 </div>
 
 <div class="box">
-  <b>Tóm tắt trong một câu:</b> tiện ích không thu thập thông tin định danh cá nhân,
-  không bán hay chia sẻ dữ liệu với bất kỳ bên nào, và ảnh của bạn không bao giờ
-  đi qua máy chủ của chúng tôi.
+  <b>Công bố nổi bật (Prominent Disclosure).</b> Tiện ích này có gửi dữ liệu tới máy chủ do
+  chúng tôi vận hành. Dữ liệu đó gồm <b>một mã định danh giả danh</b> (chuỗi băm SHA-256 tạo
+  trên máy bạn) và <b>các con số thống kê sử dụng</b> (số lượt đã dùng, số mã đã đổi, mốc thời
+  gian). Việc gửi dữ liệu <b>chỉ bắt đầu sau khi bạn bấm nút “Tôi đồng ý”</b> trong màn hình
+  công bố hiện ra ở lần chạy đầu tiên. Nếu bạn không đồng ý, tiện ích không gửi bất kỳ dữ liệu
+  nào và các tính năng cần máy chủ sẽ không hoạt động.
 </div>
 
-<h2>1. Phạm vi áp dụng</h2>
-<p>Chính sách này áp dụng cho tiện ích trình duyệt <b>AOV Poster — Cá Nhân</b>, hoạt động
-duy nhất trên tên miền <code>kgvn-camp.mobagarena.com</code>. Chính sách không áp dụng cho
-trang web của Garena hay bất kỳ dịch vụ nào của bên thứ ba.</p>
+<h2>1. Phạm vi</h2>
+<p>Chính sách này chỉ điều chỉnh tiện ích trình duyệt <b>AOV Poster — Cá Nhân</b>, hoạt động
+duy nhất trên tên miền <code>kgvn-camp.mobagarena.com</code> (trang AOV Camp khu vực Việt Nam).</p>
+<p>Chính sách này <b>không</b> điều chỉnh: trang web của Garena, hạ tầng lưu trữ ảnh của Garena
+/ Tencent Cloud, trò chơi Liên Quân Mobile, hay bất kỳ dịch vụ nào của bên thứ ba. Khi bạn dùng
+những dịch vụ đó, chính sách riêng của họ được áp dụng.</p>
 
-<h2>2. Dữ liệu được xử lý</h2>
+<h2>2. Nguyên tắc của chúng tôi</h2>
+<ul>
+  <li><b>Thu thập tối thiểu.</b> Chỉ thu thập đúng thứ cần để áp hạn mức và vận hành chương trình thử nghiệm.</li>
+  <li><b>Không định danh cá nhân.</b> Máy chủ không bao giờ nhận tên, email, số điện thoại, tên tài khoản Garena hay tên nhân vật của bạn.</li>
+  <li><b>Không chạm vào bí mật của bạn.</b> Tiện ích không đọc, không sao chép và không gửi đi cookie, mã thông báo đăng nhập (token), mã OTP, mật khẩu hay bất kỳ thông tin xác thực nào có trên trang hoặc trong trình duyệt.</li>
+  <li><b>Không bán dữ liệu.</b> Không bán, không cho thuê, không trao đổi, không chuyển giao cho bên thứ ba vì mục đích thương mại.</li>
+  <li><b>Ảnh không đi qua chúng tôi.</b> Ảnh bạn tải lên đi thẳng từ trình duyệt của bạn tới hạ tầng lưu trữ của Garena.</li>
+</ul>
 
-<h3>2.1. Dữ liệu lưu trên máy bạn — không rời khỏi thiết bị</h3>
+<h2>3. Dữ liệu được xử lý</h2>
+
+<h3>3.1. Dữ liệu chỉ nằm trên máy bạn</h3>
+<div class="tablewrap">
 <table>
   <tr><th>Dữ liệu</th><th>Nơi lưu</th><th>Mục đích</th></tr>
-  <tr><td>Danh sách ảnh bạn đã tải lên (đường dẫn, tên tệp, kích thước)</td><td><code>localStorage</code></td><td>Hiển thị lại thư viện ảnh của bạn</td></tr>
-  <tr><td>Bộ đếm hạn mức sử dụng theo tuần</td><td><code>chrome.storage.local</code></td><td>Áp hạn mức trong giai đoạn thử nghiệm</td></tr>
-  <tr><td>Ghi nhớ ảnh nào thuộc poster nào</td><td><code>localStorage</code></td><td>Khôi phục ảnh khi bạn mở lại poster</td></tr>
+  <tr><td>Danh sách ảnh bạn đã tải lên (đường dẫn ảnh trên CDN Garena, tên tệp, kích thước)</td><td><code>localStorage</code> của trang</td><td>Hiển thị lại thư viện ảnh của bạn khi mở lại trang</td></tr>
+  <tr><td>Bản đồ “ảnh nào thuộc poster nào”</td><td><code>localStorage</code> của trang</td><td>Khôi phục đúng ảnh khi bạn mở lại một poster</td></tr>
+  <tr><td>Bộ đếm hạn mức và bản sao dự phòng của bộ đếm</td><td><code>chrome.storage.local</code></td><td>Hiển thị số lượt còn lại ngay cả khi mất mạng tạm thời</td></tr>
+  <tr><td>Bản đệm cấu hình vận hành nhận từ máy chủ (số lượt, trạng thái, thông báo)</td><td><code>chrome.storage.local</code></td><td>Tiện ích vẫn hiển thị đúng trạng thái khi máy chủ tạm không phản hồi</td></tr>
+  <tr><td>Lựa chọn đồng ý / từ chối của bạn</td><td><code>chrome.storage.local</code></td><td>Ghi nhớ để không hỏi lại mỗi lần mở trang</td></tr>
 </table>
-<p>Tiện ích <b>không</b> sử dụng <code>chrome.storage.sync</code>, nên không có dữ liệu nào
-được đồng bộ lên tài khoản Google của bạn.</p>
+</div>
+<p>Tiện ích <b>không</b> dùng <code>chrome.storage.sync</code>, nên không có dữ liệu nào được
+đồng bộ lên tài khoản Google của bạn hay sang thiết bị khác.</p>
 
-<h3>2.2. Ảnh bạn tải lên</h3>
-<p>Ảnh bạn chọn được tải <b>trực tiếp</b> lên hạ tầng lưu trữ của Garena
-(<code>kg-camp-ugc.mobagarena.com</code>) bằng chính cơ chế tải lên sẵn có của trang web.
-Ảnh <b>không đi qua bất kỳ máy chủ nào của chúng tôi</b>. Chúng tôi không xem, không lưu
-và không có quyền truy cập vào ảnh của bạn. Ảnh đã tải lên chịu sự điều chỉnh của chính
-sách do Garena ban hành.</p>
-
-<h3>2.3. Dữ liệu gửi tới máy chủ của chúng tôi</h3>
-<p><b>Phiên bản 1.3.6 – 1.3.8:</b> không gửi bất kỳ dữ liệu nào. Tiện ích không kết nối tới
-máy chủ nào của chúng tôi.</p>
-<p><b>Từ phiên bản 1.3.9 trở đi:</b> tiện ích gửi một <b>mã định danh giả danh</b> nhằm áp
-hạn mức sử dụng:</p>
+<h3>3.2. Dữ liệu gửi tới máy chủ của chúng tôi</h3>
+<p>Chỉ gửi <b>sau khi bạn đồng ý</b>, và chỉ gồm những trường sau:</p>
+<div class="tablewrap">
 <table>
-  <tr><th>Mục</th><th>Nội dung</th></tr>
-  <tr><td>Là gì</td><td>Chuỗi băm SHA-256 dài 64 ký tự</td></tr>
-  <tr><td>Tạo ra sao</td><td>Băm <b>ngay trên thiết bị của bạn</b> từ mã nhân vật trong trò chơi</td></tr>
-  <tr><td>Điểm quan trọng</td><td><b>Mã nhân vật gốc không bao giờ rời khỏi thiết bị.</b> Máy chủ chỉ nhận chuỗi băm và không thể suy ngược ra mã gốc</td></tr>
-  <tr><td>Kèm theo</td><td>Số lượt đã sử dụng trong tuần và số mã quà đã đổi</td></tr>
-  <tr><td>Mục đích</td><td>Áp hạn mức theo tài khoản trò chơi trong giai đoạn thử nghiệm</td></tr>
+  <tr><th>Trường</th><th>Nội dung cụ thể</th><th>Vì sao cần</th></tr>
+  <tr><td><b>Mã định danh giả danh</b> (“Hash ID”)</td><td>Chuỗi băm SHA-256 dài 64 ký tự hệ 16, tính <b>ngay trên thiết bị của bạn</b> từ mã nhân vật trong trò chơi cộng thêm một chuỗi muối cố định. <b>Mã nhân vật gốc không bao giờ rời khỏi thiết bị.</b></td><td>Để hạn mức bám theo tài khoản trò chơi thay vì bám theo lần cài đặt tiện ích</td></tr>
+  <tr><td>Số lượt đã dùng trong kỳ</td><td>Một số nguyên</td><td>Áp hạn mức</td></tr>
+  <tr><td>Số mã quà đã đổi trong kỳ và mã quà bạn nhập</td><td>Chuỗi mã do chúng tôi phát hành, không phải thông tin của bạn</td><td>Chống dùng lại một mã nhiều lần</td></tr>
+  <tr><td>Mốc thời gian và phiên bản tiện ích</td><td>Thời điểm gọi, số hiệu phiên bản</td><td>Làm mới hạn mức đúng chu kỳ, phát hiện bản quá cũ</td></tr>
+  <tr><td>Sự kiện vận hành</td><td>“đã dùng 1 lượt”, “đổi mã thành công/thất bại”, “điểm danh”, “bị từ chối vì hết lượt”</td><td>Ghi nhật ký để đối soát khi bạn khiếu nại, và để phát hiện lạm dụng</td></tr>
 </table>
-
-<h3>2.4. Dữ liệu KHÔNG được thu thập</h3>
-<ul>
-  <li>Họ tên, địa chỉ email, số điện thoại, địa chỉ</li>
-  <li>Mật khẩu, mã thông báo đăng nhập, cookie phiên</li>
-  <li>Tên tài khoản Garena, tên nhân vật</li>
-  <li>Vị trí địa lý</li>
-  <li>Lịch sử duyệt web, danh sách thẻ đang mở</li>
-  <li>Nội dung liên lạc cá nhân</li>
-  <li>Thông tin sức khoẻ, thông tin tài chính</li>
-</ul>
-
-<h2>3. Chia sẻ với bên thứ ba</h2>
-<p><b>Chúng tôi không bán, không cho thuê, không trao đổi và không chuyển giao dữ liệu cho
-bất kỳ bên thứ ba nào.</b> Tiện ích không tích hợp bộ công cụ phân tích, trình báo lỗi từ xa
-hay mạng quảng cáo nào.</p>
-<p>Cloudflare được sử dụng làm nhà cung cấp hạ tầng máy chủ (từ phiên bản 1.3.9) và chỉ xử lý
-dữ liệu theo chỉ dẫn của chúng tôi.</p>
-
-<h2>4. Thời gian lưu trữ</h2>
-<table>
-  <tr><th>Dữ liệu</th><th>Nơi lưu</th><th>Thời hạn</th></tr>
-  <tr><td>Dữ liệu trên máy bạn</td><td>Trình duyệt của bạn</td><td>Đến khi bạn gỡ tiện ích hoặc xoá dữ liệu trang</td></tr>
-  <tr><td>Bản ghi hạn mức (theo chuỗi băm)</td><td>Cloudflare Workers KV</td><td><b>Tự động xoá sau 60 ngày</b></td></tr>
-  <tr><td>Trạng thái mã quà</td><td>Cloudflare Workers KV</td><td>Đến khi được xoá thủ công</td></tr>
-</table>
-
-<h2>5. Quyền của bạn</h2>
-<ul>
-  <li><b>Xem dữ liệu của mình:</b> tiện ích hiển thị mã định danh của bạn ngay trong tab
-      &ldquo;Cá nhân&rdquo;. Đó là toàn bộ thông tin định danh mà máy chủ nắm giữ.</li>
-  <li><b>Yêu cầu xoá:</b> gửi email kèm mã định danh đó tới địa chỉ liên hệ ở đầu trang.
-      Chúng tôi sẽ xoá bản ghi tương ứng trong vòng 30 ngày.</li>
-  <li><b>Xoá dữ liệu cục bộ:</b> gỡ tiện ích, hoặc xoá dữ liệu trang của
-      <code>kgvn-camp.mobagarena.com</code> trong cài đặt trình duyệt.</li>
-  <li><b>Ngừng gửi dữ liệu:</b> gỡ tiện ích.</li>
-</ul>
-<div class="box">
-  Vì máy chủ <b>chỉ</b> lưu chuỗi băm, chúng tôi không thể tự xác định bản ghi nào thuộc về
-  bạn nếu bạn không cung cấp chuỗi đó. Đây là hệ quả trực tiếp của việc thu thập tối thiểu.
+</div>
+<div class="box ok">
+  <b>Không kèm theo:</b> không địa chỉ IP lưu trữ lâu dài, không dấu vân tay trình duyệt,
+  không nội dung ảnh, không tên tệp ảnh, không lịch sử duyệt web, không danh sách thẻ đang mở.
 </div>
 
-<h2>6. Quyền truy cập mà tiện ích yêu cầu</h2>
+<h3>3.3. Vì sao mã định danh phải nằm ở máy chủ</h3>
+<p>Đây là câu hỏi hợp lý và chúng tôi nói thẳng: nếu hạn mức chỉ nằm trong bộ nhớ của trình
+duyệt thì bất kỳ ai cũng có thể xoá dữ liệu trang, gỡ rồi cài lại tiện ích, hoặc mở cửa sổ ẩn
+danh để đặt lại số lượt về mức đầy — lặp lại không giới hạn. Khi đó chương trình thử nghiệm
+mất kiểm soát: một người có thể chiếm toàn bộ hạn mức chung, gây áp lực lên hạ tầng lưu trữ
+của Garena và làm những người dùng còn lại không dùng được.</p>
+<p>Vì vậy bộ đếm thật nằm ở máy chủ, gắn với <b>chuỗi băm</b> của mã nhân vật chứ không phải
+với thiết bị. Gỡ tiện ích không đặt lại số lượt. Đổi máy cũng không. Đây là toàn bộ lý do
+tồn tại của mã định danh — không phải để theo dõi bạn.</p>
+
+<h3>3.4. Dữ liệu chúng tôi KHÔNG BAO GIỜ thu thập</h3>
+<ul>
+  <li>Họ tên, địa chỉ email, số điện thoại, địa chỉ nhà, ngày sinh</li>
+  <li><b>Cookie, mã thông báo phiên (session token), mã xác thực OTP, mật khẩu</b> — kể cả khi những thứ đó hiện diện trên trang mà tiện ích đang chạy</li>
+  <li>Tên tài khoản Garena, tên nhân vật, mã nhân vật gốc chưa băm</li>
+  <li>Nội dung hoặc tên tệp của ảnh bạn tải lên</li>
+  <li>Vị trí địa lý, lịch sử duyệt web, danh sách thẻ đang mở, dấu trang, tệp tải xuống</li>
+  <li>Nội dung liên lạc cá nhân, thông tin sức khoẻ, thông tin tài chính</li>
+</ul>
+<div class="box warn">
+  <b>Cam kết kỹ thuật:</b> tiện ích không khai báo quyền <code>cookies</code>,
+  <code>webRequest</code>, <code>history</code>, <code>tabs</code>, <code>downloads</code> hay
+  <code>clipboardRead</code> trong tệp <code>manifest.json</code>. Không có quyền thì về mặt kỹ
+  thuật tiện ích <b>không thể</b> đọc những dữ liệu đó, dù mã nguồn có viết gì đi nữa. Bạn có
+  thể tự kiểm chứng điều này trong phần “Chi tiết” của tiện ích trong trình duyệt.
+</div>
+
+<h2>4. Giải trình từng quyền mà tiện ích yêu cầu</h2>
+<div class="tablewrap">
 <table>
-  <tr><th>Quyền</th><th>Lý do</th></tr>
-  <tr><td><code>storage</code></td><td>Lưu bộ đếm hạn mức trên máy bạn bằng <code>chrome.storage.local</code></td></tr>
-  <tr><td>Truy cập <code>kgvn-camp.mobagarena.com</code></td><td>Nơi tiện ích bổ sung tính năng cho trình tạo Poster sẵn có</td></tr>
+  <tr><th>Quyền</th><th>Dùng để làm gì</th><th>Không dùng để làm gì</th></tr>
+  <tr>
+    <td><code>storage</code><br>(bộ nhớ tiện ích)</td>
+    <td>Lưu bộ đếm hạn mức, bản đệm cấu hình và lựa chọn đồng ý của bạn ở dạng <code>chrome.storage.local</code>. Bộ nhớ này không bị xoá khi bạn xoá dữ liệu trang, nên số lượt hiển thị không nhảy loạn.</td>
+    <td>Không lưu bất kỳ thông tin định danh cá nhân nào. Không dùng <code>.sync</code> nên không rời khỏi máy.</td>
+  </tr>
+  <tr>
+    <td>Truy cập trang<br><code>kgvn-camp.mobagarena.com</code></td>
+    <td>Nơi tiện ích chèn giao diện bổ sung và gọi đúng những API mà chính trang đó đã có sẵn để tải ảnh lên.</td>
+    <td>Không có quyền trên bất kỳ tên miền nào khác. Không đọc dữ liệu trang ngoài phần liên quan tới trình tạo Poster.</td>
+  </tr>
+  <tr>
+    <td>Ghi vào bộ nhớ tạm<br>(clipboard-write)</td>
+    <td>Chỉ khi bạn <b>chủ động bấm nút “Sao chép”</b> để chép mã định danh của mình ra ngoài (phục vụ việc gửi khiếu nại hoặc yêu cầu xoá dữ liệu). Thao tác này dùng cơ chế sao chép tiêu chuẩn của trình duyệt trong một cử chỉ người dùng.</td>
+    <td><b>Không đọc bộ nhớ tạm.</b> Tiện ích không khai báo quyền <code>clipboardRead</code> và không có cách nào biết bạn đang chép gì ở nơi khác.</td>
+  </tr>
+  <tr>
+    <td>Tải biểu tượng giao diện từ CDN</td>
+    <td>Lấy các ảnh nút bấm tĩnh của tiện ích từ Cloudinary.</td>
+    <td>Không gửi kèm mã định danh, không gửi kèm số liệu sử dụng, không đặt cookie.</td>
+  </tr>
+  <tr>
+    <td>Kết nối tới máy chủ cấu hình của chúng tôi</td>
+    <td>Nhận thông số vận hành (số lượt cho phép, trạng thái bảo trì, thông báo) và gửi các sự kiện ở mục 3.2.</td>
+    <td>Không tải mã thực thi từ xa. Xem mục 5.</td>
+  </tr>
 </table>
-<p>Tiện ích không yêu cầu quyền đọc lịch sử duyệt web, thẻ đang mở, cookie, tệp tải xuống,
-hay quyền truy cập bất kỳ trang web nào khác.</p>
+</div>
 
-<h2>7. Bảo mật</h2>
-<p>Mọi kết nối đều dùng HTTPS. Máy chủ chỉ lưu chuỗi băm không thể đảo ngược, nên ngay cả
-trong trường hợp dữ liệu bị lộ cũng không thể suy ra tài khoản trò chơi của bạn.</p>
+<h2>5. Quản lý từ xa, cập nhật và thu hồi</h2>
+<p>Tiện ích đọc một tệp cấu hình từ máy chủ của chúng tôi mỗi khi khởi động và định kỳ sau đó.
+Tệp này <b>chỉ chứa thông số</b>: các con số hạn mức, một cờ trạng thái
+(<code>ok</code> / <code>maintenance</code> / <code>off</code>), phiên bản tối thiểu được phép
+chạy, và một dòng thông báo hiển thị cho bạn.</p>
+<div class="box ok">
+  <b>Không có mã thực thi từ xa.</b> Máy chủ không bao giờ gửi về chuỗi JavaScript, và tiện ích
+  không bao giờ gọi <code>eval()</code>, <code>new Function()</code>, không chèn thẻ
+  <code>&lt;script&gt;</code> có nguồn từ xa, không tải mã từ CDN. Toàn bộ mã thực thi nằm
+  trong gói tiện ích đã được Chrome Web Store rà soát. Điều này tuân thủ chính sách cấm mã từ
+  xa của Manifest V3.
+</div>
+<p><b>Vì sao chúng tôi cần khả năng thu hồi.</b> Đây là công cụ cộng đồng vận hành ở giai đoạn
+thử nghiệm, tác động lên hạ tầng của một bên thứ ba (Garena). Nếu Garena yêu cầu dừng, nếu
+chúng tôi phát hiện lỗi gây hại, hoặc khi chương trình thử nghiệm kết thúc, chúng tôi cần
+ngừng được các tính năng cần máy chủ ngay lập tức thay vì chờ từng người dùng tự gỡ. Khi cờ
+trạng thái chuyển sang <code>off</code>, tiện ích ngừng phục vụ các tính năng đó và hiển thị lý
+do. Tính năng thuần cục bộ không gửi dữ liệu đi vẫn hoạt động bình thường.</p>
+<p>Chúng tôi <b>không</b> dùng cơ chế này để xoá tệp trên máy bạn, để can thiệp vào trình duyệt
+của bạn, hay để thay đổi bất kỳ thứ gì ngoài phạm vi tiện ích.</p>
 
-<h2>8. Trẻ em</h2>
-<p>Tiện ích không hướng tới trẻ em dưới 13 tuổi và chúng tôi không cố ý thu thập dữ liệu
-của trẻ em. Nếu phát hiện đã thu thập nhầm, chúng tôi sẽ xoá ngay khi được thông báo.</p>
+<h2>6. Ảnh bạn tải lên — đi thẳng tới Garena</h2>
+<p>Khi bạn chọn một ảnh, trình duyệt của bạn tải ảnh đó <b>trực tiếp</b> lên hạ tầng lưu trữ
+của Garena / Tencent Cloud (<code>kg-camp-ugc.mobagarena.com</code>, và
+<code>kg-camp.mobagarena.com</code> đối với ảnh cũ đăng trước tháng 5/2026) bằng đúng cơ chế tải
+lên mà trang AOV Camp đã có sẵn, kèm thông tin xác thực do chính trang đó cấp. Ảnh <b>không đi qua máy chủ của chúng tôi</b>. Chúng tôi không
+xem, không lưu, không có bản sao và không có quyền truy cập vào ảnh của bạn.</p>
+<div class="box danger">
+  <b>Hệ quả bạn cần biết trước khi tải ảnh lên.</b> Ảnh được đăng ký như một nhãn dán qua luồng
+  chính thức của AOV Camp, nên Garena có bản ghi trong cơ sở dữ liệu và bản sao trên hạ tầng
+  lưu trữ của họ. <b>Việc bạn xoá ảnh khỏi danh sách hiển thị trong tiện ích hoặc trên trang
+  không làm bản ghi và bản sao đó biến mất.</b> Garena vẫn có thể truy xuất và xử lý vi phạm
+  nội dung theo quy định của họ, kể cả sau khi bạn đã xoá. Xem thêm mục
+  <a href="./terms.html">Điều khoản sử dụng</a> về nội dung bị cấm và trách nhiệm của bạn.
+</div>
 
-<h2>9. Không liên kết với Garena</h2>
-<p>Đây là công cụ <b>không chính thức</b> do cộng đồng phát triển, <b>không</b> có liên kết,
-tài trợ hay chứng thực nào từ Garena, Tencent hoặc bất kỳ bên nào khác. Mọi nhãn hiệu thuộc
-về chủ sở hữu tương ứng và được nhắc đến ở đây thuần tuý nhằm mô tả phạm vi hoạt động.</p>
+<h2>7. Chia sẻ với bên thứ ba</h2>
+<p>Chúng tôi <b>không bán, không cho thuê, không trao đổi và không chuyển giao</b> dữ liệu cho
+bên thứ ba vì mục đích thương mại. Tiện ích không tích hợp bộ công cụ phân tích, trình báo lỗi
+từ xa, mạng quảng cáo hay pixel theo dõi nào.</p>
+<div class="tablewrap">
+<table>
+  <tr><th>Bên</th><th>Vai trò</th><th>Nhận gì</th></tr>
+  <tr><td>Cloudflare, Inc.</td><td>Nhà cung cấp hạ tầng máy chủ (Workers, KV). Xử lý dữ liệu theo chỉ dẫn của chúng tôi.</td><td>Các trường ở mục 3.2</td></tr>
+  <tr><td>Garena / Tencent Cloud</td><td>Chủ sở hữu trang web và hạ tầng lưu ảnh. Quan hệ giữa bạn và họ là trực tiếp, không qua chúng tôi.</td><td>Ảnh bạn tải lên và thông tin phiên của chính trang họ — chúng tôi không tham gia và không nhận bản sao</td></tr>
+  <tr><td>Cloudinary (<code>res.cloudinary.com</code>)</td><td>Mạng phân phối nội dung, chỉ dùng để tải <b>các biểu tượng giao diện tĩnh</b> của tiện ích (nút Tải lên, Thay ảnh, Xoá…).</td><td>Như mọi lần tải ảnh trên web: địa chỉ IP và thông tin trình duyệt của bạn. <b>Không</b> mã định danh, <b>không</b> dữ liệu sử dụng, <b>không</b> cookie do chúng tôi đặt</td></tr>
+</table>
+</div>
+<div class="box">
+  <b>Vì sao có Cloudinary.</b> Các biểu tượng trên giao diện tiện ích được tải từ một mạng phân
+  phối nội dung thay vì đóng gói sẵn. Việc tải một ảnh tĩnh từ bất kỳ máy chủ nào cũng để lộ địa
+  chỉ IP của bạn cho máy chủ đó — đúng như khi bạn mở một trang web bình thường. Chúng tôi nêu
+  điều này ra vì minh bạch, dù đó không phải hành vi thu thập dữ liệu của chúng tôi. Chúng tôi
+  <b>không</b> đặt cookie qua đường này và <b>không</b> nhận lại bất kỳ số liệu nào từ Cloudinary.
+  Kế hoạch: đóng gói các biểu tượng này vào chính tiện ích để loại bỏ hẳn bên thứ ba.
+</div>
 
-<h2>10. Thay đổi chính sách</h2>
-<p>Mọi thay đổi sẽ được đăng tại chính trang này kèm ngày hiệu lực mới. Thay đổi làm mở rộng
-phạm vi dữ liệu thu thập sẽ được nêu rõ trong phần mô tả bản cập nhật trên Chrome Web Store.</p>
+<p><b>Nghĩa vụ pháp lý và phối hợp kiểm duyệt.</b> Nếu Garena hoặc cơ quan có thẩm quyền yêu
+cầu chính thức, chúng tôi sẽ phối hợp cung cấp <b>dữ liệu vận hành mà chúng tôi thực sự có</b>:
+số liệu sử dụng tổng hợp, số lần tải ảnh lên, mã định danh giả danh có dấu hiệu vi phạm, và
+mã nguồn tiện ích để rà soát. Chúng tôi <b>không thể</b> cung cấp thứ mình không có — chúng tôi
+không nắm ảnh, không nắm tên tài khoản và không nắm mã nhân vật gốc của bạn.</p>
 
-<!-- ─────────────────────────── ENGLISH ─────────────────────────── -->
-<div class="en">
-<h1>Privacy Policy (English)</h1>
+<h2>8. Thời gian lưu trữ</h2>
+<div class="tablewrap">
+<table>
+  <tr><th>Dữ liệu</th><th>Nơi lưu</th><th>Thời hạn</th></tr>
+  <tr><td>Dữ liệu cục bộ (mục 3.1)</td><td>Trình duyệt của bạn</td><td>Đến khi bạn gỡ tiện ích hoặc xoá dữ liệu trang</td></tr>
+  <tr><td>Bản ghi hạn mức theo chuỗi băm</td><td>Cloudflare Workers KV</td><td>Tự động xoá sau <b>60 ngày</b> không hoạt động</td></tr>
+  <tr><td>Nhật ký vận hành (mục 3.2)</td><td>Cloudflare Workers KV</td><td>Tự động xoá sau <b>90 ngày</b></td></tr>
+  <tr><td>Danh sách hạn chế do vi phạm</td><td>Cloudflare Workers KV</td><td>Giữ trong thời gian chương trình thử nghiệm còn chạy, hoặc đến khi khiếu nại được giải quyết</td></tr>
+  <tr><td>Trạng thái mã quà</td><td>Cloudflare Workers KV</td><td>Đến khi lô mã bị xoá thủ công</td></tr>
+</table>
+</div>
+<p>Khi chương trình thử nghiệm kết thúc, chúng tôi xoá toàn bộ dữ liệu máy chủ.</p>
+
+<h2>9. Quyền của bạn</h2>
+<ul>
+  <li><b>Rút lại đồng ý bất cứ lúc nào.</b> Trong tiện ích có nút tắt việc gửi dữ liệu. Sau khi tắt, tiện ích ngừng gọi máy chủ; các tính năng cần máy chủ sẽ dừng.</li>
+  <li><b>Xem dữ liệu của mình.</b> Tiện ích hiển thị <b>đầy đủ 64 ký tự</b> của mã định danh ngay trong giao diện, kèm nút sao chép. Đó là toàn bộ thông tin định danh mà máy chủ nắm giữ về bạn.</li>
+  <li><b>Yêu cầu xoá.</b> Gửi email kèm mã định danh đó tới địa chỉ liên hệ. Chúng tôi xoá bản ghi tương ứng trong vòng <b>30 ngày</b> và xác nhận lại bằng email.</li>
+  <li><b>Xoá dữ liệu cục bộ.</b> Gỡ tiện ích, hoặc xoá dữ liệu trang của <code>kgvn-camp.mobagarena.com</code> trong cài đặt trình duyệt.</li>
+  <li><b>Khiếu nại.</b> Xem trang <a href="./support.html">Hỗ trợ &amp; Khiếu nại</a>.</li>
+</ul>
+<div class="box">
+  Vì máy chủ <b>chỉ</b> lưu chuỗi băm và không lưu bất kỳ thông tin nào có thể liên hệ ngược tới
+  bạn, chúng tôi không thể tự xác định bản ghi nào là của bạn nếu bạn không cung cấp chuỗi đó.
+  Đây là hệ quả trực tiếp của việc thu thập tối thiểu, không phải cách né tránh trách nhiệm.
+</div>
+
+<h2>10. Bảo mật</h2>
+<ul>
+  <li>Mọi kết nối tới máy chủ của chúng tôi đều dùng HTTPS.</li>
+  <li>Máy chủ chỉ lưu chuỗi băm không thể đảo ngược. Ngay cả khi dữ liệu bị lộ cũng không thể suy ra tài khoản trò chơi của bạn.</li>
+  <li>Chuỗi muối dùng cho việc băm và các khoá quản trị được giữ dưới dạng biến bí mật trên hạ tầng máy chủ, không nằm trong mã nguồn tiện ích.</li>
+  <li>Chúng tôi ghi nhật ký các mẫu truy cập bất thường (gửi yêu cầu dồn dập, cố gọi lại giao diện lập trình ngoài luồng bình thường) để chặn lạm dụng. Nhật ký này gắn với chuỗi băm, không gắn với con người cụ thể.</li>
+</ul>
+
+<h2>11. Trẻ em</h2>
+<p>Tiện ích không hướng tới trẻ em dưới 13 tuổi và chúng tôi không cố ý thu thập dữ liệu của
+trẻ em. Nếu phát hiện đã thu thập nhầm, chúng tôi xoá ngay khi được thông báo.</p>
+
+<h2>12. Không liên kết với Garena</h2>
+<p>Đây là công cụ <b>không chính thức</b> do cộng đồng phát triển. <b>Không</b> có liên kết, tài
+trợ, hợp tác hay chứng thực nào từ Garena, Tencent hoặc bất kỳ bên nào khác. Mọi nhãn hiệu
+thuộc về chủ sở hữu tương ứng và được nhắc đến ở đây thuần tuý nhằm mô tả phạm vi hoạt động.</p>
+
+<h2>13. Thay đổi chính sách</h2>
+<p>Mọi thay đổi được đăng tại chính trang này kèm số hiệu phiên bản và ngày hiệu lực mới. Thay
+đổi làm <b>mở rộng</b> phạm vi dữ liệu thu thập sẽ được nêu rõ trong mô tả bản cập nhật trên
+Chrome Web Store và yêu cầu bạn <b>đồng ý lại</b> trong tiện ích trước khi có hiệu lực.</p>
+
+<h2>14. Liên hệ</h2>
+<p>Email: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b><br>
+Thời gian phản hồi thông thường: trong vòng 7 ngày làm việc.</p>
+
+</section>
+
+<!-- ══════════════════════════════ ENGLISH ══════════════════════════════ -->
+<section data-lang="en">
+
+<h1>Privacy Policy</h1>
 <div class="meta">
-  <b>AOV Poster — Cá Nhân</b> (Chrome Extension)<br>
-  Effective date: <b>2026-08-16</b> · Contact: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b>
+  Applies to the browser extension <b>AOV Poster — Cá Nhân</b> (Chrome Extension, Manifest V3)<br>
+  Policy version: <b>2.1</b> · Effective date: <b>2026-08-21</b> · Applies to extension version <b>1.3.9</b> and later<br>
+  Operator: individual developer, publishing as <b>NFSK</b><br>
+  Contact: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b>
+</div>
+
+<div class="box">
+  <b>Prominent Disclosure.</b> This extension transmits data to a server we operate. That data
+  consists of <b>a pseudonymous identifier</b> (a SHA-256 hash computed on your own device) and
+  <b>usage counters</b> (uses consumed, gift codes redeemed, timestamps). Transmission
+  <b>begins only after you press “I agree”</b> on the disclosure screen shown on first run. If
+  you decline, the extension sends nothing and the server-backed features remain disabled.
 </div>
 
 <h2>1. Scope</h2>
-<p>This policy covers the browser extension <b>AOV Poster — Cá Nhân</b>, which runs only on
-<code>kgvn-camp.mobagarena.com</code>.</p>
+<p>This policy governs only the browser extension <b>AOV Poster — Cá Nhân</b>, which runs
+exclusively on <code>kgvn-camp.mobagarena.com</code> (the Vietnam-region AOV Camp site).</p>
+<p>It does <b>not</b> govern Garena's website, Garena's or Tencent Cloud's image storage
+infrastructure, the Arena of Valor game, or any third-party service. Those services are covered
+by their own policies.</p>
 
-<h2>2. Data handled</h2>
-<p><b>On your device only:</b> your uploaded-image list and sticker mapping in
-<code>localStorage</code>; the weekly usage counter in <code>chrome.storage.local</code>.
-The extension does <b>not</b> use <code>chrome.storage.sync</code>.</p>
-<p><b>Your images</b> are uploaded <b>directly</b> to Garena's own storage
-(<code>kg-camp-ugc.mobagarena.com</code>) using the site's existing upload mechanism. They
-never pass through our servers. We cannot view, store or access them.</p>
-<p><b>Sent to our server (version 1.3.9 and later only):</b> a pseudonymous 64-character
-SHA-256 hash computed <b>on your device</b> from your in-game character ID, plus weekly usage
-counts. <b>The raw character ID never leaves your device</b> and the hash cannot be reversed.
-Versions 1.3.6–1.3.8 send nothing at all.</p>
-<p><b>Never collected:</b> name, email, phone, address, passwords, tokens, cookies, Garena
-account or character name, location, browsing history, open tabs, personal communications,
-health or financial information.</p>
+<h2>2. Our principles</h2>
+<ul>
+  <li><b>Minimal collection.</b> We collect only what is needed to enforce quotas and run the trial programme.</li>
+  <li><b>No personal identification.</b> The server never receives your name, email, phone number, Garena account name or character name.</li>
+  <li><b>We never touch your secrets.</b> The extension does not read, copy or transmit cookies, session tokens, one-time passcodes, passwords or any other credentials present on the page or in your browser.</li>
+  <li><b>No data sales.</b> We do not sell, rent, trade or transfer data to third parties for commercial purposes.</li>
+  <li><b>Images bypass us entirely.</b> Images you upload travel directly from your browser to Garena's storage infrastructure.</li>
+</ul>
 
-<h2>3. Third parties</h2>
-<p>We do <b>not</b> sell, rent, trade or transfer data to any third party. No analytics SDK,
-crash reporter or ad network is integrated. Cloudflare acts solely as our infrastructure
-provider.</p>
+<h2>3. Data we process</h2>
 
-<h2>4. Retention</h2>
-<p>Quota records in Cloudflare Workers KV are <b>automatically deleted after 60 days</b>.
-Local data remains until you uninstall the extension or clear site data.</p>
+<h3>3.1. Data that stays on your device</h3>
+<div class="tablewrap">
+<table>
+  <tr><th>Data</th><th>Stored in</th><th>Purpose</th></tr>
+  <tr><td>Your uploaded-image list (image URLs on Garena's CDN, file names, sizes)</td><td>Page <code>localStorage</code></td><td>Re-display your image library when you reopen the page</td></tr>
+  <tr><td>Mapping of which image belongs to which poster</td><td>Page <code>localStorage</code></td><td>Restore the right images when you reopen a poster</td></tr>
+  <tr><td>Quota counter and its backup copy</td><td><code>chrome.storage.local</code></td><td>Show your remaining uses even during a brief network outage</td></tr>
+  <tr><td>Cached operational configuration from the server (limits, status, notice)</td><td><code>chrome.storage.local</code></td><td>Display the correct state when the server is briefly unreachable</td></tr>
+  <tr><td>Your consent decision</td><td><code>chrome.storage.local</code></td><td>Remember it so you are not asked on every page load</td></tr>
+</table>
+</div>
+<p>The extension does <b>not</b> use <code>chrome.storage.sync</code>, so nothing is synced to
+your Google account or to other devices.</p>
 
-<h2>5. Your rights</h2>
-<p>The extension displays your identifier in the &ldquo;Cá nhân&rdquo; tab — that is the
-entire identifier our server holds. Email it to the contact address to request deletion;
-we will remove the record within 30 days. Because the server stores <b>only</b> the hash, we
-cannot locate your record without it. Uninstalling stops all transmission and removes all
-local data.</p>
-
-<h2>6. Permissions</h2>
-<p><code>storage</code> — local quota counter. Host access to
-<code>kgvn-camp.mobagarena.com</code> — where the extension adds its features. No access to
-history, tabs, cookies, downloads or any other site.</p>
-
-<h2>7. Security</h2>
-<p>All connections use HTTPS. The server stores only irreversible hashes, so even a data
-breach could not reveal your game account.</p>
-
-<h2>8. Children</h2>
-<p>Not directed at children under 13; no knowing collection of children's data.</p>
-
-<h2>9. Not affiliated with Garena</h2>
-<p>An unofficial community tool. No affiliation, sponsorship or endorsement from Garena or
-Tencent. All trademarks belong to their respective owners.</p>
-
-<h2>10. Changes</h2>
-<p>Changes will be posted on this page with a new effective date.</p>
+<h3>3.2. Data sent to our server</h3>
+<p>Sent only <b>after you consent</b>, and limited to these fields:</p>
+<div class="tablewrap">
+<table>
+  <tr><th>Field</th><th>Exact content</th><th>Why it is needed</th></tr>
+  <tr><td><b>Pseudonymous identifier</b> (“Hash ID”)</td><td>A 64-character hexadecimal SHA-256 hash computed <b>on your device</b> from your in-game character ID plus a fixed salt. <b>The raw character ID never leaves your device.</b></td><td>So the quota follows the game account rather than the installation</td></tr>
+  <tr><td>Uses consumed this period</td><td>An integer</td><td>Quota enforcement</td></tr>
+  <tr><td>Gift codes redeemed this period, and the code you enter</td><td>Strings we issued ourselves — not information about you</td><td>Prevent a single code from being reused</td></tr>
+  <tr><td>Timestamp and extension version</td><td>Time of call, version number</td><td>Reset quotas on the correct cycle; detect outdated builds</td></tr>
+  <tr><td>Operational events</td><td>“one use consumed”, “code redeemed / rejected”, “daily check-in”, “denied: quota exhausted”</td><td>Audit trail for handling your complaints, and abuse detection</td></tr>
+</table>
+</div>
+<div class="box ok">
+  <b>Not included:</b> no long-term IP address storage, no browser fingerprinting, no image
+  content, no image file names, no browsing history, no list of open tabs.
 </div>
 
+<h3>3.3. Why the identifier has to live on the server</h3>
+<p>This is a fair question and we will answer it plainly. If the quota lived only in browser
+storage, anyone could clear site data, uninstall and reinstall the extension, or open an
+incognito window to reset their counter to full — endlessly. The trial programme would lose all
+control: one person could consume the entire shared allowance, put pressure on Garena's storage
+infrastructure, and leave everyone else unable to use the tool.</p>
+<p>The authoritative counter therefore lives on the server, keyed to the <b>hash</b> of the
+character ID rather than to a device. Uninstalling does not reset your quota. Switching machines
+does not either. That is the entire reason the identifier exists — not to track you.</p>
+
+<h3>3.4. Data we NEVER collect</h3>
+<ul>
+  <li>Name, email address, phone number, postal address, date of birth</li>
+  <li><b>Cookies, session tokens, one-time passcodes, passwords</b> — even though they are present on the page the extension runs on</li>
+  <li>Garena account name, character name, or the raw un-hashed character ID</li>
+  <li>The content or file names of images you upload</li>
+  <li>Geolocation, browsing history, open tabs, bookmarks, downloads</li>
+  <li>Personal communications, health information, financial information</li>
+</ul>
+<div class="box warn">
+  <b>Technical guarantee:</b> the extension does not declare the <code>cookies</code>,
+  <code>webRequest</code>, <code>history</code>, <code>tabs</code>, <code>downloads</code> or
+  <code>clipboardRead</code> permissions in its <code>manifest.json</code>. Without those
+  permissions the extension is technically <b>incapable</b> of reading that data, regardless of
+  what its code says. You can verify this yourself in the extension's details page in your browser.
+</div>
+
+<h2>4. Permission-by-permission justification</h2>
+<div class="tablewrap">
+<table>
+  <tr><th>Permission</th><th>What it is used for</th><th>What it is NOT used for</th></tr>
+  <tr>
+    <td><code>storage</code></td>
+    <td>Storing the quota counter, the cached configuration and your consent decision in <code>chrome.storage.local</code>. This survives clearing site data, so your remaining-use count does not jump around.</td>
+    <td>No personally identifying information is stored. <code>.sync</code> is not used, so nothing leaves the machine.</td>
+  </tr>
+  <tr>
+    <td>Host access to<br><code>kgvn-camp.mobagarena.com</code></td>
+    <td>The single site where the extension injects its additional interface and calls the upload APIs that the site itself already exposes.</td>
+    <td>No access to any other domain. No reading of page data outside the Poster editor.</td>
+  </tr>
+  <tr>
+    <td>Clipboard write</td>
+    <td>Only when you <b>actively press the “Copy” button</b> to copy your own identifier out of the extension (so you can include it in a support request or deletion request). This uses the browser's standard copy mechanism inside a user gesture.</td>
+    <td><b>The clipboard is never read.</b> The extension does not declare <code>clipboardRead</code> and has no way of knowing what you copy elsewhere.</td>
+  </tr>
+  <tr>
+    <td>Loading interface icons from a CDN</td>
+    <td>Fetching the extension's static button images from Cloudinary.</td>
+    <td>No identifier is attached, no usage data is attached, no cookie is set.</td>
+  </tr>
+  <tr>
+    <td>Network access to our configuration server</td>
+    <td>Fetching operational parameters (allowed uses, maintenance state, notices) and sending the events listed in §3.2.</td>
+    <td>No remote code is ever fetched. See §5.</td>
+  </tr>
+</table>
+</div>
+
+<h2>5. Remote configuration, updates and revocation</h2>
+<p>The extension reads a configuration file from our server at startup and periodically
+thereafter. That file contains <b>parameters only</b>: quota numbers, a status flag
+(<code>ok</code> / <code>maintenance</code> / <code>off</code>), the minimum permitted version,
+and a notice string to display to you.</p>
+<div class="box ok">
+  <b>No remote code execution.</b> The server never returns JavaScript, and the extension never
+  calls <code>eval()</code> or <code>new Function()</code>, never injects a remotely sourced
+  <code>&lt;script&gt;</code> tag, and never loads code from a CDN. All executable code ships
+  inside the package reviewed by the Chrome Web Store. This complies with the Manifest V3
+  remote-code policy.
+</div>
+<p><b>Why we need the ability to revoke.</b> This is a community tool in a trial phase that
+operates against a third party's infrastructure (Garena). If Garena asks us to stop, if we
+discover a harmful defect, or when the trial ends, we need to be able to disable the
+server-backed features immediately rather than waiting for every user to uninstall. When the
+status flag is set to <code>off</code>, the extension stops serving those features and displays
+the reason. Purely local features that transmit nothing continue to work.</p>
+<p>We do <b>not</b> use this mechanism to delete files on your machine, to interfere with your
+browser, or to change anything outside the extension's own scope.</p>
+
+<h2>6. Your images go straight to Garena</h2>
+<p>When you select an image, your browser uploads it <b>directly</b> to Garena's / Tencent
+Cloud's storage (<code>kg-camp-ugc.mobagarena.com</code>, and <code>kg-camp.mobagarena.com</code>
+for older images posted before May 2026) using the upload mechanism the AOV Camp site already
+provides, with credentials issued by that site. The image <b>never passes through our servers</b>. We do not view, store,
+copy or have any means of accessing your images.</p>
+<div class="box danger">
+  <b>What you need to understand before uploading.</b> Images are registered as stickers through
+  AOV Camp's official flow, so Garena holds a database record and a copy on their storage
+  infrastructure. <b>Removing an image from the list shown in the extension, or from the page,
+  does not make that record or that copy disappear.</b> Garena can still retrieve it and take
+  enforcement action for content violations under their own rules, even after you have deleted
+  it. See the <a href="./terms.html">Terms of Service</a> for prohibited content and your
+  responsibilities.
+</div>
+
+<h2>7. Third parties</h2>
+<p>We do <b>not</b> sell, rent, trade or transfer data to third parties for commercial purposes.
+No analytics SDK, crash reporter, ad network or tracking pixel is integrated.</p>
+<div class="tablewrap">
+<table>
+  <tr><th>Party</th><th>Role</th><th>What they receive</th></tr>
+  <tr><td>Cloudflare, Inc.</td><td>Server infrastructure provider (Workers, KV). Processes data solely on our instructions.</td><td>The fields listed in §3.2</td></tr>
+  <tr><td>Garena / Tencent Cloud</td><td>Owner of the website and the image storage. Your relationship with them is direct and does not involve us.</td><td>The images you upload and their own site's session information — we take no part in this and receive no copy</td></tr>
+  <tr><td>Cloudinary (<code>res.cloudinary.com</code>)</td><td>Content delivery network, used solely to serve the extension's <b>static interface icons</b> (Upload, Replace, Delete…).</td><td>As with any image load on the web: your IP address and browser headers. <b>No</b> identifier, <b>no</b> usage data, <b>no</b> cookie set by us</td></tr>
+</table>
+</div>
+<div class="box">
+  <b>Why Cloudinary appears.</b> The extension's button icons are served from a content delivery
+  network rather than bundled into the package. Loading a static image from any server reveals
+  your IP address to that server — exactly as when you open an ordinary web page. We disclose it
+  for transparency even though it is not data collection on our part. We set <b>no</b> cookie
+  through it and receive <b>no</b> analytics back from Cloudinary. Planned: bundle these icons
+  into the extension itself so the third party disappears entirely.
+</div>
+
+<p><b>Legal obligations and moderation cooperation.</b> On a formal request from Garena or a
+competent authority, we will cooperate by providing <b>the operational data we actually hold</b>:
+aggregate usage figures, upload counts, pseudonymous identifiers associated with suspected
+violations, and the extension source code for review. We <b>cannot</b> provide what we do not
+have — we hold no images, no account names and no raw character IDs.</p>
+
+<h2>8. Retention</h2>
+<div class="tablewrap">
+<table>
+  <tr><th>Data</th><th>Stored in</th><th>Retention</th></tr>
+  <tr><td>Local data (§3.1)</td><td>Your browser</td><td>Until you uninstall the extension or clear site data</td></tr>
+  <tr><td>Quota record keyed by hash</td><td>Cloudflare Workers KV</td><td>Automatically deleted after <b>60 days</b> of inactivity</td></tr>
+  <tr><td>Operational logs (§3.2)</td><td>Cloudflare Workers KV</td><td>Automatically deleted after <b>90 days</b></td></tr>
+  <tr><td>Restriction lists arising from violations</td><td>Cloudflare Workers KV</td><td>Kept for the duration of the trial programme, or until an appeal is resolved</td></tr>
+  <tr><td>Gift code state</td><td>Cloudflare Workers KV</td><td>Until the batch is manually deleted</td></tr>
+</table>
+</div>
+<p>When the trial programme ends, we delete all server-side data.</p>
+
+<h2>9. Your rights</h2>
+<ul>
+  <li><b>Withdraw consent at any time.</b> The extension has a switch that disables transmission. Once off, it stops calling the server and the server-backed features stop working.</li>
+  <li><b>See your own data.</b> The extension displays <b>all 64 characters</b> of your identifier in its interface, with a copy button. That is the entirety of what the server holds about you.</li>
+  <li><b>Request deletion.</b> Email that identifier to the contact address. We delete the corresponding record within <b>30 days</b> and confirm by email.</li>
+  <li><b>Delete local data.</b> Uninstall the extension, or clear site data for <code>kgvn-camp.mobagarena.com</code> in your browser settings.</li>
+  <li><b>Complain.</b> See the <a href="./support.html">Support &amp; Appeals</a> page.</li>
+</ul>
+<div class="box">
+  Because the server stores <b>only</b> the hash and nothing that links back to you, we cannot
+  identify which record is yours unless you supply that string. This is a direct consequence of
+  minimal collection, not a way of avoiding responsibility.
+</div>
+
+<h2>10. Security</h2>
+<ul>
+  <li>All connections to our server use HTTPS.</li>
+  <li>The server stores only irreversible hashes. Even a breach could not reveal your game account.</li>
+  <li>The hashing salt and administrative keys are held as secret environment variables on the server infrastructure, never in the extension source.</li>
+  <li>We log abnormal access patterns (bursts of requests, attempts to call the APIs outside the normal flow) in order to block abuse. Those logs are keyed to the hash, not to an identified person.</li>
+</ul>
+
+<h2>11. Children</h2>
+<p>The extension is not directed at children under 13 and we do not knowingly collect children's
+data. If we learn we have, we delete it on notice.</p>
+
+<h2>12. Not affiliated with Garena</h2>
+<p>This is an <b>unofficial</b> community tool. There is <b>no</b> affiliation, sponsorship,
+partnership or endorsement from Garena, Tencent or anyone else. All trademarks belong to their
+respective owners and are referenced here purely to describe what the tool operates on.</p>
+
+<h2>13. Changes to this policy</h2>
+<p>Changes are published on this page with a new version number and effective date. Any change
+that <b>broadens</b> the scope of collection will be called out in the Chrome Web Store update
+description and will require you to <b>consent again</b> inside the extension before it takes
+effect.</p>
+
+<h2>14. Contact</h2>
+<p>Email: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b><br>
+Typical response time: within 7 business days.</p>
+
+</section>
+
 <footer>
-  © 2026 AOV Poster — Cá Nhân · Công cụ cộng đồng, không chính thức, không liên kết với Garena.<br>
-  <a href="./index.html">Trang chủ</a> ·
-  <a href="./terms.html">Điều khoản</a> ·
-  <a href="./support.html">Hỗ trợ &amp; Khiếu nại</a>
+  © 2026 AOV Poster — Cá Nhân · Unofficial community tool · Not affiliated with Garena or Tencent.<br>
+  <a href="./index.html">Home</a> ·
+  <a href="./privacy.html">Privacy Policy</a> ·
+  <a href="./terms.html">Terms of Service</a> ·
+  <a href="./support.html">Support</a>
 </footer>
 
 </div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var bv = document.getElementById('btn-vi');
+  var be = document.getElementById('btn-en');
+
+  function apply(l) {
+    root.setAttribute('data-active', l);
+    root.setAttribute('lang', l);
+    bv.setAttribute('aria-pressed', String(l === 'vi'));
+    be.setAttribute('aria-pressed', String(l === 'en'));
+    try { localStorage.setItem('aovcn.lang', l); } catch (e) {}
+  }
+
+  var initial = 'vi';
+  try {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'en' || q === 'vi') initial = q;
+    else {
+      var s = localStorage.getItem('aovcn.lang');
+      if (s === 'en' || s === 'vi') initial = s;
+      else if ((navigator.language || '').toLowerCase().indexOf('vi') !== 0) initial = 'en';
+    }
+  } catch (e) {}
+
+  apply(initial);
+  bv.addEventListener('click', function () { apply('vi'); });
+  be.addEventListener('click', function () { apply('en'); });
+})();
+</script>
 </body>
 </html>

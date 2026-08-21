@@ -3,113 +3,462 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Điều khoản sử dụng — AOV Poster Cá Nhân</title>
-<meta name="description" content="Điều khoản sử dụng tiện ích AOV Poster Cá Nhân: phạm vi cho phép, giới hạn trách nhiệm, giấy phép phi thương mại.">
+<title>Terms of Service — AOV Poster Cá Nhân (Chrome Extension)</title>
+<meta name="description" content="Terms of Service for the AOV Poster Cá Nhân browser extension. Bilingual English / Vietnamese. User-generated content rules, prohibited conduct, quota programme, suspension and liability.">
+<meta name="robots" content="index,follow">
 <style>
-:root{--bg:#fff;--fg:#1a1a2e;--mut:#5a5a72;--line:#e2e2ee;--acc:#3b4270;--card:#f6f6fb}
-@media(prefers-color-scheme:dark){:root{--bg:#0f1230;--fg:#e8ebff;--mut:#a0a4c8;--line:#2a3060;--acc:#7bb8ff;--card:#171b3d}}
+:root{
+  --bg:#ffffff; --fg:#15172b; --mut:#5c5f7a; --line:#e3e4ef;
+  --acc:#2f3a7a; --acc2:#e8ebff; --warn:#8a4b00; --warnbg:#fff5e6; --warnline:#f0c98a;
+  --ok:#0f5c3f; --okbg:#e9f7f0; --okline:#a8ddc5;
+  --danger:#8b1d2c; --dangerbg:#fdecef; --dangerline:#f0b4bf;
+  --code:#f1f2f8;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#0d1030; --fg:#e9ecff; --mut:#a3a7cc; --line:#282e5e;
+  --acc:#8fbcff; --acc2:#182050; --warn:#ffcf8a; --warnbg:#2e2410; --warnline:#5c471c;
+  --ok:#8fe3c0; --okbg:#0f2a22; --okline:#1f5544;
+  --danger:#ff9fae; --dangerbg:#2e1218; --dangerline:#5c2430;
+  --code:#1a1f4a;
+}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.7 system-ui,-apple-system,Segoe UI,sans-serif}
-.wrap{max-width:780px;margin:auto;padding:28px 20px 60px}
-nav{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:26px;font-size:14px}
-nav a{color:var(--acc);text-decoration:none;margin-right:16px}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.75 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  word-wrap:break-word;overflow-wrap:anywhere}
+.wrap{max-width:820px;margin:0 auto;padding:24px 18px 72px}
+header.top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:22px}
+nav a{color:var(--acc);text-decoration:none;margin-right:14px;font-size:14px;white-space:nowrap}
 nav a:hover{text-decoration:underline}
-h1{font-size:26px;margin:0 0 6px}
-h2{font-size:19px;margin:32px 0 10px;padding-top:6px;border-top:1px solid var(--line)}
-.meta{color:var(--mut);font-size:14px;margin-bottom:22px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
-.warn{border-left:3px solid #d08b2f;background:rgba(208,139,47,.1);padding:12px 16px;border-radius:0 6px 6px 0;margin:18px 0}
-code{background:rgba(128,128,160,.15);padding:2px 6px;border-radius:4px;font-size:14px}
-ul,ol{padding-left:22px}
-footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);color:var(--mut);font-size:13px}
+.langbar{display:flex;gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.langbar button{appearance:none;border:0;background:transparent;color:var(--fg);
+  font:600 13px/1 system-ui,sans-serif;padding:9px 14px;cursor:pointer;white-space:nowrap}
+.langbar button[aria-pressed="true"]{background:var(--acc);color:#fff}
+.langbar button:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
+h1{font-size:27px;margin:0 0 8px;line-height:1.3}
+h2{font-size:19px;margin:34px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
+h3{font-size:16px;margin:22px 0 6px}
+.meta{color:var(--mut);font-size:14px;margin-bottom:20px;line-height:1.6}
+p{margin:10px 0}
+ul,ol{padding-left:22px;margin:10px 0}
+li{margin:5px 0}
+code{background:var(--code);padding:2px 6px;border-radius:4px;font-size:.9em;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.tablewrap{overflow-x:auto;margin:14px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:10px 11px;border:1px solid var(--line);vertical-align:top}
+th{background:var(--acc2);font-size:13px;font-weight:700}
+.box{border-left:4px solid var(--acc);background:var(--acc2);padding:13px 16px;margin:16px 0;border-radius:0 8px 8px 0}
+.box.warn{border-left-color:var(--warnline);background:var(--warnbg);color:var(--warn)}
+.box.ok{border-left-color:var(--okline);background:var(--okbg);color:var(--ok)}
+.box.danger{border-left-color:var(--dangerline);background:var(--dangerbg);color:var(--danger)}
+.box b,.box strong{color:inherit}
+footer{margin-top:46px;padding-top:16px;border-top:1px solid var(--line);color:var(--mut);font-size:13px;line-height:1.7}
+footer a{color:var(--acc)}
+[data-lang]{display:none}
+html[data-active="vi"] [data-lang="vi"]{display:block}
+html[data-active="en"] [data-lang="en"]{display:block}
+html:not([data-active]) [data-lang="vi"]{display:block}
+@media print{.langbar,nav{display:none}[data-lang]{display:block !important}}
+@media(max-width:520px){.wrap{padding:18px 14px 56px}h1{font-size:23px}h2{font-size:17px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<nav>
-  <a href="./index.html">Trang chủ</a>
-  <a href="./privacy.html">Quyền riêng tư</a>
-  <a href="./terms.html">Điều khoản</a>
-  <a href="./support.html">Hỗ trợ &amp; Khiếu nại</a>
-</nav>
+<header class="top">
+  <nav>
+    <a href="./index.html">Home</a>
+    <a href="./privacy.html">Privacy Policy</a>
+    <a href="./terms.html">Terms of Service</a>
+    <a href="./support.html">Support</a>
+  </nav>
+  <div class="langbar" role="group" aria-label="Language / Ngôn ngữ">
+    <button type="button" id="btn-vi" aria-pressed="true">Tiếng Việt</button>
+    <button type="button" id="btn-en" aria-pressed="false">English</button>
+  </div>
+</header>
+
+<!-- ══════════════════════════════ TIẾNG VIỆT ══════════════════════════════ -->
+<section data-lang="vi">
 
 <h1>Điều khoản sử dụng</h1>
-<div class="meta">Ngày hiệu lực: 16/08/2026</div>
-
-<p>Bằng việc cài đặt và sử dụng tiện ích <b>AOV Poster — Cá Nhân</b>, bạn đồng ý với các
-điều khoản dưới đây.</p>
-
-<h2>1. Bản chất của tiện ích</h2>
-<div class="warn">
-  Đây là công cụ <b>không chính thức</b> do cộng đồng phát triển. <b>Không</b> có liên kết,
-  tài trợ hay chứng thực nào từ Garena, Tencent hoặc bất kỳ bên nào khác. Mọi nhãn hiệu
-  thuộc về chủ sở hữu tương ứng.
-</div>
-<p>Tiện ích bổ sung tính năng cho trình tạo Poster sẵn có trên trang
-<code>kgvn-camp.mobagarena.com</code>. Tiện ích <b>không</b> sửa dữ liệu trò chơi,
-<b>không</b> can thiệp vào trận đấu và <b>không</b> tự động hoá thao tác nào.</p>
-
-<h2>2. Bạn được phép</h2>
-<ul>
-  <li>Cài đặt và sử dụng cho mục đích cá nhân, phi thương mại</li>
-  <li>Chia sẻ liên kết tới bản phát hành chính thức trên Chrome Web Store</li>
-  <li>Đọc mã nguồn để học tập, nghiên cứu, kiểm tra an toàn</li>
-  <li>Báo lỗi và đề xuất cải tiến</li>
-</ul>
-
-<h2>3. Bạn không được phép</h2>
-<p>Nếu chưa có sự đồng ý bằng văn bản của tác giả:</p>
-<ul>
-  <li><b>Thu phí</b> dưới mọi hình thức cho việc truy cập, cài đặt, hướng dẫn sử dụng,
-      &ldquo;mở khoá&rdquo; hay cấp mã — kể cả khi tiện ích được phát miễn phí còn khoản thu
-      nằm ở dịch vụ đi kèm</li>
-  <li>Phân phối lại, đăng tải lại hoặc đóng gói lại (kể cả có sửa đổi)</li>
-  <li>Xây dựng công cụ khác dựa trên mã nguồn hoặc logic rút ra từ tiện ích này</li>
-  <li>Gỡ bỏ hoặc thay đổi thông tin bản quyền, tên tác giả</li>
-  <li>Dùng tên hoặc hình ảnh của tác giả theo cách gợi ý rằng phiên bản của bạn là bản
-      chính thức</li>
-  <li>Sử dụng cho mục đích vi phạm điều khoản dịch vụ của Garena hoặc vi phạm pháp luật</li>
-</ul>
-
-<h2>4. Hạn mức sử dụng</h2>
-<p>Tiện ích đang trong giai đoạn thử nghiệm và áp dụng hạn mức số lượt tải ảnh theo tuần,
-tính theo tài khoản trò chơi. Tác giả có quyền điều chỉnh hạn mức, tạm dừng hoặc ngừng cung
-cấp dịch vụ <b>bất cứ lúc nào mà không cần báo trước</b>, bao gồm cả việc thu hồi các lượt
-đã được cộng thêm từ mã.</p>
-
-<h2>5. Rủi ro khi sử dụng</h2>
-<div class="card">
-  <p>Tiện ích chỉ dùng những chức năng sẵn có của chính trang web. Tuy vậy, tác giả
-  <b>không thể bảo đảm</b> Garena đánh giá thế nào về việc sử dụng công cụ của bên thứ ba.</p>
-  <p style="margin-bottom:0"><b>Bạn tự cân nhắc và tự chịu mọi rủi ro khi sử dụng</b>, bao
-  gồm nhưng không giới hạn ở khả năng tài khoản bị hạn chế.</p>
+<div class="meta">
+  Tiện ích <b>AOV Poster — Cá Nhân</b> (Chrome Extension)<br>
+  Phiên bản điều khoản: <b>2.0</b> · Ngày hiệu lực: <b>21/08/2026</b><br>
+  Liên hệ: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b>
 </div>
 
-<h2>6. Không bảo đảm</h2>
-<p>Tiện ích được cung cấp <b>&ldquo;nguyên trạng&rdquo;</b>, không kèm bất kỳ bảo đảm nào,
-dù rõ ràng hay ngụ ý. Tác giả không chịu trách nhiệm với bất kỳ thiệt hại nào phát sinh từ
-việc sử dụng, bao gồm nhưng không giới hạn ở việc tài khoản bị hạn chế, mất dữ liệu hoặc
-gián đoạn dịch vụ.</p>
+<div class="box warn">
+  <b>Đọc trước khi dùng.</b> Đây là công cụ cộng đồng <b>không chính thức</b>, đang ở
+  <b>giai đoạn thử nghiệm</b>, hoạt động trên trang web của một bên thứ ba (Garena). Bạn tự
+  chịu trách nhiệm về mọi nội dung mình tải lên và về hệ quả đối với tài khoản trò chơi của
+  mình. Nếu bạn không chấp nhận điều đó, xin đừng cài đặt tiện ích.
+</div>
 
-<h2>7. Chấm dứt</h2>
-<p>Quyền sử dụng chấm dứt tự động nếu bạn vi phạm bất kỳ điều nào ở Mục 3, không cần thông
-báo trước. Tác giả cũng có quyền ngừng cung cấp tiện ích vào bất kỳ lúc nào.</p>
+<h2>1. Chấp nhận điều khoản</h2>
+<p>Bằng việc cài đặt hoặc sử dụng tiện ích, bạn xác nhận đã đọc, hiểu và đồng ý với các Điều
+khoản này và với <a href="./privacy.html">Chính sách quyền riêng tư</a>. Nếu bạn không đồng ý,
+hãy gỡ tiện ích.</p>
+<p>Bạn phải đủ 13 tuổi trở lên. Nếu chưa đủ tuổi thành niên theo pháp luật nơi bạn cư trú, bạn
+cần sự đồng ý của cha mẹ hoặc người giám hộ.</p>
 
-<h2>8. Thay đổi điều khoản</h2>
-<p>Điều khoản có thể được cập nhật và sẽ đăng tại chính trang này kèm ngày hiệu lực mới.
-Việc tiếp tục sử dụng sau khi cập nhật đồng nghĩa với việc bạn chấp nhận điều khoản mới.</p>
+<h2>2. Mô tả dịch vụ</h2>
+<p>Tiện ích bổ sung giao diện cho trình tạo Poster sẵn có trên <code>kgvn-camp.mobagarena.com</code>,
+cho phép bạn thêm ảnh của mình vào poster bằng đúng các cơ chế tải lên mà chính trang đó cung
+cấp. Tiện ích <b>không</b> tự động hoá thao tác chơi game, <b>không</b> sửa dữ liệu trò chơi,
+<b>không</b> can thiệp vào kết quả trận đấu và <b>không</b> mang lại lợi thế trong trò chơi.</p>
+<div class="box">
+  <b>Giai đoạn thử nghiệm.</b> Dịch vụ đang được cung cấp miễn phí, có hạn mức, và có thể bị
+  thay đổi, tạm dừng hoặc chấm dứt <b>bất cứ lúc nào, không cần báo trước</b>. Xem mục 9.
+</div>
 
-<h2>9. Liên hệ</h2>
-<p>Mọi thắc mắc, xem trang <a href="./support.html">Hỗ trợ &amp; Khiếu nại</a>.</p>
+<h2>3. Nội dung bạn tải lên — bạn chịu trách nhiệm</h2>
+<p>Ảnh bạn chọn được tải <b>trực tiếp</b> từ trình duyệt của bạn lên hạ tầng lưu trữ của Garena
+/ Tencent Cloud, đăng ký dưới dạng một nhãn dán qua luồng chính thức của AOV Camp. Chúng tôi
+không xem, không lưu và không có bản sao.</p>
+
+<h3>3.1. Nội dung bị cấm tuyệt đối</h3>
+<p>Bạn cam kết <b>không</b> tải lên nội dung:</p>
+<ul>
+  <li>Khiêu dâm, đồi truỵ, gợi dục, khoả thân, hoặc nội dung 18+ dưới mọi hình thức</li>
+  <li>Vi phạm bản quyền, nhãn hiệu hoặc quyền sở hữu trí tuệ của người khác</li>
+  <li>Cổ xuý, cổ vũ hoặc tôn vinh bạo lực, khủng bố, tự huỷ hoại bản thân</li>
+  <li>Phản động, chống phá Nhà nước, xuyên tạc lịch sử, kích động thù hằn dân tộc, tôn giáo, vùng miền</li>
+  <li>Xúc phạm, lăng mạ, làm nhục, khiêu khích hoặc quấy rối người chơi khác</li>
+  <li>Bôi nhọ, vu khống, xâm phạm đời tư hoặc hình ảnh cá nhân của người khác</li>
+  <li>Lừa đảo, quảng cáo trái phép, dẫn dụ giao dịch ngoài luồng, mã độc</li>
+  <li>Nội dung bẩn, gây khó chịu, phản cảm, hoặc vi phạm bất kỳ tiêu chuẩn cộng đồng nào của Garena</li>
+  <li>Bất kỳ nội dung nào trái pháp luật Việt Nam hoặc pháp luật nơi bạn cư trú</li>
+</ul>
+
+<h3>3.2. Xoá ảnh không xoá được dấu vết</h3>
+<div class="box danger">
+  Ảnh đã tải lên nằm trong cơ sở dữ liệu và trên hạ tầng lưu trữ của Garena. <b>Việc bạn xoá
+  ảnh khỏi danh sách hiển thị trong tiện ích, hoặc xoá khỏi poster, KHÔNG làm bản ghi và bản
+  sao đó biến mất.</b> Garena vẫn có thể truy xuất và xử lý vi phạm sau đó, kể cả khi bạn nghĩ
+  rằng mình đã xoá xong. Đừng tải lên thứ mà bạn không muốn tồn tại vĩnh viễn.
+</div>
+
+<h3>3.3. Miễn trừ trách nhiệm về xử phạt từ Garena</h3>
+<p>Quan hệ giữa bạn và Garena là quan hệ trực tiếp theo điều khoản dịch vụ của Garena. Chúng
+tôi <b>không</b> là bên trong quan hệ đó và <b>không</b> có khả năng can thiệp.</p>
+<p>Bạn hiểu và chấp nhận rằng Garena có thể áp dụng chế tài đối với tài khoản của bạn — bao gồm
+nhưng không giới hạn ở việc <b>cấm sáng tạo Poster</b>, thu hồi nội dung, khoá tài khoản có
+thời hạn hoặc vĩnh viễn — nếu nội dung bạn tải lên vi phạm tiêu chuẩn của họ, hoặc nếu hành vi
+sử dụng của bạn bị họ đánh giá là bất thường. Điều này bao gồm cả trường hợp quy định tại
+<b>mục 8</b> trong bảng hành vi bị xử phạt của Garena Việt Nam —
+<i>“Tài khoản có dấu hiệu bất thường, gây ảnh hưởng tới trò chơi hoặc trải nghiệm của người chơi
+khác (sử dụng giả lập, nghi vấn gian lận khi thi đấu, thông tin nhân vật và hành vi giao tiếp
+không hợp lệ…)”</i> — công bố tại
+<a href="https://lienquan.garena.vn/cap-nhat-cac-hanh-vi-bi-xu-phat-va-thoi-han-khoa-tu-1-1-2026/" target="_blank" rel="noopener noreferrer nofollow">lienquan.garena.vn</a>.
+</p>
+<div class="box danger">
+  <b>Chúng tôi không chịu trách nhiệm</b> và <b>không bồi thường</b> dưới bất kỳ hình thức nào
+  đối với việc tài khoản trò chơi của bạn bị hạn chế, khoá hoặc thu hồi quyền lợi. Rủi ro này
+  thuộc về bạn khi bạn chọn sử dụng công cụ này. Chúng tôi cũng không thể kháng nghị thay bạn.
+</div>
+<p>Rủi ro này <b>tăng lên</b> nếu tài khoản của bạn trước đó đã có hành vi như: đóng gói lại
+tiện ích, chặn hoặc gọi lại (recall) yêu cầu mạng để thay ảnh ngoài luồng chính thức, hoặc dùng
+công cụ tự động. Xem mục 4.</p>
+
+<h2>4. Hành vi bị cấm đối với chính tiện ích</h2>
+<p>Bạn cam kết <b>không</b>:</p>
+<ul>
+  <li>Chặn, chuyển hướng, giả mạo hoặc phát lại (replay) các yêu cầu mạng giữa tiện ích và máy chủ của chúng tôi nhằm vượt hạn mức, tự cộng lượt hoặc tự mở khoá</li>
+  <li>Sửa đổi bộ nhớ cục bộ, chèn mã qua công cụ dành cho nhà phát triển, hoặc dùng tiện ích chặn kịch bản nhằm vô hiệu hoá phần kiểm soát hạn mức</li>
+  <li>Dùng công cụ tự động, kịch bản hàng loạt hoặc dịch vụ bên thứ ba để gửi yêu cầu dồn dập, tải ảnh hàng loạt, hoặc gây áp lực lên máy chủ của chúng tôi hoặc hạ tầng của Garena</li>
+  <li>Đóng gói lại, phân phối lại, bán lại tiện ích, hoặc tự cài bản đã sửa đổi nhằm dùng tiếp sau khi dịch vụ đã bị dừng</li>
+  <li>Dùng nhiều tài khoản, tạo tài khoản ảo hoặc luân chuyển liên tục giữa các tài khoản nhằm né hạn mức</li>
+  <li>Dịch ngược, tháo gỡ hoặc lần tìm khoá xác thực nhằm gọi trực tiếp vào hạ tầng máy chủ</li>
+  <li>Dùng tiện ích để tấn công, làm gián đoạn hoặc dò tìm lỗ hổng của bất kỳ hệ thống nào</li>
+</ul>
+<div class="box">
+  <b>Cách chúng tôi xử lý.</b> Vi phạm được xử lý theo cấp độ: <b>lần đầu</b> — máy chủ ngừng
+  cấp khoá phục vụ cho mã định danh của bạn, các tính năng cần máy chủ dừng lại và bạn nhận
+  được thông báo nêu lý do; <b>tái diễn hoặc nghiêm trọng</b> — mã định danh bị đưa vào danh
+  sách từ chối phục vụ toàn phần. Chúng tôi ghi rõ lý do trong nhật ký để bạn có căn cứ khiếu
+  nại. Xem mục 9 và trang <a href="./support.html">Hỗ trợ &amp; Khiếu nại</a>.
+</div>
+
+<h2>5. Hạn mức, mã quà và điểm danh</h2>
+<ul>
+  <li>Hạn mức sử dụng, mã quà tặng và phần thưởng điểm danh là <b>tiện ích vận hành của chương trình thử nghiệm</b>. Chúng <b>không</b> phải hàng hoá, không phải tài sản, không có giá trị quy đổi thành tiền hoặc vật phẩm trong trò chơi, và không thể chuyển nhượng.</li>
+  <li>Chúng tôi có thể điều chỉnh, đặt lại, thu hồi hoặc huỷ bỏ hạn mức và mã quà bất cứ lúc nào, kể cả khi bạn chưa dùng hết.</li>
+  <li>Mọi hình thức mua bán, trao đổi mã quà đều bị cấm và dẫn tới việc thu hồi.</li>
+  <li>Số lượt sử dụng chung của toàn hệ thống có trần theo ngày và theo tuần. Khi chạm trần, dịch vụ tạm dừng với tất cả người dùng cho tới kỳ làm mới tiếp theo.</li>
+</ul>
+
+<h2>6. Sở hữu trí tuệ</h2>
+<p>Mã nguồn tiện ích thuộc về tác giả và được cấp phép theo tệp <code>LICENSE.txt</code> đi kèm
+gói cài đặt. Bạn giữ toàn bộ quyền đối với ảnh của mình; chúng tôi không nhận bất kỳ quyền nào
+đối với ảnh đó vì chúng tôi không hề tiếp nhận chúng.</p>
+<p>“Liên Quân Mobile”, “Arena of Valor”, “Garena”, “AOV Camp” và các nhãn hiệu liên quan thuộc
+về chủ sở hữu tương ứng. Tiện ích này <b>không</b> chính thức, <b>không</b> được tài trợ,
+<b>không</b> được chứng thực và <b>không</b> có liên kết với Garena hay Tencent.</p>
+
+<h2>7. Phối hợp kiểm duyệt với Garena</h2>
+<p>Nếu Garena yêu cầu chính thức việc tạm dừng dịch vụ, hoặc yêu cầu nộp mã nguồn tiện ích để
+rà soát, chúng tôi sẽ <b>phối hợp đầy đủ</b>: cung cấp mã nguồn, số liệu sử dụng tổng hợp, số
+lần tải ảnh lên hạ tầng lưu trữ, và danh sách mã định danh giả danh mà hệ thống đã ghi nhận có
+dấu hiệu vi phạm. Chúng tôi sẽ dừng phát hành và vô hiệu hoá các tính năng cần máy chủ trong
+thời gian rà soát.</p>
+<p>Chúng tôi <b>không</b> cung cấp được thứ mình không có: chúng tôi không nắm ảnh của bạn,
+không nắm tên tài khoản và không nắm mã nhân vật gốc.</p>
+
+<h2>8. Không bảo đảm</h2>
+<p>Dịch vụ được cung cấp <b>“nguyên trạng” (as is)</b> và <b>“theo mức sẵn có” (as available)</b>,
+không kèm bất kỳ bảo đảm nào, dù minh thị hay ngụ ý, bao gồm nhưng không giới hạn ở bảo đảm về
+khả năng thương mại, sự phù hợp cho một mục đích cụ thể, tính không vi phạm, tính liên tục hay
+không có lỗi.</p>
+<p>Trang web của Garena có thể thay đổi bất cứ lúc nào và làm tiện ích ngừng hoạt động. Chúng
+tôi không cam kết sẽ cập nhật kịp thời hoặc cập nhật chút nào.</p>
+
+<h2>9. Đình chỉ, thu hồi và chấm dứt</h2>
+<ul>
+  <li>Chúng tôi có thể <b>đình chỉ hoặc chấm dứt</b> quyền truy cập của một mã định danh bất cứ lúc nào nếu phát hiện vi phạm mục 3 hoặc mục 4, hoặc nếu cần thiết để bảo vệ hạ tầng.</li>
+  <li>Chúng tôi có thể <b>dừng toàn bộ dịch vụ</b> bất cứ lúc nào, kể cả không báo trước, đặc biệt khi Garena yêu cầu hoặc khi giai đoạn thử nghiệm kết thúc.</li>
+  <li>Khi dịch vụ dừng, các tính năng cần máy chủ ngừng hoạt động <b>kể cả đối với bản đã cài sẵn trên máy bạn</b>. Đây là thiết kế có chủ đích: nó bảo đảm việc dừng dịch vụ là dứt điểm và thống nhất, không để lại các bản chạy ngoài kiểm soát tiếp tục đẩy dữ liệu lên hạ tầng của Garena.</li>
+  <li>Việc tự cài lại bản đã sửa đổi nhằm tiếp tục sử dụng sau khi dịch vụ đã dừng là vi phạm mục 4.</li>
+</ul>
+
+<h2>10. Giới hạn trách nhiệm</h2>
+<p>Trong phạm vi tối đa mà pháp luật cho phép, chúng tôi không chịu trách nhiệm đối với bất kỳ
+thiệt hại gián tiếp, ngẫu nhiên, đặc biệt, mang tính trừng phạt hay hệ quả nào, cũng như đối
+với mất mát dữ liệu, mất lợi nhuận, mất vật phẩm trong trò chơi, hoặc việc tài khoản trò chơi
+bị hạn chế, khoá hay thu hồi quyền lợi, phát sinh từ hoặc liên quan tới việc bạn sử dụng tiện
+ích.</p>
+<p>Vì tiện ích được cung cấp miễn phí, tổng trách nhiệm của chúng tôi trong mọi trường hợp
+được giới hạn ở mức <b>không đồng</b>.</p>
+
+<h2>11. Bồi hoàn</h2>
+<p>Bạn đồng ý bảo vệ và bồi hoàn cho chúng tôi trước mọi khiếu nại, thiệt hại và chi phí phát
+sinh từ nội dung bạn tải lên hoặc từ việc bạn vi phạm các Điều khoản này.</p>
+
+<h2>12. Thay đổi điều khoản</h2>
+<p>Mọi thay đổi được đăng tại chính trang này kèm số hiệu phiên bản và ngày hiệu lực mới. Việc
+bạn tiếp tục sử dụng sau ngày hiệu lực đồng nghĩa với việc chấp nhận thay đổi.</p>
+
+<h2>13. Luật áp dụng</h2>
+<p>Các Điều khoản này được điều chỉnh bởi pháp luật Việt Nam. Nếu một điều khoản bị coi là vô
+hiệu, các điều khoản còn lại vẫn giữ nguyên hiệu lực.</p>
+
+<h2>14. Liên hệ</h2>
+<p>Email: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b> ·
+Trang <a href="./support.html">Hỗ trợ &amp; Khiếu nại</a></p>
+
+</section>
+
+<!-- ══════════════════════════════ ENGLISH ══════════════════════════════ -->
+<section data-lang="en">
+
+<h1>Terms of Service</h1>
+<div class="meta">
+  <b>AOV Poster — Cá Nhân</b> (Chrome Extension)<br>
+  Terms version: <b>2.0</b> · Effective date: <b>2026-08-21</b><br>
+  Contact: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b>
+</div>
+
+<div class="box warn">
+  <b>Read before using.</b> This is an <b>unofficial</b> community tool in a <b>trial phase</b>
+  that operates on a third party's website (Garena). You are solely responsible for everything
+  you upload and for the consequences to your own game account. If you do not accept that, do
+  not install the extension.
+</div>
+
+<h2>1. Acceptance</h2>
+<p>By installing or using the extension you confirm that you have read, understood and agree to
+these Terms and to the <a href="./privacy.html">Privacy Policy</a>. If you do not agree,
+uninstall the extension.</p>
+<p>You must be at least 13 years old. If you are below the age of majority where you live, you
+need the consent of a parent or guardian.</p>
+
+<h2>2. What the service is</h2>
+<p>The extension adds an interface to the existing Poster editor on
+<code>kgvn-camp.mobagarena.com</code>, letting you add your own images to a poster using the very
+upload mechanisms that site already provides. The extension does <b>not</b> automate gameplay,
+does <b>not</b> modify game data, does <b>not</b> interfere with match outcomes and confers
+<b>no</b> in-game advantage.</p>
+<div class="box">
+  <b>Trial phase.</b> The service is provided free of charge, subject to quotas, and may be
+  changed, suspended or terminated <b>at any time without notice</b>. See §9.
+</div>
+
+<h2>3. Content you upload — your responsibility</h2>
+<p>Images you select are uploaded <b>directly</b> from your browser to Garena's / Tencent
+Cloud's storage and registered as a sticker through AOV Camp's official flow. We do not view,
+store or hold any copy.</p>
+
+<h3>3.1. Absolutely prohibited content</h3>
+<p>You undertake <b>not</b> to upload content that is:</p>
+<ul>
+  <li>Pornographic, obscene, sexually suggestive, nude, or 18+ in any form</li>
+  <li>Infringing on anyone's copyright, trademark or other intellectual property</li>
+  <li>Promoting, glorifying or encouraging violence, terrorism or self-harm</li>
+  <li>Subversive, anti-state, historically falsifying, or inciting ethnic, religious or regional hatred</li>
+  <li>Insulting, humiliating, degrading, provocative towards or harassing other players</li>
+  <li>Defamatory, or violating another person's privacy or likeness rights</li>
+  <li>Fraudulent, unauthorised advertising, soliciting off-platform trades, or malicious</li>
+  <li>Otherwise offensive, distasteful, or in breach of any Garena community standard</li>
+  <li>Unlawful under the laws of Vietnam or of your place of residence</li>
+</ul>
+
+<h3>3.2. Deleting an image does not erase it</h3>
+<div class="box danger">
+  Uploaded images live in Garena's database and on their storage infrastructure. <b>Removing an
+  image from the list shown in the extension, or from a poster, does NOT make that record or
+  that copy disappear.</b> Garena can still retrieve it and take enforcement action afterwards,
+  even when you believe you have deleted it. Do not upload anything you would not want to exist
+  permanently.
+</div>
+
+<h3>3.3. Disclaimer regarding Garena enforcement</h3>
+<p>Your relationship with Garena is direct and governed by Garena's own terms of service. We are
+<b>not</b> a party to that relationship and have <b>no</b> ability to intervene.</p>
+<p>You understand and accept that Garena may impose sanctions on your account — including but
+not limited to <b>revoking your ability to create Posters</b>, taking content down, and
+temporarily or permanently suspending your account — if the content you upload breaches their
+standards, or if they assess your usage pattern as abnormal. This includes the case set out in
+<b>section 8</b> of Garena Vietnam's published enforcement schedule —
+<i>“Accounts showing abnormal signs that affect the game or other players' experience (use of
+emulators, suspected competitive cheating, invalid character information and communication
+behaviour…)”</i> — published at
+<a href="https://lienquan.garena.vn/cap-nhat-cac-hanh-vi-bi-xu-phat-va-thoi-han-khoa-tu-1-1-2026/" target="_blank" rel="noopener noreferrer nofollow">lienquan.garena.vn</a>.
+</p>
+<div class="box danger">
+  <b>We accept no liability</b> and provide <b>no compensation</b> of any kind for your game
+  account being restricted, suspended, or stripped of entitlements. That risk is yours when you
+  choose to use this tool. We also cannot appeal on your behalf.
+</div>
+<p>This risk is <b>higher</b> if your account has previously engaged in conduct such as
+repackaging the extension, intercepting or replaying network requests to swap images outside the
+official flow, or using automation tools. See §4.</p>
+
+<h2>4. Prohibited conduct toward the extension itself</h2>
+<p>You undertake <b>not</b> to:</p>
+<ul>
+  <li>Intercept, redirect, forge or replay network requests between the extension and our server in order to exceed quotas, grant yourself uses, or unlock yourself</li>
+  <li>Modify local storage, inject code through developer tools, or use script blockers in order to disable quota enforcement</li>
+  <li>Use automation, bulk scripts or third-party services to send request bursts, mass-upload images, or place load on our server or Garena's infrastructure</li>
+  <li>Repackage, redistribute or resell the extension, or side-load a modified build in order to keep using it after the service has been stopped</li>
+  <li>Use multiple or throwaway accounts, or rotate rapidly between accounts, to evade quotas</li>
+  <li>Reverse engineer, disassemble, or recover authentication keys in order to call the server infrastructure directly</li>
+  <li>Use the extension to attack, disrupt or probe any system for vulnerabilities</li>
+</ul>
+<div class="box">
+  <b>How we respond.</b> Violations are handled in stages: <b>first occurrence</b> — the server
+  stops issuing service keys for your identifier, the server-backed features stop, and you
+  receive a notice stating the reason; <b>repeated or severe</b> — the identifier is placed on a
+  full denial-of-service list. We record the reason in our log so that you have grounds for an
+  appeal. See §9 and the <a href="./support.html">Support &amp; Appeals</a> page.
+</div>
+
+<h2>5. Quotas, gift codes and check-in rewards</h2>
+<ul>
+  <li>Quotas, gift codes and check-in rewards are <b>operational mechanics of the trial programme</b>. They are <b>not</b> goods, not property, have no monetary or in-game redemption value, and are not transferable.</li>
+  <li>We may adjust, reset, revoke or cancel quotas and codes at any time, including before you have used them.</li>
+  <li>Selling or trading gift codes in any form is prohibited and results in revocation.</li>
+  <li>System-wide usage is capped per day and per week. Once a cap is reached the service pauses for all users until the next reset.</li>
+</ul>
+
+<h2>6. Intellectual property</h2>
+<p>The extension's source code belongs to its author and is licensed under the
+<code>LICENSE.txt</code> file shipped with the package. You retain all rights in your own
+images; we acquire no rights in them because we never receive them.</p>
+<p>“Arena of Valor”, “Liên Quân Mobile”, “Garena”, “AOV Camp” and related marks belong to their
+respective owners. This extension is <b>not</b> official, <b>not</b> sponsored, <b>not</b>
+endorsed and <b>not</b> affiliated with Garena or Tencent.</p>
+
+<h2>7. Cooperation with Garena moderation</h2>
+<p>If Garena formally requests that the service be suspended, or asks us to submit the extension
+source for review, we will <b>cooperate fully</b>: providing the source code, aggregate usage
+figures, upload counts against their storage, and the list of pseudonymous identifiers our
+system has flagged for suspected violations. We will halt distribution and disable the
+server-backed features for the duration of any such review.</p>
+<p>We <b>cannot</b> provide what we do not hold: we have none of your images, no account names
+and no raw character IDs.</p>
+
+<h2>8. No warranty</h2>
+<p>The service is provided <b>“as is”</b> and <b>“as available”</b>, without warranty of any
+kind, express or implied, including without limitation warranties of merchantability, fitness
+for a particular purpose, non-infringement, uninterrupted operation or freedom from defects.</p>
+<p>Garena's website can change at any time and break the extension. We make no commitment to
+update it promptly, or at all.</p>
+
+<h2>9. Suspension, revocation and termination</h2>
+<ul>
+  <li>We may <b>suspend or terminate</b> an identifier's access at any time on detecting a breach of §3 or §4, or where necessary to protect infrastructure.</li>
+  <li>We may <b>shut the service down entirely</b> at any time, with or without notice, in particular at Garena's request or when the trial phase ends.</li>
+  <li>When the service is shut down, the server-backed features stop working <b>including on copies already installed on your machine</b>. This is deliberate: it ensures a shutdown is complete and uniform, leaving no uncontrolled builds continuing to push data to Garena's infrastructure.</li>
+  <li>Side-loading a modified build in order to keep using the tool after shutdown is a breach of §4.</li>
+</ul>
+
+<h2>10. Limitation of liability</h2>
+<p>To the maximum extent permitted by law, we are not liable for any indirect, incidental,
+special, punitive or consequential damages, nor for loss of data, loss of profit, loss of
+in-game items, or the restriction, suspension or removal of entitlements from your game account,
+arising out of or in connection with your use of the extension.</p>
+<p>Because the extension is provided free of charge, our aggregate liability in all
+circumstances is limited to <b>zero</b>.</p>
+
+<h2>11. Indemnity</h2>
+<p>You agree to defend and indemnify us against any claims, damages and costs arising from
+content you upload or from your breach of these Terms.</p>
+
+<h2>12. Changes to these Terms</h2>
+<p>Changes are published on this page with a new version number and effective date. Continuing
+to use the extension after the effective date constitutes acceptance.</p>
+
+<h2>13. Governing law</h2>
+<p>These Terms are governed by the laws of Vietnam. If any provision is held invalid, the
+remaining provisions remain in force.</p>
+
+<h2>14. Contact</h2>
+<p>Email: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b> ·
+<a href="./support.html">Support &amp; Appeals</a></p>
+
+</section>
 
 <footer>
-  © 2026 AOV Poster — Cá Nhân · Công cụ cộng đồng, không chính thức, không liên kết với Garena.<br>
-  <a href="./index.html">Trang chủ</a> ·
-  <a href="./privacy.html">Quyền riêng tư</a> ·
-  <a href="./support.html">Hỗ trợ</a>
+  © 2026 AOV Poster — Cá Nhân · Unofficial community tool · Not affiliated with Garena or Tencent.<br>
+  <a href="./index.html">Home</a> ·
+  <a href="./privacy.html">Privacy Policy</a> ·
+  <a href="./terms.html">Terms of Service</a> ·
+  <a href="./support.html">Support</a>
 </footer>
 
 </div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var bv = document.getElementById('btn-vi');
+  var be = document.getElementById('btn-en');
+
+  function apply(l) {
+    root.setAttribute('data-active', l);
+    root.setAttribute('lang', l);
+    bv.setAttribute('aria-pressed', String(l === 'vi'));
+    be.setAttribute('aria-pressed', String(l === 'en'));
+    try { localStorage.setItem('aovcn.lang', l); } catch (e) {}
+  }
+
+  var initial = 'vi';
+  try {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'en' || q === 'vi') initial = q;
+    else {
+      var s = localStorage.getItem('aovcn.lang');
+      if (s === 'en' || s === 'vi') initial = s;
+      else if ((navigator.language || '').toLowerCase().indexOf('vi') !== 0) initial = 'en';
+    }
+  } catch (e) {}
+
+  apply(initial);
+  bv.addEventListener('click', function () { apply('vi'); });
+  be.addEventListener('click', function () { apply('en'); });
+})();
+</script>
 </body>
 </html>
