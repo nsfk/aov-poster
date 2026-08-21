@@ -4,107 +4,338 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AOV Poster — Cá Nhân · Tiện ích cộng đồng cho trình tạo Poster</title>
-<meta name="description" content="Tiện ích trình duyệt giúp thêm ảnh, nhãn dán và bảng tên của riêng bạn vào trình tạo Poster trên AOV Camp. Công cụ cộng đồng, không chính thức.">
+<meta name="description" content="AOV Poster — Cá Nhân: tiện ích trình duyệt không chính thức giúp thêm ảnh nhãn dán tùy chỉnh vào trình tạo Poster của AOV Camp (Liên Quân Mobile). Song ngữ Việt / Anh.">
+<meta name="robots" content="index,follow">
 <style>
-:root{--bg:#fff;--fg:#1a1a2e;--mut:#5a5a72;--line:#e2e2ee;--acc:#3b4270;--card:#f6f6fb}
-@media(prefers-color-scheme:dark){:root{--bg:#0f1230;--fg:#e8ebff;--mut:#a0a4c8;--line:#2a3060;--acc:#7bb8ff;--card:#171b3d}}
+:root{
+  --bg:#ffffff; --fg:#15172b; --mut:#5c5f7a; --line:#e3e4ef;
+  --acc:#2f3a7a; --acc2:#e8ebff; --warn:#8a4b00; --warnbg:#fff5e6; --warnline:#f0c98a;
+  --ok:#0f5c3f; --okbg:#e9f7f0; --okline:#a8ddc5;
+  --danger:#8b1d2c; --dangerbg:#fdecef; --dangerline:#f0b4bf;
+  --code:#f1f2f8;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#0d1030; --fg:#e9ecff; --mut:#a3a7cc; --line:#282e5e;
+  --acc:#8fbcff; --acc2:#182050; --warn:#ffcf8a; --warnbg:#2e2410; --warnline:#5c471c;
+  --ok:#8fe3c0; --okbg:#0f2a22; --okline:#1f5544;
+  --danger:#ff9fae; --dangerbg:#2e1218; --dangerline:#5c2430;
+  --code:#1a1f4a;
+}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.7 system-ui,-apple-system,Segoe UI,sans-serif}
-.wrap{max-width:820px;margin:auto;padding:28px 20px 60px}
-nav{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:30px;font-size:14px}
-nav a{color:var(--acc);text-decoration:none;margin-right:16px}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.75 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  word-wrap:break-word;overflow-wrap:anywhere}
+.wrap{max-width:820px;margin:0 auto;padding:24px 18px 72px}
+header.top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:22px}
+nav a{color:var(--acc);text-decoration:none;margin-right:14px;font-size:14px;white-space:nowrap}
 nav a:hover{text-decoration:underline}
-h1{font-size:30px;margin:0 0 8px;line-height:1.25}
-.lead{color:var(--mut);font-size:17px;margin-bottom:26px}
-h2{font-size:20px;margin:34px 0 12px;padding-top:8px;border-top:1px solid var(--line)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
-code{background:rgba(128,128,160,.15);padding:2px 6px;border-radius:4px;font-size:14px}
-ul{padding-left:22px}
-.warn{border-left:3px solid #d08b2f;background:rgba(208,139,47,.1);padding:12px 16px;border-radius:0 6px 6px 0;margin:18px 0}
-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:15px}
-th,td{text-align:left;padding:9px 10px;border:1px solid var(--line)}
-th{background:rgba(128,128,160,.1);font-size:13px}
-footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);color:var(--mut);font-size:13px}
+.langbar{display:flex;gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.langbar button{appearance:none;border:0;background:transparent;color:var(--fg);
+  font:600 13px/1 system-ui,sans-serif;padding:9px 14px;cursor:pointer;white-space:nowrap}
+.langbar button[aria-pressed="true"]{background:var(--acc);color:#fff}
+.langbar button:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
+h1{font-size:27px;margin:0 0 8px;line-height:1.3}
+h2{font-size:19px;margin:34px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
+h3{font-size:16px;margin:20px 0 6px}
+.meta{color:var(--mut);font-size:14px;margin-bottom:20px;line-height:1.6}
+p{margin:10px 0}
+ul,ol{padding-left:22px;margin:10px 0}
+li{margin:5px 0}
+code{background:var(--code);padding:2px 6px;border-radius:4px;font-size:.9em;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.tablewrap{overflow-x:auto;margin:14px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:10px 11px;border:1px solid var(--line);vertical-align:top}
+th{background:var(--acc2);font-size:13px;font-weight:700}
+.box{border-left:4px solid var(--acc);background:var(--acc2);padding:13px 16px;margin:16px 0;border-radius:0 8px 8px 0}
+.box.warn{border-left-color:var(--warnline);background:var(--warnbg);color:var(--warn)}
+.box.ok{border-left-color:var(--okline);background:var(--okbg);color:var(--ok)}
+.box.danger{border-left-color:var(--dangerline);background:var(--dangerbg);color:var(--danger)}
+.box b,.box strong{color:inherit}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:16px 0}
+.cardlink{display:block;border:1px solid var(--line);border-radius:10px;padding:14px 16px;text-decoration:none;color:inherit;background:var(--acc2)}
+.cardlink:hover{border-color:var(--acc)}
+.cardlink b{color:var(--acc);display:block;margin-bottom:3px}
+.cardlink span{font-size:13.5px;color:var(--mut)}
+footer{margin-top:46px;padding-top:16px;border-top:1px solid var(--line);color:var(--mut);font-size:13px;line-height:1.7}
+footer a{color:var(--acc)}
+[data-lang]{display:none}
+html[data-active="vi"] [data-lang="vi"]{display:block}
+html[data-active="en"] [data-lang="en"]{display:block}
+html:not([data-active]) [data-lang="vi"]{display:block}
+@media print{.langbar,nav{display:none}[data-lang]{display:block !important}}
+@media(max-width:520px){.wrap{padding:18px 14px 56px}h1{font-size:23px}h2{font-size:17px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<nav>
-  <a href="./index.html">Trang chủ</a>
-  <a href="./privacy.html">Quyền riêng tư</a>
-  <a href="./terms.html">Điều khoản</a>
-  <a href="./support.html">Hỗ trợ &amp; Khiếu nại</a>
-</nav>
+<header class="top">
+  <nav>
+    <a href="./index.html">Home</a>
+    <a href="./privacy.html">Privacy Policy</a>
+    <a href="./terms.html">Terms of Service</a>
+    <a href="./support.html">Support</a>
+  </nav>
+  <div class="langbar" role="group" aria-label="Language / Ngôn ngữ">
+    <button type="button" id="btn-vi" aria-pressed="true">Tiếng Việt</button>
+    <button type="button" id="btn-en" aria-pressed="false">English</button>
+  </div>
+</header>
+
+<!-- ══════════════════════════════ TIẾNG VIỆT ══════════════════════════════ -->
+<section data-lang="vi">
 
 <h1>AOV Poster — Cá Nhân</h1>
-<p class="lead">Tiện ích trình duyệt giúp bạn thêm ảnh, nhãn dán và bảng tên của riêng mình
-vào trình tạo Poster sẵn có trên trang AOV Camp.</p>
-
-<div class="warn">
-  <b>Công cụ cộng đồng, không chính thức.</b> Không có liên kết, tài trợ hay chứng thực nào
-  từ Garena hoặc Tencent. Không sửa dữ liệu trò chơi, không can thiệp trận đấu, không tự
-  động hoá thao tác nào.
+<div class="meta">
+  Tiện ích trình duyệt <b>không chính thức</b> cho trình tạo Poster của AOV Camp (Liên Quân Mobile)<br>
+  Phiên bản trang: <b>2.1</b> · Cập nhật: <b>21/08/2026</b> · Nhà phát triển: cá nhân, bút danh <b>NFSK</b><br>
+  Liên hệ: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b>
 </div>
 
-<h2>Tiện ích làm gì</h2>
-<div class="grid">
-  <div class="card"><b>Ảnh tùy chỉnh</b><br>Dùng ảnh của bạn làm nhãn dán trong Poster.</div>
-  <div class="card"><b>Ảnh nền &amp; bảng tên</b><br>Thay ảnh nền và ảnh bảng tên bằng ảnh bạn chọn.</div>
-  <div class="card"><b>Tự khớp khung</b><br>Ảnh tự vừa khung Poster, kèm thanh trượt chỉnh kích thước.</div>
-  <div class="card"><b>Thư viện trên máy</b><br>Danh sách ảnh đã tải lưu ngay trong trình duyệt của bạn.</div>
+<div class="box warn">
+  <b>Công cụ cộng đồng, không chính thức.</b> Không có liên kết, tài trợ hay chứng thực nào từ
+  Garena hoặc Tencent. Bạn tự chịu trách nhiệm về nội dung mình tải lên — xem
+  <a href="./terms.html">Điều khoản &amp; Miễn trừ trách nhiệm</a> trước khi dùng.
 </div>
 
-<h2>Hoạt động ở đâu</h2>
-<p>Tiện ích chỉ chạy trên đúng một địa chỉ: <code>https://kgvn-camp.mobagarena.com/*</code>
-— trang chứa trình tạo Poster. Nó không chạy trên bất kỳ trang nào khác.</p>
+<div class="cards">
+  <a class="cardlink" href="./privacy.html"><b>Chính sách quyền riêng tư</b><span>Dữ liệu nào được xử lý, gửi đi đâu, giữ bao lâu, cách yêu cầu xoá.</span></a>
+  <a class="cardlink" href="./terms.html"><b>Điều khoản &amp; Miễn trừ</b><span>Nội dung bị cấm, trách nhiệm của bạn, miễn trừ với xử phạt từ Garena.</span></a>
+  <a class="cardlink" href="./support.html"><b>Hỗ trợ &amp; Khiếu nại</b><span>Báo lỗi, yêu cầu xoá dữ liệu, câu hỏi thường gặp.</span></a>
+</div>
 
-<h2>Cách hoạt động</h2>
-<p>Tiện ích thêm một thẻ &ldquo;Cá nhân&rdquo; vào giao diện trình tạo Poster sẵn có. Khi bạn
-chọn ảnh, tiện ích tải ảnh lên bằng chính cơ chế tải lên của trang, rồi thay ảnh mặc định
-trong Poster bằng ảnh của bạn khi lưu.</p>
-<p>Ảnh của bạn đi <b>thẳng</b> lên hạ tầng lưu trữ của Garena, <b>không</b> qua máy chủ nào
-của chúng tôi.</p>
+<h2>1. Tiện ích làm gì</h2>
+<p>Trình tạo Poster của AOV Camp cho phép ghép ảnh nhân vật thành poster. Tiện ích này bổ sung
+một giao diện nhỏ để bạn <b>thêm ảnh nhãn dán của chính mình</b> vào poster, dùng đúng các cơ chế
+tải lên mà trang web đó đã có sẵn.</p>
+<p>Tiện ích <b>không</b> tự động hoá thao tác chơi game, <b>không</b> sửa dữ liệu trò chơi,
+<b>không</b> can thiệp vào kết quả trận đấu và <b>không</b> mang lại lợi thế trong trò chơi.</p>
 
-<h2>Quyền riêng tư — tóm tắt</h2>
+<h2>2. Hoạt động ở đâu</h2>
+<p>Chỉ trên tên miền <code>kgvn-camp.mobagarena.com</code> (trang AOV Camp khu vực Việt Nam).
+Tiện ích không chạy trên bất kỳ trang nào khác.</p>
+
+<h2>3. Cách hoạt động</h2>
 <ul>
-  <li>Không thu thập thông tin định danh cá nhân</li>
-  <li>Không bán, không chia sẻ dữ liệu với bất kỳ bên nào</li>
-  <li>Không quảng cáo, không theo dõi hành vi duyệt web</li>
-  <li>Thư viện ảnh chỉ lưu trong trình duyệt của bạn</li>
+  <li>Bạn chọn một ảnh; trình duyệt tải ảnh <b>trực tiếp</b> lên hạ tầng lưu trữ của Garena /
+      Tencent Cloud (<code>kg-camp-ugc.mobagarena.com</code>) bằng cơ chế của chính trang web.</li>
+  <li>Ảnh <b>không đi qua máy chủ của chúng tôi</b> — chúng tôi không xem, không lưu, không có bản sao.</li>
+  <li>Tiện ích can thiệp vào yêu cầu lưu poster (<code>XMLHttpRequest</code>) để chèn ảnh của bạn
+      vào danh sách nhãn dán khi lưu. Đây là cách nó thêm được ảnh tùy chỉnh, và chúng tôi
+      nói rõ điều này thay vì giấu.</li>
 </ul>
-<p>Chi tiết đầy đủ: <a href="./privacy.html"><b>Chính sách quyền riêng tư</b></a>.</p>
 
-<h2>Hạn mức trong giai đoạn thử nghiệm</h2>
-<p>Tiện ích đang trong giai đoạn thử nghiệm nên có giới hạn số lượt tải ảnh mỗi tuần. Bạn có
-thể tăng lượt bằng mã do nhóm phát triển cấp.</p>
+<h2>4. Quyền riêng tư — tóm tắt</h2>
+<div class="box ok">
+  Tiện ích <b>không thu thập thông tin định danh cá nhân</b>. Từ phiên bản 1.3.9, sau khi bạn
+  <b>bấm đồng ý</b>, tiện ích gửi tới máy chủ một <b>mã định danh giả danh</b> (chuỗi băm SHA-256
+  tạo trên máy bạn) cùng <b>số liệu sử dụng</b> để áp hạn mức. <b>Không</b> gửi ảnh, cookie, mã
+  đăng nhập, tên tài khoản. Chi tiết đầy đủ ở <a href="./privacy.html">Chính sách quyền riêng tư</a>.
+</div>
+<ul>
+  <li>Băm ngay trên máy bạn — <b>mã nhân vật gốc không bao giờ rời khỏi thiết bị</b>.</li>
+  <li>Không tích hợp bộ phân tích, quảng cáo hay theo dõi nào.</li>
+  <li>Bạn có thể <b>rút lại đồng ý</b> bất cứ lúc nào trong tiện ích; khi đó tiện ích ngừng gửi dữ liệu.</li>
+</ul>
+
+<h2>5. Hạn mức trong giai đoạn thử nghiệm</h2>
+<p>Đây là công cụ đang thử nghiệm. Để bảo vệ hạ tầng dùng chung, tiện ích áp một số hạn mức.
+<b>Mọi thông số đều do quản trị đặt và có thể thay đổi, tạm dừng hoặc tắt bất cứ lúc nào.</b></p>
+<div class="tablewrap">
 <table>
-  <tr><th>Phạm vi áp dụng</th><td>Tính theo <b>tài khoản trò chơi</b> (từ phiên bản 1.3.9). Đổi trình duyệt không được cấp lại lượt.</td></tr>
-  <tr><th>Vì sao có hạn mức</th><td>Để giữ mức sử dụng ở quy mô thử nghiệm và tránh gây tải bất thường lên hệ thống của Garena.</td></tr>
+  <tr><th>Cơ chế</th><th>Ý nghĩa</th></tr>
+  <tr><td>Hạn mức tải ảnh theo tuần</td><td>Số lượt tải/thay ảnh mỗi tài khoản trong tuần. Thay ảnh cũng tính là một lượt.</td></tr>
+  <tr><td>Mã quà</td><td>Nhập mã để cộng thêm lượt. Mỗi mã dùng được một lần; có giới hạn số mã mỗi tuần.</td></tr>
+  <tr><td>Điểm danh hằng ngày</td><td>Bấm điểm danh để có cơ hội nhận thêm lượt theo chuỗi ngày và quay may mắn. <b>Tính năng này có thể được bật/tắt.</b></td></tr>
+  <tr><td>Trần dùng chung theo ngày/tuần</td><td>Giới hạn tổng cho toàn bộ người dùng, tránh một người chiếm hết.</td></tr>
+  <tr><td>Làm mới</td><td>Hạn mức làm mới theo giờ Việt Nam (mốc ngày 05:00, điểm danh làm mới 00:00).</td></tr>
 </table>
+</div>
+<div class="box">
+  Vì hạn mức gắn với <b>mã định danh của tài khoản trò chơi</b> chứ không phải thiết bị, nên
+  <b>gỡ rồi cài lại tiện ích, hay đổi trình duyệt, đều không đặt lại số lượt</b>. Đây là điều kiện
+  để chương trình thử nghiệm không bị lạm dụng, không phải để theo dõi bạn.
+</div>
 
-<h2>Phiên bản</h2>
+<h2>6. Không liên kết với Garena</h2>
+<p>Đây là công cụ <b>không chính thức</b> do cộng đồng phát triển. Mọi nhãn hiệu (&ldquo;Liên Quân
+Mobile&rdquo;, &ldquo;Arena of Valor&rdquo;, &ldquo;Garena&rdquo;, &ldquo;AOV Camp&rdquo;) thuộc
+về chủ sở hữu tương ứng và được nhắc đến thuần tuý nhằm mô tả phạm vi hoạt động.</p>
+
+<h2>7. Miễn trừ trách nhiệm</h2>
+<div class="box danger">
+  Bạn tự chịu trách nhiệm về nội dung mình tải lên. Ảnh đăng qua luồng chính thức của AOV Camp
+  nên Garena lưu bản ghi và bản sao; <b>xoá ảnh trong tiện ích không xoá được bản ghi đó</b>.
+  Garena có thể xử phạt tài khoản nếu nội dung vi phạm tiêu chuẩn của họ. <b>Chúng tôi không chịu
+  trách nhiệm</b> đối với việc tài khoản trò chơi của bạn bị hạn chế hay khoá. Đọc đầy đủ ở
+  <a href="./terms.html">Điều khoản sử dụng</a>.
+</div>
+
+<h2>8. Phiên bản</h2>
+<div class="tablewrap">
 <table>
-  <tr><th>Phiên bản</th><th>Thay đổi chính</th></tr>
-  <tr><td>1.3.9</td><td>Hạn mức theo tài khoản, mã tăng lượt, công tắc tạm dừng từ máy chủ</td></tr>
-  <tr><td>1.3.8</td><td>Bộ đếm hạn mức bền hơn qua <code>chrome.storage.local</code></td></tr>
-  <tr><td>1.3.7</td><td>Hạn mức tải ảnh theo tuần</td></tr>
-  <tr><td>1.3.6</td><td>Sửa lỗi ảnh bị biến dạng khi lưu trên Flowborn</td></tr>
+  <tr><th>Bản</th><th>Thay đổi chính</th></tr>
+  <tr><td><b>1.3.10</b></td><td>Thêm màn hình công bố &amp; đồng ý trước khi gửi dữ liệu; hiển thị đủ mã định danh; đồng bộ khi đổi tài khoản; thay ảnh tính đúng một lượt.</td></tr>
+  <tr><td>1.3.9</td><td>Bắt đầu gửi mã định danh giả danh + số liệu sử dụng để áp hạn mức (sau khi đồng ý).</td></tr>
+  <tr><td>1.3.6 – 1.3.8</td><td>Bản thử nghiệm ban đầu, chưa gửi dữ liệu tới máy chủ.</td></tr>
 </table>
+</div>
+<p class="meta">Thay đổi mở rộng phạm vi thu thập dữ liệu luôn được nêu trong mô tả bản cập nhật và
+yêu cầu bạn đồng ý lại trong tiện ích.</p>
 
-<h2>Câu hỏi, góp ý, khiếu nại</h2>
-<p>Xem trang <a href="./support.html"><b>Hỗ trợ &amp; Khiếu nại</b></a> để biết cách liên hệ,
-báo lỗi, yêu cầu xoá dữ liệu hoặc gửi khiếu nại về bản quyền.</p>
+<h2>9. Câu hỏi, góp ý, khiếu nại</h2>
+<p>Email: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b> ·
+Trang <a href="./support.html">Hỗ trợ &amp; Khiếu nại</a>.</p>
+
+</section>
+
+<!-- ══════════════════════════════ ENGLISH ══════════════════════════════ -->
+<section data-lang="en">
+
+<h1>AOV Poster — Cá Nhân</h1>
+<div class="meta">
+  An <b>unofficial</b> browser extension for the AOV Camp Poster editor (Arena of Valor)<br>
+  Page version: <b>2.1</b> · Updated: <b>2026-08-21</b> · Developer: individual, publishing as <b>NFSK</b><br>
+  Contact: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b>
+</div>
+
+<div class="box warn">
+  <b>Unofficial community tool.</b> No affiliation, sponsorship or endorsement from Garena or
+  Tencent. You are responsible for what you upload — see
+  <a href="./terms.html">Terms &amp; Disclaimer</a> before using.
+</div>
+
+<div class="cards">
+  <a class="cardlink" href="./privacy.html"><b>Privacy Policy</b><span>What data is processed, where it goes, how long it is kept, how to request deletion.</span></a>
+  <a class="cardlink" href="./terms.html"><b>Terms &amp; Disclaimer</b><span>Prohibited content, your responsibilities, disclaimer regarding Garena enforcement.</span></a>
+  <a class="cardlink" href="./support.html"><b>Support &amp; Appeals</b><span>Report a bug, request deletion, frequently asked questions.</span></a>
+</div>
+
+<h2>1. What it does</h2>
+<p>The AOV Camp Poster editor lets you compose character posters. This extension adds a small
+interface so you can <b>add your own sticker images</b> to a poster, using the upload mechanisms
+the site itself already provides.</p>
+<p>It does <b>not</b> automate gameplay, does <b>not</b> modify game data, does <b>not</b> interfere
+with match outcomes and confers <b>no</b> in-game advantage.</p>
+
+<h2>2. Where it runs</h2>
+<p>Only on <code>kgvn-camp.mobagarena.com</code> (the Vietnam-region AOV Camp site). It runs on no
+other site.</p>
+
+<h2>3. How it works</h2>
+<ul>
+  <li>You pick an image; your browser uploads it <b>directly</b> to Garena's / Tencent Cloud's
+      storage (<code>kg-camp-ugc.mobagarena.com</code>) using the site's own mechanism.</li>
+  <li>Images <b>never pass through our servers</b> — we do not view, store or hold any copy.</li>
+  <li>The extension hooks the save-poster request (<code>XMLHttpRequest</code>) to insert your
+      images into the sticker list on save. That is how custom images are added, and we disclose
+      it rather than hide it.</li>
+</ul>
+
+<h2>4. Privacy — summary</h2>
+<div class="box ok">
+  The extension <b>collects no personally identifying information</b>. From version 1.3.9, after
+  you <b>press “I agree”</b>, it sends the server a <b>pseudonymous identifier</b> (a SHA-256 hash
+  computed on your device) plus <b>usage counters</b> to enforce quotas. It sends <b>no</b> images,
+  cookies, login tokens or account names. Full detail in the
+  <a href="./privacy.html">Privacy Policy</a>.
+</div>
+<ul>
+  <li>Hashed on your device — <b>the raw character ID never leaves your machine</b>.</li>
+  <li>No analytics, advertising or tracking of any kind is integrated.</li>
+  <li>You can <b>withdraw consent</b> at any time inside the extension; it then stops transmitting.</li>
+</ul>
+
+<h2>5. Trial-phase quotas</h2>
+<p>This is a tool in a trial phase. To protect shared infrastructure it enforces some limits.
+<b>Every value is set by the administrator and may be changed, paused or turned off at any time.</b></p>
+<div class="tablewrap">
+<table>
+  <tr><th>Mechanism</th><th>Meaning</th></tr>
+  <tr><td>Weekly upload quota</td><td>Uploads/replacements per account per week. Replacing an image also counts as one use.</td></tr>
+  <tr><td>Gift codes</td><td>Enter a code for extra uses. Each code is single-use; a weekly cap applies.</td></tr>
+  <tr><td>Daily check-in</td><td>Check in for a chance at streak bonuses and a lucky draw. <b>This feature can be enabled or disabled.</b></td></tr>
+  <tr><td>Shared daily/weekly caps</td><td>A total ceiling across all users so no single person exhausts it.</td></tr>
+  <tr><td>Reset</td><td>Quotas reset on Vietnam time (daily boundary 05:00, check-in resets 00:00).</td></tr>
+</table>
+</div>
+<div class="box">
+  Because the quota is keyed to your <b>game account's identifier</b> rather than the device,
+  <b>uninstalling and reinstalling, or switching browsers, does not reset your count</b>. This keeps
+  the trial from being abused; it is not there to track you.
+</div>
+
+<h2>6. Not affiliated with Garena</h2>
+<p>An <b>unofficial</b> community tool. All trademarks (“Arena of Valor”, “Liên Quân Mobile”,
+“Garena”, “AOV Camp”) belong to their respective owners and are referenced purely to describe
+what the tool operates on.</p>
+
+<h2>7. Disclaimer</h2>
+<div class="box danger">
+  You are responsible for what you upload. Images are posted through AOV Camp's official flow, so
+  Garena holds a record and a copy; <b>deleting an image in the extension does not remove that
+  record</b>. Garena may sanction accounts whose content breaches their standards. <b>We accept no
+  liability</b> for your game account being restricted or suspended. Read the full
+  <a href="./terms.html">Terms of Service</a>.
+</div>
+
+<h2>8. Versions</h2>
+<div class="tablewrap">
+<table>
+  <tr><th>Version</th><th>Main changes</th></tr>
+  <tr><td><b>1.3.10</b></td><td>Added a disclosure &amp; consent screen before any transmission; full identifier display; account-switch sync; image replacement counts as one use.</td></tr>
+  <tr><td>1.3.9</td><td>Began sending a pseudonymous identifier + usage counts for quota enforcement (after consent).</td></tr>
+  <tr><td>1.3.6 – 1.3.8</td><td>Initial trial builds, sent no data to any server.</td></tr>
+</table>
+</div>
+<p class="meta">Any change that broadens data collection is announced in the update description and
+requires you to consent again inside the extension.</p>
+
+<h2>9. Questions, feedback, complaints</h2>
+<p>Email: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b> ·
+<a href="./support.html">Support &amp; Appeals</a>.</p>
+
+</section>
 
 <footer>
-  © 2026 AOV Poster — Cá Nhân · Công cụ cộng đồng, không chính thức, không liên kết với Garena.<br>
-  &ldquo;Arena of Valor&rdquo;, &ldquo;Liên Quân Mobile&rdquo;, &ldquo;Garena&rdquo; là nhãn hiệu của chủ sở hữu tương ứng.<br>
-  <a href="./privacy.html">Quyền riêng tư</a> ·
-  <a href="./terms.html">Điều khoản</a> ·
-  <a href="./support.html">Hỗ trợ</a>
+  © 2026 AOV Poster — Cá Nhân · Unofficial community tool · Not affiliated with Garena or Tencent.<br>
+  <a href="./index.html">Home</a> ·
+  <a href="./privacy.html">Privacy Policy</a> ·
+  <a href="./terms.html">Terms of Service</a> ·
+  <a href="./support.html">Support</a>
 </footer>
 
 </div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var bv = document.getElementById('btn-vi');
+  var be = document.getElementById('btn-en');
+  function apply(l) {
+    root.setAttribute('data-active', l);
+    root.setAttribute('lang', l);
+    bv.setAttribute('aria-pressed', String(l === 'vi'));
+    be.setAttribute('aria-pressed', String(l === 'en'));
+    try { localStorage.setItem('aovcn.lang', l); } catch (e) {}
+  }
+  var initial = 'vi';
+  try {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'en' || q === 'vi') initial = q;
+    else {
+      var s = localStorage.getItem('aovcn.lang');
+      if (s === 'en' || s === 'vi') initial = s;
+      else if ((navigator.language || '').toLowerCase().indexOf('vi') !== 0) initial = 'en';
+    }
+  } catch (e) {}
+  apply(initial);
+  bv.addEventListener('click', function () { apply('vi'); });
+  be.addEventListener('click', function () { apply('en'); });
+})();
+</script>
 </body>
 </html>
