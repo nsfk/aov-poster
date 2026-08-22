@@ -13,6 +13,12 @@
   --ok:#0f5c3f; --okbg:#e9f7f0; --okline:#a8ddc5;
   --danger:#8b1d2c; --dangerbg:#fdecef; --dangerline:#f0b4bf;
   --code:#f1f2f8;
+  /* Mat dat cua cot noi dung. GAN NHU DAC (alpha .94) la co y: chu phai doc
+     duoc du anh nen sang hay toi, ma ta khong kiem soat duoc anh do. */
+  --surface:rgba(255,255,255,.94);
+  --surface-solid:#ffffff;
+  --scrim:rgba(246,247,252,.72);
+  --shadow:0 1px 2px rgba(20,24,60,.05), 0 12px 32px rgba(20,24,60,.10);
 }
 @media(prefers-color-scheme:dark){:root{
   --bg:#0d1030; --fg:#e9ecff; --mut:#a3a7cc; --line:#282e5e;
@@ -20,18 +26,79 @@
   --ok:#8fe3c0; --okbg:#0f2a22; --okline:#1f5544;
   --danger:#ff9fae; --dangerbg:#2e1218; --dangerline:#5c2430;
   --code:#1a1f4a;
+  --surface:rgba(13,16,48,.93);
+  --surface-solid:#0d1030;
+  --scrim:rgba(8,10,32,.80);
+  --shadow:0 1px 2px rgba(0,0,0,.30), 0 12px 34px rgba(0,0,0,.42);
 }}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--fg);
   font:16px/1.75 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  word-wrap:break-word;overflow-wrap:anywhere}
-.wrap{max-width:820px;margin:0 auto;padding:24px 18px 72px}
-header.top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  min-height:100vh}
+
+/* ANH NEN nam o mot lop RIENG, khong phai background cua body.
+   Ly do: `background-attachment:fixed` tren body bi giat va co khi khong hien
+   tren iOS. Mot lop `position:fixed` rieng cho ket qua giong het ma chay muot
+   moi noi. `z-index:-1` day no xuong duoi toan bo noi dung.
+   Anh CHI la trang tri: mau nen dac o duoi da duoc to truoc, nen anh hong hay
+   bi chan thi trang van doc binh thuong. */
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:-1;
+  /* Duong dan TUONG DOI, cung thu muc voi bon trang nay. Tren GitHub Pages no
+     thanh nsfk.github.io/aov-poster/images/bg.jpg. Giu anh trong kho thay vi
+     lien ket nong sang CDN cua Garena vi hai le: ho co the doi duong dan hay
+     chan hotlink bat cu luc nao va nen se lang le bien mat; va IP cua nguoi doc
+     trang chinh sach khong bi gui sang may chu cua ben thu ba. */
+  background:var(--bg) url("images/bg.jpg") center center / cover no-repeat;
+}
+/* Man loc phu len anh — lam diu do tuong phan cua anh nen de vien ngoai cot
+   noi dung khong roi ram. Cot noi dung tu no da co mat dat gan nhu dac. */
+body::after{
+  content:"";
+  position:fixed; inset:0; z-index:-1;
+  background:var(--scrim);
+}
+
+/* NGAT TU: chi ap cho thu THAT SU dai va khong co dau cach — duong dan, ma,
+   dia chi thu. Truoc day quy tac nay dat tren `body` nen ap cho MOI chu tieng
+   Viet: cau van binh thuong cung bi cat giua tu tren man hinh hep. */
+a,code,td,th,pre{overflow-wrap:anywhere;word-break:break-word}
+p,li,h1,h2,h3{overflow-wrap:break-word}
+img,svg,video{max-width:100%;height:auto}
+.wrap{max-width:860px;margin:0 auto;padding:28px 30px 64px;
+  background:var(--surface);
+  -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px);
+  box-shadow:var(--shadow)}
+@supports not ((backdrop-filter:blur(3px)) or (-webkit-backdrop-filter:blur(3px))){
+  /* Trinh duyet khong lam mo duoc thi dung mat DAC — tuyet doi khong de chu
+     nam tren mot lop mo mot nua ma khong duoc lam mo. */
+  .wrap{background:var(--surface-solid)}
+}
+header.top{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;justify-content:space-between;
   border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:22px}
-nav a{color:var(--acc);text-decoration:none;margin-right:14px;font-size:14px;white-space:nowrap}
+/* `nav` dung flex + gap thay vi margin-right tren tung the a: margin-right con
+   dinh o the CUOI nen khi xuong dong, hang bi lech phai mot khoang thua. */
+nav{display:flex;flex-wrap:wrap;gap:6px 16px;min-width:0;flex:1 1 auto}
+nav a{color:var(--acc);text-decoration:none;font-size:14px;white-space:nowrap;
+  padding:3px 0;border-radius:4px}
 nav a:hover{text-decoration:underline}
-.langbar{display:flex;gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+nav a:focus-visible,.cardlink:focus-visible,footer a:focus-visible,a:focus-visible{
+  outline:2px solid var(--acc);outline-offset:3px}
+
+/* MAU LINK TRONG NOI DUNG — truoc day KHONG HE CO quy tac nay, nen moi link
+   trong than trang dung mau mac dinh cua trinh duyet (#0000EE). Tren nen toi
+   cua trang, do la xanh tham tren gan nhu den: nhin thay duoc nhung doc rat
+   met. Loi co san tu truoc, chi lo ra khi soi ky o che do toi. */
+a{color:var(--acc);text-underline-offset:2px}
+a:hover{text-decoration-thickness:2px}
+/* Trong cac hop co mau chu rieng (canh bao / dat / nguy hiem), link lay DUNG
+   mau chu cua hop roi gach chan de van nhan ra la link — dat mau nhan manh vao
+   day se cho ra mot cap mau khong ai kiem tra do tuong phan. */
+.box.warn a,.box.ok a,.box.danger a{color:inherit;text-decoration:underline}
+.langbar{display:flex;gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;
+  flex:0 0 auto;background:var(--surface-solid)}
 .langbar button{appearance:none;border:0;background:transparent;color:var(--fg);
   font:600 13px/1 system-ui,sans-serif;padding:9px 14px;cursor:pointer;white-space:nowrap}
 .langbar button[aria-pressed="true"]{background:var(--acc);color:#fff}
@@ -66,7 +133,42 @@ html[data-active="vi"] [data-lang="vi"]{display:block}
 html[data-active="en"] [data-lang="en"]{display:block}
 html:not([data-active]) [data-lang="vi"]{display:block}
 @media print{.langbar,nav{display:none}[data-lang]{display:block !important}}
-@media(max-width:520px){.wrap{padding:18px 14px 56px}h1{font-size:23px}h2{font-size:17px}}
+
+/* ── Man hinh ───────────────────────────────────────────────────────────
+   Truoc day ca trang chi co MOT diem ngat o 520px. Khoang giua 520px va
+   820px (may tinh bang, cua so hep) khong duoc cham toi: dau trang chat
+   cung, le van rong nhu man hinh lon. Nay chia lam ba muc. */
+@media(max-width:900px){
+  .wrap{max-width:none;padding:24px 24px 56px}
+}
+@media(max-width:640px){
+  body{font-size:15.5px}
+  .wrap{padding:20px 18px 52px}
+  h1{font-size:24px}
+  h2{font-size:18px;margin-top:30px}
+  /* Xuong hang: menu mot hang, thanh ngon ngu hang rieng ben duoi va gian
+     deu — chen chung tren cung mot hang o man hinh hep la vo. */
+  header.top{flex-direction:column;align-items:stretch;gap:12px}
+  .langbar{align-self:flex-start}
+  .cards{grid-template-columns:1fr}
+}
+@media(max-width:420px){
+  .wrap{padding:16px 14px 48px}
+  h1{font-size:21px}
+  h2{font-size:17px}
+  nav{gap:4px 12px}
+  nav a{font-size:13.5px}
+  .langbar button{padding:8px 11px;font-size:12.5px}
+  .langbar{align-self:stretch}
+  .langbar button{flex:1 1 0}
+  table{font-size:14px}
+}
+/* Man hinh rat rong: khong de cot noi dung tro thanh mot dai hep giua bien
+   anh — cho no rong them mot chut va cach tren duoi mot khoang. */
+@media(min-width:1200px){
+  .wrap{max-width:900px;margin:24px auto;border-radius:14px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
