@@ -13,11 +13,15 @@
   --ok:#0f5c3f; --okbg:#e9f7f0; --okline:#a8ddc5;
   --danger:#8b1d2c; --dangerbg:#fdecef; --dangerline:#f0b4bf;
   --code:#f1f2f8;
-  /* Mat dat cua cot noi dung. GAN NHU DAC (alpha .94) la co y: chu phai doc
-     duoc du anh nen sang hay toi, ma ta khong kiem soat duoc anh do. */
-  --surface:rgba(255,255,255,.94);
+  /* Mat dat cua cot noi dung. GAN NHU DAC (alpha .97) la co y: do doc duoc cua
+     chu do CHINH LOP NAY bao dam, khong phai lop loc phu len anh. Nho vay co
+     the chinh lop loc thoai mai theo anh ma khong so chu bi chim. */
+  --surface:rgba(255,255,255,.97);
   --surface-solid:#ffffff;
-  --scrim:rgba(246,247,252,.72);
+  /* Lop loc PHAI nhe o che do sang. Anh nen nay gan nhu trang (do sang 0.93),
+     nen mot lop trang day se xoa sach no — dat anh vao roi khong nhin thay gi.
+     Chu van doc duoc vi mat cua cot noi dung mo duc, khong phai nho lop loc. */
+  --scrim:rgba(222,228,242,.34);
   --shadow:0 1px 2px rgba(20,24,60,.05), 0 12px 32px rgba(20,24,60,.10);
 }
 @media(prefers-color-scheme:dark){:root{
@@ -28,7 +32,9 @@
   --code:#1a1f4a;
   --surface:rgba(13,16,48,.93);
   --surface-solid:#0d1030;
-  --scrim:rgba(8,10,32,.80);
+  /* Che do toi thi nguoc lai: anh sang nen can lop loc toi day tay de hai ben
+     le khong choi mat. .76 de van thay duoc net tranh mo o vien. */
+  --scrim:rgba(8,10,32,.76);
   --shadow:0 1px 2px rgba(0,0,0,.30), 0 12px 34px rgba(0,0,0,.42);
 }}
 *{box-sizing:border-box}
@@ -136,6 +142,32 @@ html:not([data-active]) [data-lang="vi"]{display:block}
 @media(max-width:900px){
   .wrap{max-width:none;padding:24px 24px 56px}
 }
+/* ── BANG TREN MAN HINH HEP ────────────────────────────────────────────
+   Truoc day bang co `min-width:520px` nam trong mot khung cuon ngang. Tren
+   man 360px, khung chi rong 332px nen COT THU BA BI CAT MAT HAN — khong mot
+   dau hieu nao cho biet con noi dung. Tren trang chinh sach quyen rieng tu
+   thi do la mat thong tin, khong phai chi xau.
+   Nay o duoi 640px moi hang tro thanh mot the doc: tung o mot dong, kem ten
+   cot lay tu `data-label` (do chinh `<th>` sinh ra). Khong con cuon ngang,
+   khong con o nao bi giau. */
+@media(max-width:640px){
+  .tablewrap{overflow:visible;margin:16px 0}
+  table{min-width:0;width:100%;border:0;font-size:15px}
+  table thead{position:absolute;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  table tr{display:block;border:1px solid var(--line);border-radius:9px;
+    padding:4px 0;margin-bottom:10px;background:var(--acc2)}
+  table td{display:block;border:0;padding:8px 13px}
+  table td+td{border-top:1px dashed var(--line)}
+  /* Ten cot in nho phia tren gia tri — thay cho hang tieu de da an di. */
+  table td::before{content:attr(data-label);display:block;
+    font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--mut);margin-bottom:2px}
+  table td[data-label=""]::before{display:none}
+  /* Cot da rong ca hang thi ma khong con bi be vun tung 3-4 ky tu nua. */
+  table code{word-break:normal;overflow-wrap:break-word}
+}
+
 @media(max-width:640px){
   body{font-size:15.5px}
   .wrap{padding:20px 18px 52px}

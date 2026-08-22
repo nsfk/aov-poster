@@ -13,11 +13,15 @@
   --ok:#0f5c3f; --okbg:#e9f7f0; --okline:#a8ddc5;
   --danger:#8b1d2c; --dangerbg:#fdecef; --dangerline:#f0b4bf;
   --code:#f1f2f8;
-  /* Mat dat cua cot noi dung. GAN NHU DAC (alpha .94) la co y: chu phai doc
-     duoc du anh nen sang hay toi, ma ta khong kiem soat duoc anh do. */
-  --surface:rgba(255,255,255,.94);
+  /* Mat dat cua cot noi dung. GAN NHU DAC (alpha .97) la co y: do doc duoc cua
+     chu do CHINH LOP NAY bao dam, khong phai lop loc phu len anh. Nho vay co
+     the chinh lop loc thoai mai theo anh ma khong so chu bi chim. */
+  --surface:rgba(255,255,255,.97);
   --surface-solid:#ffffff;
-  --scrim:rgba(246,247,252,.72);
+  /* Lop loc PHAI nhe o che do sang. Anh nen nay gan nhu trang (do sang 0.93),
+     nen mot lop trang day se xoa sach no — dat anh vao roi khong nhin thay gi.
+     Chu van doc duoc vi mat cua cot noi dung mo duc, khong phai nho lop loc. */
+  --scrim:rgba(222,228,242,.34);
   --shadow:0 1px 2px rgba(20,24,60,.05), 0 12px 32px rgba(20,24,60,.10);
 }
 @media(prefers-color-scheme:dark){:root{
@@ -28,7 +32,9 @@
   --code:#1a1f4a;
   --surface:rgba(13,16,48,.93);
   --surface-solid:#0d1030;
-  --scrim:rgba(8,10,32,.80);
+  /* Che do toi thi nguoc lai: anh sang nen can lop loc toi day tay de hai ben
+     le khong choi mat. .76 de van thay duoc net tranh mo o vien. */
+  --scrim:rgba(8,10,32,.76);
   --shadow:0 1px 2px rgba(0,0,0,.30), 0 12px 34px rgba(0,0,0,.42);
 }}
 *{box-sizing:border-box}
@@ -136,6 +142,32 @@ html:not([data-active]) [data-lang="vi"]{display:block}
 @media(max-width:900px){
   .wrap{max-width:none;padding:24px 24px 56px}
 }
+/* ── BANG TREN MAN HINH HEP ────────────────────────────────────────────
+   Truoc day bang co `min-width:520px` nam trong mot khung cuon ngang. Tren
+   man 360px, khung chi rong 332px nen COT THU BA BI CAT MAT HAN — khong mot
+   dau hieu nao cho biet con noi dung. Tren trang chinh sach quyen rieng tu
+   thi do la mat thong tin, khong phai chi xau.
+   Nay o duoi 640px moi hang tro thanh mot the doc: tung o mot dong, kem ten
+   cot lay tu `data-label` (do chinh `<th>` sinh ra). Khong con cuon ngang,
+   khong con o nao bi giau. */
+@media(max-width:640px){
+  .tablewrap{overflow:visible;margin:16px 0}
+  table{min-width:0;width:100%;border:0;font-size:15px}
+  table thead{position:absolute;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  table tr{display:block;border:1px solid var(--line);border-radius:9px;
+    padding:4px 0;margin-bottom:10px;background:var(--acc2)}
+  table td{display:block;border:0;padding:8px 13px}
+  table td+td{border-top:1px dashed var(--line)}
+  /* Ten cot in nho phia tren gia tri — thay cho hang tieu de da an di. */
+  table td::before{content:attr(data-label);display:block;
+    font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--mut);margin-bottom:2px}
+  table td[data-label=""]::before{display:none}
+  /* Cot da rong ca hang thi ma khong con bi be vun tung 3-4 ky tu nua. */
+  table code{word-break:normal;overflow-wrap:break-word}
+}
+
 @media(max-width:640px){
   body{font-size:15.5px}
   .wrap{padding:20px 18px 52px}
@@ -224,11 +256,11 @@ những dịch vụ đó, chính sách riêng của họ được áp dụng.</p
 <div class="tablewrap">
 <table>
   <tr><th>Dữ liệu</th><th>Nơi lưu</th><th>Mục đích</th></tr>
-  <tr><td>Danh sách ảnh bạn đã tải lên (đường dẫn ảnh trên CDN Garena, tên tệp, kích thước)</td><td><code>localStorage</code> của trang</td><td>Hiển thị lại thư viện ảnh của bạn khi mở lại trang</td></tr>
-  <tr><td>Bản đồ “ảnh nào thuộc poster nào”</td><td><code>localStorage</code> của trang</td><td>Khôi phục đúng ảnh khi bạn mở lại một poster</td></tr>
-  <tr><td>Bộ đếm hạn mức và bản sao dự phòng của bộ đếm</td><td><code>chrome.storage.local</code></td><td>Hiển thị số lượt còn lại ngay cả khi mất mạng tạm thời</td></tr>
-  <tr><td>Bản đệm cấu hình vận hành nhận từ máy chủ (số lượt, trạng thái, thông báo)</td><td><code>chrome.storage.local</code></td><td>Tiện ích vẫn hiển thị đúng trạng thái khi máy chủ tạm không phản hồi</td></tr>
-  <tr><td>Lựa chọn đồng ý / từ chối của bạn</td><td><code>chrome.storage.local</code></td><td>Ghi nhớ để không hỏi lại mỗi lần mở trang</td></tr>
+  <tr><td data-label="Dữ liệu">Danh sách ảnh bạn đã tải lên (đường dẫn ảnh trên CDN Garena, tên tệp, kích thước)</td><td data-label="Nơi lưu"><code>localStorage</code> của trang</td><td data-label="Mục đích">Hiển thị lại thư viện ảnh của bạn khi mở lại trang</td></tr>
+  <tr><td data-label="Dữ liệu">Bản đồ “ảnh nào thuộc poster nào”</td><td data-label="Nơi lưu"><code>localStorage</code> của trang</td><td data-label="Mục đích">Khôi phục đúng ảnh khi bạn mở lại một poster</td></tr>
+  <tr><td data-label="Dữ liệu">Bộ đếm hạn mức và bản sao dự phòng của bộ đếm</td><td data-label="Nơi lưu"><code>chrome.storage.local</code></td><td data-label="Mục đích">Hiển thị số lượt còn lại ngay cả khi mất mạng tạm thời</td></tr>
+  <tr><td data-label="Dữ liệu">Bản đệm cấu hình vận hành nhận từ máy chủ (số lượt, trạng thái, thông báo)</td><td data-label="Nơi lưu"><code>chrome.storage.local</code></td><td data-label="Mục đích">Tiện ích vẫn hiển thị đúng trạng thái khi máy chủ tạm không phản hồi</td></tr>
+  <tr><td data-label="Dữ liệu">Lựa chọn đồng ý / từ chối của bạn</td><td data-label="Nơi lưu"><code>chrome.storage.local</code></td><td data-label="Mục đích">Ghi nhớ để không hỏi lại mỗi lần mở trang</td></tr>
 </table>
 </div>
 <p>Tiện ích <b>không</b> dùng <code>chrome.storage.sync</code>, nên không có dữ liệu nào được
@@ -239,13 +271,13 @@ những dịch vụ đó, chính sách riêng của họ được áp dụng.</p
 <div class="tablewrap">
 <table>
   <tr><th>Trường</th><th>Nội dung cụ thể</th><th>Vì sao cần</th></tr>
-  <tr><td><b>Mã định danh giả danh</b> (“Hash ID”)</td><td>Chuỗi băm SHA-256 dài 64 ký tự hệ 16, tính <b>ngay trên thiết bị của bạn</b> từ mã nhân vật trong trò chơi cộng thêm một chuỗi muối cố định. <b>Mã nhân vật gốc không bao giờ rời khỏi thiết bị.</b></td><td>Để hạn mức bám theo tài khoản trò chơi thay vì bám theo lần cài đặt tiện ích</td></tr>
-  <tr><td>Số lượt đã dùng trong kỳ</td><td>Một số nguyên</td><td>Áp hạn mức</td></tr>
-  <tr><td>Số lượt tồn dư mang sang tuần mới</td><td>Một số nguyên</td><td>Giữ lại phần lượt bạn chưa dùng hết khi sang tuần mới, để bạn không mất quyền lợi đã có</td></tr>
-  <tr><td>Chuỗi ngày điểm danh</td><td>Ngày điểm danh gần nhất, số ngày liên tiếp, phần thưởng đã nhận</td><td>Tính mốc thưởng theo chuỗi và chặn điểm danh nhiều lần trong một ngày</td></tr>
-  <tr><td>Số mã quà đã đổi trong kỳ và mã quà bạn nhập</td><td>Chuỗi mã do chúng tôi phát hành, không phải thông tin của bạn</td><td>Chống dùng lại một mã nhiều lần</td></tr>
-  <tr><td>Mốc thời gian và phiên bản tiện ích</td><td>Thời điểm gọi, số hiệu phiên bản</td><td>Làm mới hạn mức đúng chu kỳ, phát hiện bản quá cũ</td></tr>
-  <tr><td>Sự kiện vận hành</td><td>“đã dùng 1 lượt”, “đổi mã thành công/thất bại”, “điểm danh”, “bị từ chối vì hết lượt”</td><td>Ghi nhật ký để đối soát khi bạn khiếu nại, và để phát hiện lạm dụng</td></tr>
+  <tr><td data-label="Trường"><b>Mã định danh giả danh</b> (“Hash ID”)</td><td data-label="Nội dung cụ thể">Chuỗi băm SHA-256 dài 64 ký tự hệ 16, tính <b>ngay trên thiết bị của bạn</b> từ mã nhân vật trong trò chơi cộng thêm một chuỗi muối cố định. <b>Mã nhân vật gốc không bao giờ rời khỏi thiết bị.</b></td><td data-label="Vì sao cần">Để hạn mức bám theo tài khoản trò chơi thay vì bám theo lần cài đặt tiện ích</td></tr>
+  <tr><td data-label="Trường">Số lượt đã dùng trong kỳ</td><td data-label="Nội dung cụ thể">Một số nguyên</td><td data-label="Vì sao cần">Áp hạn mức</td></tr>
+  <tr><td data-label="Trường">Số lượt tồn dư mang sang tuần mới</td><td data-label="Nội dung cụ thể">Một số nguyên</td><td data-label="Vì sao cần">Giữ lại phần lượt bạn chưa dùng hết khi sang tuần mới, để bạn không mất quyền lợi đã có</td></tr>
+  <tr><td data-label="Trường">Chuỗi ngày điểm danh</td><td data-label="Nội dung cụ thể">Ngày điểm danh gần nhất, số ngày liên tiếp, phần thưởng đã nhận</td><td data-label="Vì sao cần">Tính mốc thưởng theo chuỗi và chặn điểm danh nhiều lần trong một ngày</td></tr>
+  <tr><td data-label="Trường">Số mã quà đã đổi trong kỳ và mã quà bạn nhập</td><td data-label="Nội dung cụ thể">Chuỗi mã do chúng tôi phát hành, không phải thông tin của bạn</td><td data-label="Vì sao cần">Chống dùng lại một mã nhiều lần</td></tr>
+  <tr><td data-label="Trường">Mốc thời gian và phiên bản tiện ích</td><td data-label="Nội dung cụ thể">Thời điểm gọi, số hiệu phiên bản</td><td data-label="Vì sao cần">Làm mới hạn mức đúng chu kỳ, phát hiện bản quá cũ</td></tr>
+  <tr><td data-label="Trường">Sự kiện vận hành</td><td data-label="Nội dung cụ thể">“đã dùng 1 lượt”, “đổi mã thành công/thất bại”, “điểm danh”, “bị từ chối vì hết lượt”</td><td data-label="Vì sao cần">Ghi nhật ký để đối soát khi bạn khiếu nại, và để phát hiện lạm dụng</td></tr>
 </table>
 </div>
 <div class="box ok">
@@ -285,29 +317,29 @@ tồn tại của mã định danh — không phải để theo dõi bạn.</p>
 <table>
   <tr><th>Quyền</th><th>Dùng để làm gì</th><th>Không dùng để làm gì</th></tr>
   <tr>
-    <td><code>storage</code><br>(bộ nhớ tiện ích)</td>
-    <td>Lưu bộ đếm hạn mức, bản đệm cấu hình và lựa chọn đồng ý của bạn ở dạng <code>chrome.storage.local</code>. Bộ nhớ này không bị xoá khi bạn xoá dữ liệu trang, nên số lượt hiển thị không nhảy loạn.</td>
-    <td>Không lưu bất kỳ thông tin định danh cá nhân nào. Không dùng <code>.sync</code> nên không rời khỏi máy.</td>
+    <td data-label="Quyền"><code>storage</code><br>(bộ nhớ tiện ích)</td>
+    <td data-label="Dùng để làm gì">Lưu bộ đếm hạn mức, bản đệm cấu hình và lựa chọn đồng ý của bạn ở dạng <code>chrome.storage.local</code>. Bộ nhớ này không bị xoá khi bạn xoá dữ liệu trang, nên số lượt hiển thị không nhảy loạn.</td>
+    <td data-label="Không dùng để làm gì">Không lưu bất kỳ thông tin định danh cá nhân nào. Không dùng <code>.sync</code> nên không rời khỏi máy.</td>
   </tr>
   <tr>
-    <td>Truy cập trang<br><code>kgvn-camp.mobagarena.com</code></td>
-    <td>Nơi tiện ích chèn giao diện bổ sung và gọi đúng những API mà chính trang đó đã có sẵn để tải ảnh lên.</td>
-    <td>Không có quyền trên bất kỳ tên miền nào khác. Không đọc dữ liệu trang ngoài phần liên quan tới trình tạo Poster.</td>
+    <td data-label="Quyền">Truy cập trang<br><code>kgvn-camp.mobagarena.com</code></td>
+    <td data-label="Dùng để làm gì">Nơi tiện ích chèn giao diện bổ sung và gọi đúng những API mà chính trang đó đã có sẵn để tải ảnh lên.</td>
+    <td data-label="Không dùng để làm gì">Không có quyền trên bất kỳ tên miền nào khác. Không đọc dữ liệu trang ngoài phần liên quan tới trình tạo Poster.</td>
   </tr>
   <tr>
-    <td>Ghi vào bộ nhớ tạm<br>(clipboard-write)</td>
-    <td>Chỉ khi bạn <b>chủ động bấm nút “Sao chép”</b> để chép mã định danh của mình ra ngoài (phục vụ việc gửi khiếu nại hoặc yêu cầu xoá dữ liệu). Thao tác này dùng cơ chế sao chép tiêu chuẩn của trình duyệt trong một cử chỉ người dùng.</td>
-    <td><b>Không đọc bộ nhớ tạm.</b> Tiện ích không khai báo quyền <code>clipboardRead</code> và không có cách nào biết bạn đang chép gì ở nơi khác.</td>
+    <td data-label="Quyền">Ghi vào bộ nhớ tạm<br>(clipboard-write)</td>
+    <td data-label="Dùng để làm gì">Chỉ khi bạn <b>chủ động bấm nút “Sao chép”</b> để chép mã định danh của mình ra ngoài (phục vụ việc gửi khiếu nại hoặc yêu cầu xoá dữ liệu). Thao tác này dùng cơ chế sao chép tiêu chuẩn của trình duyệt trong một cử chỉ người dùng.</td>
+    <td data-label="Không dùng để làm gì"><b>Không đọc bộ nhớ tạm.</b> Tiện ích không khai báo quyền <code>clipboardRead</code> và không có cách nào biết bạn đang chép gì ở nơi khác.</td>
   </tr>
   <tr>
-    <td>Tải biểu tượng giao diện từ CDN</td>
-    <td>Lấy các ảnh nút bấm tĩnh của tiện ích từ Cloudinary.</td>
-    <td>Không gửi kèm mã định danh, không gửi kèm số liệu sử dụng, không đặt cookie.</td>
+    <td data-label="Quyền">Tải biểu tượng giao diện từ CDN</td>
+    <td data-label="Dùng để làm gì">Lấy các ảnh nút bấm tĩnh của tiện ích từ Cloudinary.</td>
+    <td data-label="Không dùng để làm gì">Không gửi kèm mã định danh, không gửi kèm số liệu sử dụng, không đặt cookie.</td>
   </tr>
   <tr>
-    <td>Kết nối tới máy chủ cấu hình của chúng tôi</td>
-    <td>Nhận thông số vận hành (số lượt cho phép, trạng thái bảo trì, thông báo) và gửi các sự kiện ở mục 3.2.</td>
-    <td>Không tải mã thực thi từ xa. Xem mục 5.</td>
+    <td data-label="Quyền">Kết nối tới máy chủ cấu hình của chúng tôi</td>
+    <td data-label="Dùng để làm gì">Nhận thông số vận hành (số lượt cho phép, trạng thái bảo trì, thông báo) và gửi các sự kiện ở mục 3.2.</td>
+    <td data-label="Không dùng để làm gì">Không tải mã thực thi từ xa. Xem mục 5.</td>
   </tr>
 </table>
 </div>
@@ -355,9 +387,9 @@ từ xa, mạng quảng cáo hay pixel theo dõi nào.</p>
 <div class="tablewrap">
 <table>
   <tr><th>Bên</th><th>Vai trò</th><th>Nhận gì</th></tr>
-  <tr><td>Cloudflare, Inc.</td><td>Nhà cung cấp hạ tầng máy chủ (Workers, KV). Xử lý dữ liệu theo chỉ dẫn của chúng tôi.</td><td>Các trường ở mục 3.2</td></tr>
-  <tr><td>Garena / Tencent Cloud</td><td>Chủ sở hữu trang web và hạ tầng lưu ảnh. Quan hệ giữa bạn và họ là trực tiếp, không qua chúng tôi.</td><td>Ảnh bạn tải lên và thông tin phiên của chính trang họ — chúng tôi không tham gia và không nhận bản sao</td></tr>
-  <tr><td>Cloudinary (<code>res.cloudinary.com</code>)</td><td>Mạng phân phối nội dung, chỉ dùng để tải <b>các biểu tượng giao diện tĩnh</b> của tiện ích (nút Tải lên, Thay ảnh, Xoá…).</td><td>Như mọi lần tải ảnh trên web: địa chỉ IP và thông tin trình duyệt của bạn. <b>Không</b> mã định danh, <b>không</b> dữ liệu sử dụng, <b>không</b> cookie do chúng tôi đặt</td></tr>
+  <tr><td data-label="Bên">Cloudflare, Inc.</td><td data-label="Vai trò">Nhà cung cấp hạ tầng máy chủ (Workers, KV). Xử lý dữ liệu theo chỉ dẫn của chúng tôi.</td><td data-label="Nhận gì">Các trường ở mục 3.2</td></tr>
+  <tr><td data-label="Bên">Garena / Tencent Cloud</td><td data-label="Vai trò">Chủ sở hữu trang web và hạ tầng lưu ảnh. Quan hệ giữa bạn và họ là trực tiếp, không qua chúng tôi.</td><td data-label="Nhận gì">Ảnh bạn tải lên và thông tin phiên của chính trang họ — chúng tôi không tham gia và không nhận bản sao</td></tr>
+  <tr><td data-label="Bên">Cloudinary (<code>res.cloudinary.com</code>)</td><td data-label="Vai trò">Mạng phân phối nội dung, chỉ dùng để tải <b>các biểu tượng giao diện tĩnh</b> của tiện ích (nút Tải lên, Thay ảnh, Xoá…).</td><td data-label="Nhận gì">Như mọi lần tải ảnh trên web: địa chỉ IP và thông tin trình duyệt của bạn. <b>Không</b> mã định danh, <b>không</b> dữ liệu sử dụng, <b>không</b> cookie do chúng tôi đặt</td></tr>
 </table>
 </div>
 <div class="box">
@@ -379,11 +411,11 @@ không nắm ảnh, không nắm tên tài khoản và không nắm mã nhân v�
 <div class="tablewrap">
 <table>
   <tr><th>Dữ liệu</th><th>Nơi lưu</th><th>Thời hạn</th></tr>
-  <tr><td>Dữ liệu cục bộ (mục 3.1)</td><td>Trình duyệt của bạn</td><td>Đến khi bạn gỡ tiện ích hoặc xoá dữ liệu trang</td></tr>
-  <tr><td>Bản ghi hạn mức theo chuỗi băm</td><td>Cloudflare Workers KV</td><td>Tự động xoá sau <b>60 ngày</b> không hoạt động</td></tr>
-  <tr><td>Nhật ký vận hành (mục 3.2)</td><td>Cloudflare Workers KV</td><td>Tự động xoá sau <b>90 ngày</b></td></tr>
-  <tr><td>Danh sách hạn chế do vi phạm</td><td>Cloudflare Workers KV</td><td>Giữ trong thời gian chương trình thử nghiệm còn chạy, hoặc đến khi khiếu nại được giải quyết</td></tr>
-  <tr><td>Trạng thái mã quà</td><td>Cloudflare Workers KV</td><td>Đến khi lô mã bị xoá thủ công</td></tr>
+  <tr><td data-label="Dữ liệu">Dữ liệu cục bộ (mục 3.1)</td><td data-label="Nơi lưu">Trình duyệt của bạn</td><td data-label="Thời hạn">Đến khi bạn gỡ tiện ích hoặc xoá dữ liệu trang</td></tr>
+  <tr><td data-label="Dữ liệu">Bản ghi hạn mức theo chuỗi băm</td><td data-label="Nơi lưu">Cloudflare Workers KV</td><td data-label="Thời hạn">Tự động xoá sau <b>60 ngày</b> không hoạt động</td></tr>
+  <tr><td data-label="Dữ liệu">Nhật ký vận hành (mục 3.2)</td><td data-label="Nơi lưu">Cloudflare Workers KV</td><td data-label="Thời hạn">Tự động xoá sau <b>90 ngày</b></td></tr>
+  <tr><td data-label="Dữ liệu">Danh sách hạn chế do vi phạm</td><td data-label="Nơi lưu">Cloudflare Workers KV</td><td data-label="Thời hạn">Giữ trong thời gian chương trình thử nghiệm còn chạy, hoặc đến khi khiếu nại được giải quyết</td></tr>
+  <tr><td data-label="Dữ liệu">Trạng thái mã quà</td><td data-label="Nơi lưu">Cloudflare Workers KV</td><td data-label="Thời hạn">Đến khi lô mã bị xoá thủ công</td></tr>
 </table>
 </div>
 <p>Khi chương trình thử nghiệm kết thúc, chúng tôi xoá toàn bộ dữ liệu máy chủ.</p>
@@ -471,11 +503,11 @@ by their own policies.</p>
 <div class="tablewrap">
 <table>
   <tr><th>Data</th><th>Stored in</th><th>Purpose</th></tr>
-  <tr><td>Your uploaded-image list (image URLs on Garena's CDN, file names, sizes)</td><td>Page <code>localStorage</code></td><td>Re-display your image library when you reopen the page</td></tr>
-  <tr><td>Mapping of which image belongs to which poster</td><td>Page <code>localStorage</code></td><td>Restore the right images when you reopen a poster</td></tr>
-  <tr><td>Quota counter and its backup copy</td><td><code>chrome.storage.local</code></td><td>Show your remaining uses even during a brief network outage</td></tr>
-  <tr><td>Cached operational configuration from the server (limits, status, notice)</td><td><code>chrome.storage.local</code></td><td>Display the correct state when the server is briefly unreachable</td></tr>
-  <tr><td>Your consent decision</td><td><code>chrome.storage.local</code></td><td>Remember it so you are not asked on every page load</td></tr>
+  <tr><td data-label="Data">Your uploaded-image list (image URLs on Garena's CDN, file names, sizes)</td><td data-label="Stored in">Page <code>localStorage</code></td><td data-label="Purpose">Re-display your image library when you reopen the page</td></tr>
+  <tr><td data-label="Data">Mapping of which image belongs to which poster</td><td data-label="Stored in">Page <code>localStorage</code></td><td data-label="Purpose">Restore the right images when you reopen a poster</td></tr>
+  <tr><td data-label="Data">Quota counter and its backup copy</td><td data-label="Stored in"><code>chrome.storage.local</code></td><td data-label="Purpose">Show your remaining uses even during a brief network outage</td></tr>
+  <tr><td data-label="Data">Cached operational configuration from the server (limits, status, notice)</td><td data-label="Stored in"><code>chrome.storage.local</code></td><td data-label="Purpose">Display the correct state when the server is briefly unreachable</td></tr>
+  <tr><td data-label="Data">Your consent decision</td><td data-label="Stored in"><code>chrome.storage.local</code></td><td data-label="Purpose">Remember it so you are not asked on every page load</td></tr>
 </table>
 </div>
 <p>The extension does <b>not</b> use <code>chrome.storage.sync</code>, so nothing is synced to
@@ -486,13 +518,13 @@ your Google account or to other devices.</p>
 <div class="tablewrap">
 <table>
   <tr><th>Field</th><th>Exact content</th><th>Why it is needed</th></tr>
-  <tr><td><b>Pseudonymous identifier</b> (“Hash ID”)</td><td>A 64-character hexadecimal SHA-256 hash computed <b>on your device</b> from your in-game character ID plus a fixed salt. <b>The raw character ID never leaves your device.</b></td><td>So the quota follows the game account rather than the installation</td></tr>
-  <tr><td>Uses consumed this period</td><td>An integer</td><td>Quota enforcement</td></tr>
-  <tr><td>Unused allowance carried into the new week</td><td>An integer</td><td>Preserve the allowance you did not spend when the week rolls over, so you lose nothing you had already earned</td></tr>
-  <tr><td>Daily check-in streak</td><td>Last check-in date, consecutive-day count, rewards granted</td><td>Compute streak milestones and prevent checking in twice in one day</td></tr>
-  <tr><td>Gift codes redeemed this period, and the code you enter</td><td>Strings we issued ourselves — not information about you</td><td>Prevent a single code from being reused</td></tr>
-  <tr><td>Timestamp and extension version</td><td>Time of call, version number</td><td>Reset quotas on the correct cycle; detect outdated builds</td></tr>
-  <tr><td>Operational events</td><td>“one use consumed”, “code redeemed / rejected”, “daily check-in”, “denied: quota exhausted”</td><td>Audit trail for handling your complaints, and abuse detection</td></tr>
+  <tr><td data-label="Field"><b>Pseudonymous identifier</b> (“Hash ID”)</td><td data-label="Exact content">A 64-character hexadecimal SHA-256 hash computed <b>on your device</b> from your in-game character ID plus a fixed salt. <b>The raw character ID never leaves your device.</b></td><td data-label="Why it is needed">So the quota follows the game account rather than the installation</td></tr>
+  <tr><td data-label="Field">Uses consumed this period</td><td data-label="Exact content">An integer</td><td data-label="Why it is needed">Quota enforcement</td></tr>
+  <tr><td data-label="Field">Unused allowance carried into the new week</td><td data-label="Exact content">An integer</td><td data-label="Why it is needed">Preserve the allowance you did not spend when the week rolls over, so you lose nothing you had already earned</td></tr>
+  <tr><td data-label="Field">Daily check-in streak</td><td data-label="Exact content">Last check-in date, consecutive-day count, rewards granted</td><td data-label="Why it is needed">Compute streak milestones and prevent checking in twice in one day</td></tr>
+  <tr><td data-label="Field">Gift codes redeemed this period, and the code you enter</td><td data-label="Exact content">Strings we issued ourselves — not information about you</td><td data-label="Why it is needed">Prevent a single code from being reused</td></tr>
+  <tr><td data-label="Field">Timestamp and extension version</td><td data-label="Exact content">Time of call, version number</td><td data-label="Why it is needed">Reset quotas on the correct cycle; detect outdated builds</td></tr>
+  <tr><td data-label="Field">Operational events</td><td data-label="Exact content">“one use consumed”, “code redeemed / rejected”, “daily check-in”, “denied: quota exhausted”</td><td data-label="Why it is needed">Audit trail for handling your complaints, and abuse detection</td></tr>
 </table>
 </div>
 <div class="box ok">
@@ -532,29 +564,29 @@ does not either. That is the entire reason the identifier exists — not to trac
 <table>
   <tr><th>Permission</th><th>What it is used for</th><th>What it is NOT used for</th></tr>
   <tr>
-    <td><code>storage</code></td>
-    <td>Storing the quota counter, the cached configuration and your consent decision in <code>chrome.storage.local</code>. This survives clearing site data, so your remaining-use count does not jump around.</td>
-    <td>No personally identifying information is stored. <code>.sync</code> is not used, so nothing leaves the machine.</td>
+    <td data-label="Permission"><code>storage</code></td>
+    <td data-label="What it is used for">Storing the quota counter, the cached configuration and your consent decision in <code>chrome.storage.local</code>. This survives clearing site data, so your remaining-use count does not jump around.</td>
+    <td data-label="What it is NOT used for">No personally identifying information is stored. <code>.sync</code> is not used, so nothing leaves the machine.</td>
   </tr>
   <tr>
-    <td>Host access to<br><code>kgvn-camp.mobagarena.com</code></td>
-    <td>The single site where the extension injects its additional interface and calls the upload APIs that the site itself already exposes.</td>
-    <td>No access to any other domain. No reading of page data outside the Poster editor.</td>
+    <td data-label="Permission">Host access to<br><code>kgvn-camp.mobagarena.com</code></td>
+    <td data-label="What it is used for">The single site where the extension injects its additional interface and calls the upload APIs that the site itself already exposes.</td>
+    <td data-label="What it is NOT used for">No access to any other domain. No reading of page data outside the Poster editor.</td>
   </tr>
   <tr>
-    <td>Clipboard write</td>
-    <td>Only when you <b>actively press the “Copy” button</b> to copy your own identifier out of the extension (so you can include it in a support request or deletion request). This uses the browser's standard copy mechanism inside a user gesture.</td>
-    <td><b>The clipboard is never read.</b> The extension does not declare <code>clipboardRead</code> and has no way of knowing what you copy elsewhere.</td>
+    <td data-label="Permission">Clipboard write</td>
+    <td data-label="What it is used for">Only when you <b>actively press the “Copy” button</b> to copy your own identifier out of the extension (so you can include it in a support request or deletion request). This uses the browser's standard copy mechanism inside a user gesture.</td>
+    <td data-label="What it is NOT used for"><b>The clipboard is never read.</b> The extension does not declare <code>clipboardRead</code> and has no way of knowing what you copy elsewhere.</td>
   </tr>
   <tr>
-    <td>Loading interface icons from a CDN</td>
-    <td>Fetching the extension's static button images from Cloudinary.</td>
-    <td>No identifier is attached, no usage data is attached, no cookie is set.</td>
+    <td data-label="Permission">Loading interface icons from a CDN</td>
+    <td data-label="What it is used for">Fetching the extension's static button images from Cloudinary.</td>
+    <td data-label="What it is NOT used for">No identifier is attached, no usage data is attached, no cookie is set.</td>
   </tr>
   <tr>
-    <td>Network access to our configuration server</td>
-    <td>Fetching operational parameters (allowed uses, maintenance state, notices) and sending the events listed in §3.2.</td>
-    <td>No remote code is ever fetched. See §5.</td>
+    <td data-label="Permission">Network access to our configuration server</td>
+    <td data-label="What it is used for">Fetching operational parameters (allowed uses, maintenance state, notices) and sending the events listed in §3.2.</td>
+    <td data-label="What it is NOT used for">No remote code is ever fetched. See §5.</td>
   </tr>
 </table>
 </div>
@@ -602,9 +634,9 @@ No analytics SDK, crash reporter, ad network or tracking pixel is integrated.</p
 <div class="tablewrap">
 <table>
   <tr><th>Party</th><th>Role</th><th>What they receive</th></tr>
-  <tr><td>Cloudflare, Inc.</td><td>Server infrastructure provider (Workers, KV). Processes data solely on our instructions.</td><td>The fields listed in §3.2</td></tr>
-  <tr><td>Garena / Tencent Cloud</td><td>Owner of the website and the image storage. Your relationship with them is direct and does not involve us.</td><td>The images you upload and their own site's session information — we take no part in this and receive no copy</td></tr>
-  <tr><td>Cloudinary (<code>res.cloudinary.com</code>)</td><td>Content delivery network, used solely to serve the extension's <b>static interface icons</b> (Upload, Replace, Delete…).</td><td>As with any image load on the web: your IP address and browser headers. <b>No</b> identifier, <b>no</b> usage data, <b>no</b> cookie set by us</td></tr>
+  <tr><td data-label="Party">Cloudflare, Inc.</td><td data-label="Role">Server infrastructure provider (Workers, KV). Processes data solely on our instructions.</td><td data-label="What they receive">The fields listed in §3.2</td></tr>
+  <tr><td data-label="Party">Garena / Tencent Cloud</td><td data-label="Role">Owner of the website and the image storage. Your relationship with them is direct and does not involve us.</td><td data-label="What they receive">The images you upload and their own site's session information — we take no part in this and receive no copy</td></tr>
+  <tr><td data-label="Party">Cloudinary (<code>res.cloudinary.com</code>)</td><td data-label="Role">Content delivery network, used solely to serve the extension's <b>static interface icons</b> (Upload, Replace, Delete…).</td><td data-label="What they receive">As with any image load on the web: your IP address and browser headers. <b>No</b> identifier, <b>no</b> usage data, <b>no</b> cookie set by us</td></tr>
 </table>
 </div>
 <div class="box">
@@ -626,11 +658,11 @@ have — we hold no images, no account names and no raw character IDs.</p>
 <div class="tablewrap">
 <table>
   <tr><th>Data</th><th>Stored in</th><th>Retention</th></tr>
-  <tr><td>Local data (§3.1)</td><td>Your browser</td><td>Until you uninstall the extension or clear site data</td></tr>
-  <tr><td>Quota record keyed by hash</td><td>Cloudflare Workers KV</td><td>Automatically deleted after <b>60 days</b> of inactivity</td></tr>
-  <tr><td>Operational logs (§3.2)</td><td>Cloudflare Workers KV</td><td>Automatically deleted after <b>90 days</b></td></tr>
-  <tr><td>Restriction lists arising from violations</td><td>Cloudflare Workers KV</td><td>Kept for the duration of the trial programme, or until an appeal is resolved</td></tr>
-  <tr><td>Gift code state</td><td>Cloudflare Workers KV</td><td>Until the batch is manually deleted</td></tr>
+  <tr><td data-label="Data">Local data (§3.1)</td><td data-label="Stored in">Your browser</td><td data-label="Retention">Until you uninstall the extension or clear site data</td></tr>
+  <tr><td data-label="Data">Quota record keyed by hash</td><td data-label="Stored in">Cloudflare Workers KV</td><td data-label="Retention">Automatically deleted after <b>60 days</b> of inactivity</td></tr>
+  <tr><td data-label="Data">Operational logs (§3.2)</td><td data-label="Stored in">Cloudflare Workers KV</td><td data-label="Retention">Automatically deleted after <b>90 days</b></td></tr>
+  <tr><td data-label="Data">Restriction lists arising from violations</td><td data-label="Stored in">Cloudflare Workers KV</td><td data-label="Retention">Kept for the duration of the trial programme, or until an appeal is resolved</td></tr>
+  <tr><td data-label="Data">Gift code state</td><td data-label="Stored in">Cloudflare Workers KV</td><td data-label="Retention">Until the batch is manually deleted</td></tr>
 </table>
 </div>
 <p>When the trial programme ends, we delete all server-side data.</p>

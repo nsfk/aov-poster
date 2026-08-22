@@ -13,11 +13,15 @@
   --ok:#0f5c3f; --okbg:#e9f7f0; --okline:#a8ddc5;
   --danger:#8b1d2c; --dangerbg:#fdecef; --dangerline:#f0b4bf;
   --code:#f1f2f8;
-  /* Mat dat cua cot noi dung. GAN NHU DAC (alpha .94) la co y: chu phai doc
-     duoc du anh nen sang hay toi, ma ta khong kiem soat duoc anh do. */
-  --surface:rgba(255,255,255,.94);
+  /* Mat dat cua cot noi dung. GAN NHU DAC (alpha .97) la co y: do doc duoc cua
+     chu do CHINH LOP NAY bao dam, khong phai lop loc phu len anh. Nho vay co
+     the chinh lop loc thoai mai theo anh ma khong so chu bi chim. */
+  --surface:rgba(255,255,255,.97);
   --surface-solid:#ffffff;
-  --scrim:rgba(246,247,252,.72);
+  /* Lop loc PHAI nhe o che do sang. Anh nen nay gan nhu trang (do sang 0.93),
+     nen mot lop trang day se xoa sach no — dat anh vao roi khong nhin thay gi.
+     Chu van doc duoc vi mat cua cot noi dung mo duc, khong phai nho lop loc. */
+  --scrim:rgba(222,228,242,.34);
   --shadow:0 1px 2px rgba(20,24,60,.05), 0 12px 32px rgba(20,24,60,.10);
 }
 @media(prefers-color-scheme:dark){:root{
@@ -28,7 +32,9 @@
   --code:#1a1f4a;
   --surface:rgba(13,16,48,.93);
   --surface-solid:#0d1030;
-  --scrim:rgba(8,10,32,.80);
+  /* Che do toi thi nguoc lai: anh sang nen can lop loc toi day tay de hai ben
+     le khong choi mat. .76 de van thay duoc net tranh mo o vien. */
+  --scrim:rgba(8,10,32,.76);
   --shadow:0 1px 2px rgba(0,0,0,.30), 0 12px 34px rgba(0,0,0,.42);
 }}
 *{box-sizing:border-box}
@@ -141,6 +147,32 @@ html:not([data-active]) [data-lang="vi"]{display:block}
 @media(max-width:900px){
   .wrap{max-width:none;padding:24px 24px 56px}
 }
+/* ── BANG TREN MAN HINH HEP ────────────────────────────────────────────
+   Truoc day bang co `min-width:520px` nam trong mot khung cuon ngang. Tren
+   man 360px, khung chi rong 332px nen COT THU BA BI CAT MAT HAN — khong mot
+   dau hieu nao cho biet con noi dung. Tren trang chinh sach quyen rieng tu
+   thi do la mat thong tin, khong phai chi xau.
+   Nay o duoi 640px moi hang tro thanh mot the doc: tung o mot dong, kem ten
+   cot lay tu `data-label` (do chinh `<th>` sinh ra). Khong con cuon ngang,
+   khong con o nao bi giau. */
+@media(max-width:640px){
+  .tablewrap{overflow:visible;margin:16px 0}
+  table{min-width:0;width:100%;border:0;font-size:15px}
+  table thead{position:absolute;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  table tr{display:block;border:1px solid var(--line);border-radius:9px;
+    padding:4px 0;margin-bottom:10px;background:var(--acc2)}
+  table td{display:block;border:0;padding:8px 13px}
+  table td+td{border-top:1px dashed var(--line)}
+  /* Ten cot in nho phia tren gia tri — thay cho hang tieu de da an di. */
+  table td::before{content:attr(data-label);display:block;
+    font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--mut);margin-bottom:2px}
+  table td[data-label=""]::before{display:none}
+  /* Cot da rong ca hang thi ma khong con bi be vun tung 3-4 ky tu nua. */
+  table code{word-break:normal;overflow-wrap:break-word}
+}
+
 @media(max-width:640px){
   body{font-size:15.5px}
   .wrap{padding:20px 18px 52px}
@@ -249,11 +281,11 @@ Tiện ích không chạy trên bất kỳ trang nào khác.</p>
 <div class="tablewrap">
 <table>
   <tr><th>Cơ chế</th><th>Ý nghĩa</th></tr>
-  <tr><td>Hạn mức tải ảnh theo tuần</td><td>Số lượt tải/thay ảnh mỗi tài khoản trong tuần. Thay ảnh cũng tính là một lượt.</td></tr>
-  <tr><td>Mã quà</td><td>Nhập mã để cộng thêm lượt. Mỗi mã dùng được một lần; có giới hạn số mã mỗi tuần.</td></tr>
-  <tr><td>Điểm danh hằng ngày</td><td>Bấm điểm danh để có cơ hội nhận thêm lượt theo chuỗi ngày và quay may mắn. <b>Tính năng này có thể được bật/tắt.</b></td></tr>
-  <tr><td>Trần dùng chung theo ngày/tuần</td><td>Giới hạn tổng cho toàn bộ người dùng, tránh một người chiếm hết.</td></tr>
-  <tr><td>Làm mới</td><td>Hạn mức làm mới theo giờ Việt Nam (mốc ngày 05:00, điểm danh làm mới 00:00).</td></tr>
+  <tr><td data-label="Cơ chế">Hạn mức tải ảnh theo tuần</td><td data-label="Ý nghĩa">Số lượt tải/thay ảnh mỗi tài khoản trong tuần. Thay ảnh cũng tính là một lượt.</td></tr>
+  <tr><td data-label="Cơ chế">Mã quà</td><td data-label="Ý nghĩa">Nhập mã để cộng thêm lượt. Mỗi mã dùng được một lần; có giới hạn số mã mỗi tuần.</td></tr>
+  <tr><td data-label="Cơ chế">Điểm danh hằng ngày</td><td data-label="Ý nghĩa">Bấm điểm danh để có cơ hội nhận thêm lượt theo chuỗi ngày và quay may mắn. <b>Tính năng này có thể được bật/tắt.</b></td></tr>
+  <tr><td data-label="Cơ chế">Trần dùng chung theo ngày/tuần</td><td data-label="Ý nghĩa">Giới hạn tổng cho toàn bộ người dùng, tránh một người chiếm hết.</td></tr>
+  <tr><td data-label="Cơ chế">Làm mới</td><td data-label="Ý nghĩa">Hạn mức làm mới theo giờ Việt Nam (mốc ngày 05:00, điểm danh làm mới 00:00).</td></tr>
 </table>
 </div>
 <div class="box">
@@ -280,9 +312,9 @@ về chủ sở hữu tương ứng và được nhắc đến thuần tuý nh�
 <div class="tablewrap">
 <table>
   <tr><th>Bản</th><th>Thay đổi chính</th></tr>
-  <tr><td><b>1.3.10</b></td><td>Thêm màn hình công bố &amp; đồng ý trước khi gửi dữ liệu; hiển thị đủ mã định danh; đồng bộ khi đổi tài khoản; thay ảnh tính đúng một lượt.</td></tr>
-  <tr><td>1.3.9</td><td>Bắt đầu gửi mã định danh giả danh + số liệu sử dụng để áp hạn mức (sau khi đồng ý).</td></tr>
-  <tr><td>1.3.6 – 1.3.8</td><td>Bản thử nghiệm ban đầu, chưa gửi dữ liệu tới máy chủ.</td></tr>
+  <tr><td data-label="Bản"><b>1.3.10</b></td><td data-label="Thay đổi chính">Thêm màn hình công bố &amp; đồng ý trước khi gửi dữ liệu; hiển thị đủ mã định danh; đồng bộ khi đổi tài khoản; thay ảnh tính đúng một lượt.</td></tr>
+  <tr><td data-label="Bản">1.3.9</td><td data-label="Thay đổi chính">Bắt đầu gửi mã định danh giả danh + số liệu sử dụng để áp hạn mức (sau khi đồng ý).</td></tr>
+  <tr><td data-label="Bản">1.3.6 – 1.3.8</td><td data-label="Thay đổi chính">Bản thử nghiệm ban đầu, chưa gửi dữ liệu tới máy chủ.</td></tr>
 </table>
 </div>
 <p class="meta">Thay đổi mở rộng phạm vi thu thập dữ liệu luôn được nêu trong mô tả bản cập nhật và
@@ -357,11 +389,11 @@ other site.</p>
 <div class="tablewrap">
 <table>
   <tr><th>Mechanism</th><th>Meaning</th></tr>
-  <tr><td>Weekly upload quota</td><td>Uploads/replacements per account per week. Replacing an image also counts as one use.</td></tr>
-  <tr><td>Gift codes</td><td>Enter a code for extra uses. Each code is single-use; a weekly cap applies.</td></tr>
-  <tr><td>Daily check-in</td><td>Check in for a chance at streak bonuses and a lucky draw. <b>This feature can be enabled or disabled.</b></td></tr>
-  <tr><td>Shared daily/weekly caps</td><td>A total ceiling across all users so no single person exhausts it.</td></tr>
-  <tr><td>Reset</td><td>Quotas reset on Vietnam time (daily boundary 05:00, check-in resets 00:00).</td></tr>
+  <tr><td data-label="Mechanism">Weekly upload quota</td><td data-label="Meaning">Uploads/replacements per account per week. Replacing an image also counts as one use.</td></tr>
+  <tr><td data-label="Mechanism">Gift codes</td><td data-label="Meaning">Enter a code for extra uses. Each code is single-use; a weekly cap applies.</td></tr>
+  <tr><td data-label="Mechanism">Daily check-in</td><td data-label="Meaning">Check in for a chance at streak bonuses and a lucky draw. <b>This feature can be enabled or disabled.</b></td></tr>
+  <tr><td data-label="Mechanism">Shared daily/weekly caps</td><td data-label="Meaning">A total ceiling across all users so no single person exhausts it.</td></tr>
+  <tr><td data-label="Mechanism">Reset</td><td data-label="Meaning">Quotas reset on Vietnam time (daily boundary 05:00, check-in resets 00:00).</td></tr>
 </table>
 </div>
 <div class="box">
@@ -388,9 +420,9 @@ what the tool operates on.</p>
 <div class="tablewrap">
 <table>
   <tr><th>Version</th><th>Main changes</th></tr>
-  <tr><td><b>1.3.10</b></td><td>Added a disclosure &amp; consent screen before any transmission; full identifier display; account-switch sync; image replacement counts as one use.</td></tr>
-  <tr><td>1.3.9</td><td>Began sending a pseudonymous identifier + usage counts for quota enforcement (after consent).</td></tr>
-  <tr><td>1.3.6 – 1.3.8</td><td>Initial trial builds, sent no data to any server.</td></tr>
+  <tr><td data-label="Version"><b>1.3.10</b></td><td data-label="Main changes">Added a disclosure &amp; consent screen before any transmission; full identifier display; account-switch sync; image replacement counts as one use.</td></tr>
+  <tr><td data-label="Version">1.3.9</td><td data-label="Main changes">Began sending a pseudonymous identifier + usage counts for quota enforcement (after consent).</td></tr>
+  <tr><td data-label="Version">1.3.6 – 1.3.8</td><td data-label="Main changes">Initial trial builds, sent no data to any server.</td></tr>
 </table>
 </div>
 <p class="meta">Any change that broadens data collection is announced in the update description and
