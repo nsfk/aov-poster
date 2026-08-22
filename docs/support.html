@@ -174,6 +174,27 @@ các tính năng cần máy chủ sẽ dừng. Gỡ tiện ích sẽ xoá mọi 
 <p>Là tính năng thưởng thêm lượt theo chuỗi ngày và quay may mắn, hoàn toàn tự nguyện. Quản trị có
 thể <b>bật hoặc tắt</b> tính năng này bất cứ lúc nào.</p>
 
+<h3>Lượt chưa dùng hết trong tuần có bị mất không?</h3>
+<p>Không. Khi sang tuần mới (làm mới vào thứ Hai), phần lượt bạn <b>chưa dùng hết</b> — gồm lượt cơ
+bản, lượt cộng từ mã quà, và lượt thưởng điểm danh — được <b>giữ lại và cộng vào</b> hạn mức tuần
+mới. Bạn không mất phần đã có. (Riêng khi quản trị đặt lại hạn mức giữa tuần thì mọi con số về mức
+cơ bản — đó là thao tác sửa lỗi, không phải chu kỳ bình thường.)</p>
+
+<h3>Tôi dùng nhiều tài khoản. Đổi qua lại liên tục có sao không?</h3>
+<p>Không bị cấm, nhưng nên <b>đổi thong thả</b>, vì hai lý do có thật:</p>
+<ul>
+  <li>Mỗi lần đổi, tiện ích phải <b>tính lại mã định danh</b> từ mã nhân vật mới rồi đồng bộ số lượt
+      với máy chủ. Việc này mất vài giây. Đổi nhanh hơn thế thì nó cứ phải xác minh lại từ đầu và bạn
+      chỉ thấy dòng “đang xác minh tài khoản”. Hãy <b>đợi mã định danh hiện ra đầy đủ</b> rồi mới thao tác.</li>
+  <li>Mỗi tài khoản <b>lần đầu xuất hiện</b> đều tính vào giới hạn <b>số tài khoản mới mỗi ngày</b> của
+      hệ thống. Đổi qua nhiều tài khoản chưa từng dùng trong một ngày có thể chạm giới hạn đó, và khi
+      ấy tài khoản tiếp theo sẽ bị từ chối cho tới hôm sau.</li>
+</ul>
+<p>Cần nói rõ để bạn yên tâm: cơ chế tự động hạn chế của chúng tôi đếm hành vi <b>theo từng tài
+khoản</b>, nên bản thân việc đổi tài khoản <b>không</b> khiến bạn bị đưa vào danh sách hạn chế. Thứ bị
+gắn cờ là các dấu hiệu lạm dụng lặp lại trên <i>cùng một</i> tài khoản — ví dụ nhập sai mã quà hàng
+chục lần liên tiếp, hay gọi máy chủ dồn dập bất thường.</p>
+
 </section>
 
 <!-- ══════════════════════════════ ENGLISH ══════════════════════════════ -->
@@ -270,6 +291,29 @@ the server and the server-backed features stop. Uninstalling removes all local d
 <h3>What is check-in? Is it required?</h3>
 <p>An entirely optional feature that grants extra uses via daily streaks and a lucky draw. The
 administrator can <b>enable or disable</b> it at any time.</p>
+
+<h3>Do I lose allowance I did not use this week?</h3>
+<p>No. When the week rolls over (Monday reset), whatever you <b>did not spend</b> — base allowance,
+bonuses from gift codes, and check-in rewards — is <b>carried over and added</b> to the new week's
+allowance. You keep what you had already earned. (An administrator resetting your quota mid-week is
+different: that returns every counter to the base level, and it is a corrective action rather than
+part of the normal cycle.)</p>
+
+<h3>I use several accounts. Is switching between them a problem?</h3>
+<p>It is not forbidden, but switch <b>unhurriedly</b>, for two real reasons:</p>
+<ul>
+  <li>Each switch makes the extension <b>recompute your identifier</b> from the new character ID and
+      re-sync your allowance with the server. That takes a few seconds. Switching faster than that
+      simply restarts the verification, and all you will see is “verifying account”. <b>Wait for the
+      identifier to appear in full</b> before doing anything else.</li>
+  <li>Every account seen for the <b>first time</b> counts against the system's daily <b>new-account
+      limit</b>. Cycling through many never-before-used accounts in one day can reach that limit, after
+      which the next account is refused until the following day.</li>
+</ul>
+<p>To be clear, so you are not left worrying: our automatic restriction rules count behaviour
+<b>per account</b>, so switching accounts does <b>not</b> by itself get you restricted. What gets
+flagged is repeated abuse on the <i>same</i> account — dozens of failed gift-code attempts in a row,
+or an abnormal burst of server calls.
 
 </section>
 

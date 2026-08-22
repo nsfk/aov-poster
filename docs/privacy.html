@@ -139,6 +139,8 @@ những dịch vụ đó, chính sách riêng của họ được áp dụng.</p
   <tr><th>Trường</th><th>Nội dung cụ thể</th><th>Vì sao cần</th></tr>
   <tr><td><b>Mã định danh giả danh</b> (“Hash ID”)</td><td>Chuỗi băm SHA-256 dài 64 ký tự hệ 16, tính <b>ngay trên thiết bị của bạn</b> từ mã nhân vật trong trò chơi cộng thêm một chuỗi muối cố định. <b>Mã nhân vật gốc không bao giờ rời khỏi thiết bị.</b></td><td>Để hạn mức bám theo tài khoản trò chơi thay vì bám theo lần cài đặt tiện ích</td></tr>
   <tr><td>Số lượt đã dùng trong kỳ</td><td>Một số nguyên</td><td>Áp hạn mức</td></tr>
+  <tr><td>Số lượt tồn dư mang sang tuần mới</td><td>Một số nguyên</td><td>Giữ lại phần lượt bạn chưa dùng hết khi sang tuần mới, để bạn không mất quyền lợi đã có</td></tr>
+  <tr><td>Chuỗi ngày điểm danh</td><td>Ngày điểm danh gần nhất, số ngày liên tiếp, phần thưởng đã nhận</td><td>Tính mốc thưởng theo chuỗi và chặn điểm danh nhiều lần trong một ngày</td></tr>
   <tr><td>Số mã quà đã đổi trong kỳ và mã quà bạn nhập</td><td>Chuỗi mã do chúng tôi phát hành, không phải thông tin của bạn</td><td>Chống dùng lại một mã nhiều lần</td></tr>
   <tr><td>Mốc thời gian và phiên bản tiện ích</td><td>Thời điểm gọi, số hiệu phiên bản</td><td>Làm mới hạn mức đúng chu kỳ, phát hiện bản quá cũ</td></tr>
   <tr><td>Sự kiện vận hành</td><td>“đã dùng 1 lượt”, “đổi mã thành công/thất bại”, “điểm danh”, “bị từ chối vì hết lượt”</td><td>Ghi nhật ký để đối soát khi bạn khiếu nại, và để phát hiện lạm dụng</td></tr>
@@ -384,6 +386,8 @@ your Google account or to other devices.</p>
   <tr><th>Field</th><th>Exact content</th><th>Why it is needed</th></tr>
   <tr><td><b>Pseudonymous identifier</b> (“Hash ID”)</td><td>A 64-character hexadecimal SHA-256 hash computed <b>on your device</b> from your in-game character ID plus a fixed salt. <b>The raw character ID never leaves your device.</b></td><td>So the quota follows the game account rather than the installation</td></tr>
   <tr><td>Uses consumed this period</td><td>An integer</td><td>Quota enforcement</td></tr>
+  <tr><td>Unused allowance carried into the new week</td><td>An integer</td><td>Preserve the allowance you did not spend when the week rolls over, so you lose nothing you had already earned</td></tr>
+  <tr><td>Daily check-in streak</td><td>Last check-in date, consecutive-day count, rewards granted</td><td>Compute streak milestones and prevent checking in twice in one day</td></tr>
   <tr><td>Gift codes redeemed this period, and the code you enter</td><td>Strings we issued ourselves — not information about you</td><td>Prevent a single code from being reused</td></tr>
   <tr><td>Timestamp and extension version</td><td>Time of call, version number</td><td>Reset quotas on the correct cycle; detect outdated builds</td></tr>
   <tr><td>Operational events</td><td>“one use consumed”, “code redeemed / rejected”, “daily check-in”, “denied: quota exhausted”</td><td>Audit trail for handling your complaints, and abuse detection</td></tr>
