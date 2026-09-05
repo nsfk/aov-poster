@@ -225,7 +225,7 @@ html:not([data-active]) [data-lang="vi"]{display:block}
 <h1>AOV Poster — Cá Nhân</h1>
 <div class="meta">
   Tiện ích trình duyệt <b>không chính thức</b> cho trình tạo Poster của AOV Camp (Liên Quân Mobile)<br>
-  Phiên bản trang: <b>2.1</b> · Cập nhật: <b>21/08/2026</b> · Nhà phát triển: cá nhân, bút danh <b>NFSK</b><br>
+  Phiên bản trang: <b>2.2</b> · Cập nhật: <b>05/09/2026</b> · Nhà phát triển: cá nhân, bút danh <b>NFSK</b><br>
   Liên hệ: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b>
 </div>
 
@@ -260,7 +260,38 @@ Tiện ích không chạy trên bất kỳ trang nào khác.</p>
   <li>Tiện ích can thiệp vào yêu cầu lưu poster (<code>XMLHttpRequest</code>) để chèn ảnh của bạn
       vào danh sách nhãn dán khi lưu. Đây là cách nó thêm được ảnh tùy chỉnh, và chúng tôi
       nói rõ điều này thay vì giấu.</li>
+  <li><b>Trước khi ảnh rời khỏi máy bạn</b>, tiện ích chạy một bước <b>kiểm duyệt ngay trên
+      trình duyệt</b> — xem mục 4b bên dưới.</li>
 </ul>
+
+<h2 id="kiemduyet">4b. Kiểm duyệt ảnh — chạy trên máy bạn</h2>
+<div class="box ok">
+  Bước kiểm duyệt này chạy <b>hoàn toàn trên trình duyệt của bạn</b>. Ảnh
+  <b>không</b> được gửi đi đâu để kiểm. Nếu một ảnh bị từ chối, nó dừng lại
+  <b>trên máy bạn</b> và không bao giờ được tải lên.
+</div>
+<ul>
+  <li><b>Mô hình nhận dạng nội dung người lớn</b> chạy cục bộ trong trình duyệt. Mô hình
+      (<a href="https://github.com/infinitered/nsfwjs" rel="noopener noreferrer">nsfwjs</a>,
+      MobileNetV2, giấy phép MIT) được <b>đóng gói sẵn</b> trong tiện ích — không tải mã từ xa,
+      không gọi dịch vụ ngoài. Đây là lý do gói cài đặt nặng khoảng <b>5 MB</b>.</li>
+  <li><b>Lần tải ảnh đầu tiên</b> của mỗi phiên phải chờ thêm khoảng <b>5 giây</b> để nạp mô hình;
+      những lần sau chỉ mất khoảng <b>0,7 giây</b> mỗi ảnh. Chúng tôi nói con số thật thay vì
+      để bạn tự đoán vì sao lần đầu chậm.</li>
+  <li>Kèm theo là vài <b>phép đo phụ</b> (tỷ lệ màu da, độ tương phản…). Chúng chỉ
+      <b>ghi chú</b> để đối chiếu, <b>không</b> tự mình từ chối ảnh — vì đo trên một tấm ảnh
+      đơn lẻ thì chúng sai quá thường xuyên để được quyền quyết định.</li>
+  <li>Khi ảnh bị từ chối, tiện ích <b>nói rõ phép đo nào đã báo</b> chứ không chỉ hiện một câu
+      từ chối chung chung.</li>
+  <li>Độ chặt do quản trị đặt và <b>có thể thay đổi</b>. Càng chặt thì càng nhiều ảnh hợp lệ bị
+      từ chối nhầm — đó là đánh đổi có thật, và bạn nên biết nó tồn tại.</li>
+</ul>
+<div class="box warn">
+  <b>Bước này không phải một sự bảo đảm.</b> Nó chạy trên máy bạn, nên người biết kỹ thuật có
+  thể vô hiệu hoá nó. Nó là một bộ lọc sớm, không phải một lớp an ninh — và nó
+  <b>không thay thế</b> trách nhiệm của bạn với nội dung mình tải lên
+  (<a href="./terms.html">Điều khoản</a>).
+</div>
 
 <h2>4. Quyền riêng tư — tóm tắt</h2>
 <div class="box ok">
@@ -312,7 +343,8 @@ về chủ sở hữu tương ứng và được nhắc đến thuần tuý nh�
 <div class="tablewrap">
 <table>
   <tr><th>Bản</th><th>Thay đổi chính</th></tr>
-  <tr><td data-label="Bản"><b>1.3.10</b></td><td data-label="Thay đổi chính">Thêm màn hình công bố &amp; đồng ý trước khi gửi dữ liệu; hiển thị đủ mã định danh; đồng bộ khi đổi tài khoản; thay ảnh tính đúng một lượt.</td></tr>
+  <tr><td data-label="Bản"><b>1.4.0</b></td><td data-label="Thay đổi chính">Đóng gói mô hình kiểm duyệt chạy trên máy bạn, quét trước khi ảnh rời khỏi thiết bị (mục 4b); mã định danh không còn đè lên giao diện trên điện thoại; sửa lỗi danh sách ảnh và số lượt của tài khoản trước còn sót lại sau khi đổi tài khoản.</td></tr>
+  <tr><td data-label="Bản">1.3.10</td><td data-label="Thay đổi chính">Thêm màn hình công bố &amp; đồng ý trước khi gửi dữ liệu; hiển thị đủ mã định danh; đồng bộ khi đổi tài khoản; thay ảnh tính đúng một lượt.</td></tr>
   <tr><td data-label="Bản">1.3.9</td><td data-label="Thay đổi chính">Bắt đầu gửi mã định danh giả danh + số liệu sử dụng để áp hạn mức (sau khi đồng ý).</td></tr>
   <tr><td data-label="Bản">1.3.6 – 1.3.8</td><td data-label="Thay đổi chính">Bản thử nghiệm ban đầu, chưa gửi dữ liệu tới máy chủ.</td></tr>
 </table>
@@ -367,7 +399,36 @@ other site.</p>
   <li>The extension hooks the save-poster request (<code>XMLHttpRequest</code>) to insert your
       images into the sticker list on save. That is how custom images are added, and we disclose
       it rather than hide it.</li>
+  <li><b>Before an image leaves your machine</b>, the extension runs a <b>moderation check in
+      your browser</b> — see section 4b below.</li>
 </ul>
+
+<h2>4b. Image moderation — runs on your machine</h2>
+<div class="box ok">
+  This check runs <b>entirely in your browser</b>. Images are <b>not</b> sent anywhere to be
+  checked. If an image is refused, it stops <b>on your machine</b> and is never uploaded.
+</div>
+<ul>
+  <li>An <b>adult-content classifier</b> runs locally in the browser. The model
+      (<a href="https://github.com/infinitered/nsfwjs" rel="noopener noreferrer">nsfwjs</a>,
+      MobileNetV2, MIT licence) <b>ships inside</b> the extension package — no remote code is
+      loaded and no external service is called. This is why the install is around <b>5 MB</b>.</li>
+  <li>The <b>first upload</b> of each session waits about <b>5 seconds</b> while the model loads;
+      after that each image takes about <b>0.7 seconds</b>. We give the real numbers rather than
+      leave you guessing why the first one is slow.</li>
+  <li>Alongside it are a few <b>secondary measures</b> (skin-tone ratio, contrast…). These only
+      <b>annotate</b> for cross-reference; they <b>never</b> refuse an image on their own, because
+      on a single still image they are wrong far too often to be given that authority.</li>
+  <li>When an image is refused, the extension <b>names the measure that flagged it</b> rather
+      than showing a generic refusal.</li>
+  <li>Strictness is set by the operator and <b>can change</b>. Stricter settings refuse more
+      legitimate images — that trade-off is real, and you should know it exists.</li>
+</ul>
+<div class="box warn">
+  <b>This check is not a guarantee.</b> It runs on your machine, so a technically capable person
+  can disable it. It is an early filter, not a security layer — and it does <b>not</b> replace
+  your responsibility for what you upload (<a href="./terms.html">Terms</a>).
+</div>
 
 <h2>4. Privacy — summary</h2>
 <div class="box ok">
@@ -420,7 +481,8 @@ what the tool operates on.</p>
 <div class="tablewrap">
 <table>
   <tr><th>Version</th><th>Main changes</th></tr>
-  <tr><td data-label="Version"><b>1.3.10</b></td><td data-label="Main changes">Added a disclosure &amp; consent screen before any transmission; full identifier display; account-switch sync; image replacement counts as one use.</td></tr>
+  <tr><td data-label="Version"><b>1.4.0</b></td><td data-label="Main changes">Bundled an on-device moderation model that scans before an image leaves your machine (section 4b); the identifier no longer overlaps the interface on phones; fixed the previous account's image list and quota lingering after an account switch.</td></tr>
+  <tr><td data-label="Version">1.3.10</td><td data-label="Main changes">Added a disclosure &amp; consent screen before any transmission; full identifier display; account-switch sync; image replacement counts as one use.</td></tr>
   <tr><td data-label="Version">1.3.9</td><td data-label="Main changes">Began sending a pseudonymous identifier + usage counts for quota enforcement (after consent).</td></tr>
   <tr><td data-label="Version">1.3.6 – 1.3.8</td><td data-label="Main changes">Initial trial builds, sent no data to any server.</td></tr>
 </table>
