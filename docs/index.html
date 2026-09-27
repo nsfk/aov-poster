@@ -225,7 +225,7 @@ html:not([data-active]) [data-lang="vi"]{display:block}
 <h1>AOV Poster — Cá Nhân</h1>
 <div class="meta">
   Tiện ích trình duyệt <b>không chính thức</b> cho trình tạo Poster của AOV Camp (Liên Quân Mobile)<br>
-  Phiên bản trang: <b>2.2</b> · Cập nhật: <b>05/09/2026</b> · Nhà phát triển: cá nhân, bút danh <b>NFSK</b><br>
+  Phiên bản trang: <b>2.3</b> · Cập nhật: <b>27/09/2026</b> · Nhà phát triển: cá nhân, bút danh <b>NFSK</b><br>
   Liên hệ: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b>
 </div>
 
@@ -256,7 +256,7 @@ Tiện ích không chạy trên bất kỳ trang nào khác.</p>
 <ul>
   <li>Bạn chọn một ảnh; trình duyệt tải ảnh <b>trực tiếp</b> lên hạ tầng lưu trữ của Garena /
       Tencent Cloud (<code>kg-camp-ugc.mobagarena.com</code>) bằng cơ chế của chính trang web.</li>
-  <li>Ảnh <b>không đi qua máy chủ của chúng tôi</b> — chúng tôi không xem, không lưu, không có bản sao.</li>
+  <li>Ảnh <b>không đi qua máy chủ của chúng tôi</b> khi tải lên, và chúng tôi không lưu bản sao. Chúng tôi chỉ ghi sổ địa chỉ ảnh — ảnh ở địa chỉ đó có thể được rà soát để bảo đảm nội dung tuân thủ quy định (xem <a href="./privacy.html">Chính sách quyền riêng tư</a>, mục 3.2b).</li>
   <li>Tiện ích can thiệp vào yêu cầu lưu poster (<code>XMLHttpRequest</code>) để chèn ảnh của bạn
       vào danh sách nhãn dán khi lưu. Đây là cách nó thêm được ảnh tùy chỉnh, và chúng tôi
       nói rõ điều này thay vì giấu.</li>
@@ -295,7 +295,7 @@ Tiện ích không chạy trên bất kỳ trang nào khác.</p>
 
 <h2>4. Quyền riêng tư — tóm tắt</h2>
 <div class="box ok">
-  Tiện ích <b>không thu thập thông tin định danh cá nhân</b>. Từ phiên bản 1.3.9, sau khi bạn
+  Tiện ích <b>không thu thập thông tin định danh cá nhân</b>. Sau khi bạn
   <b>bấm đồng ý</b>, tiện ích gửi tới máy chủ một <b>mã định danh giả danh</b> (chuỗi băm SHA-256
   tạo trên máy bạn) cùng <b>số liệu sử dụng</b> để áp hạn mức. <b>Không</b> gửi ảnh, cookie, mã
   đăng nhập, tên tài khoản. Chi tiết đầy đủ ở <a href="./privacy.html">Chính sách quyền riêng tư</a>.
@@ -343,10 +343,9 @@ về chủ sở hữu tương ứng và được nhắc đến thuần tuý nh�
 <div class="tablewrap">
 <table>
   <tr><th>Bản</th><th>Thay đổi chính</th></tr>
-  <tr><td data-label="Bản"><b>1.4.0</b></td><td data-label="Thay đổi chính">Đóng gói mô hình kiểm duyệt chạy trên máy bạn, quét trước khi ảnh rời khỏi thiết bị (mục 4b); mã định danh không còn đè lên giao diện trên điện thoại; sửa lỗi danh sách ảnh và số lượt của tài khoản trước còn sót lại sau khi đổi tài khoản.</td></tr>
-  <tr><td data-label="Bản">1.3.10</td><td data-label="Thay đổi chính">Thêm màn hình công bố &amp; đồng ý trước khi gửi dữ liệu; hiển thị đủ mã định danh; đồng bộ khi đổi tài khoản; thay ảnh tính đúng một lượt.</td></tr>
-  <tr><td data-label="Bản">1.3.9</td><td data-label="Thay đổi chính">Bắt đầu gửi mã định danh giả danh + số liệu sử dụng để áp hạn mức (sau khi đồng ý).</td></tr>
-  <tr><td data-label="Bản">1.3.6 – 1.3.8</td><td data-label="Thay đổi chính">Bản thử nghiệm ban đầu, chưa gửi dữ liệu tới máy chủ.</td></tr>
+  <tr><td data-label="Bản"><b>1.4.1</b></td><td data-label="Thay đổi chính">Ảnh được quét ngay trên máy bạn trước khi tải lên; nếu không đọc được ảnh để kiểm thì tiện ích từ chối thay vì cho qua. Mã định danh hiển thị gọn trên màn hình hẹp và có nút chép riêng. Màn hình công bố dữ liệu nêu đủ tên nhân vật và địa chỉ ảnh/poster được gửi đi — bạn sẽ được hỏi đồng ý lại một lần.</td></tr>
+  <tr><td data-label="Bản">1.4.0</td><td data-label="Thay đổi chính">Sửa lỗi danh sách ảnh và số lượt của tài khoản trước còn sót lại sau khi đổi tài khoản.</td></tr>
+  <tr><td data-label="Bản">1.3.10</td><td data-label="Thay đổi chính">Thêm màn hình công bố &amp; đồng ý trước khi gửi dữ liệu; đồng bộ khi đổi tài khoản.</td></tr>
 </table>
 </div>
 <p class="meta">Thay đổi mở rộng phạm vi thu thập dữ liệu luôn được nêu trong mô tả bản cập nhật và
@@ -364,7 +363,7 @@ Trang <a href="./support.html">Hỗ trợ &amp; Khiếu nại</a>.</p>
 <h1>AOV Poster — Cá Nhân</h1>
 <div class="meta">
   An <b>unofficial</b> browser extension for the AOV Camp Poster editor (Arena of Valor)<br>
-  Page version: <b>2.1</b> · Updated: <b>2026-08-21</b> · Developer: individual, publishing as <b>NFSK</b><br>
+  Page version: <b>2.3</b> · Updated: <b>2026-09-27</b> · Developer: individual, publishing as <b>NFSK</b><br>
   Contact: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b>
 </div>
 
@@ -395,7 +394,7 @@ other site.</p>
 <ul>
   <li>You pick an image; your browser uploads it <b>directly</b> to Garena's / Tencent Cloud's
       storage (<code>kg-camp-ugc.mobagarena.com</code>) using the site's own mechanism.</li>
-  <li>Images <b>never pass through our servers</b> — we do not view, store or hold any copy.</li>
+  <li>Images <b>do not pass through our servers</b> when uploaded, and we keep no copy. We record only the image address — the image at that address may be reviewed to keep content within the rules (see the <a href="./privacy.html">Privacy Policy</a>, §3.2b).</li>
   <li>The extension hooks the save-poster request (<code>XMLHttpRequest</code>) to insert your
       images into the sticker list on save. That is how custom images are added, and we disclose
       it rather than hide it.</li>
@@ -432,7 +431,7 @@ other site.</p>
 
 <h2>4. Privacy — summary</h2>
 <div class="box ok">
-  The extension <b>collects no personally identifying information</b>. From version 1.3.9, after
+  The extension <b>collects no personally identifying information</b>. After
   you <b>press “I agree”</b>, it sends the server a <b>pseudonymous identifier</b> (a SHA-256 hash
   computed on your device) plus <b>usage counters</b> to enforce quotas. It sends <b>no</b> images,
   cookies, login tokens or account names. Full detail in the
@@ -481,10 +480,9 @@ what the tool operates on.</p>
 <div class="tablewrap">
 <table>
   <tr><th>Version</th><th>Main changes</th></tr>
-  <tr><td data-label="Version"><b>1.4.0</b></td><td data-label="Main changes">Bundled an on-device moderation model that scans before an image leaves your machine (section 4b); the identifier no longer overlaps the interface on phones; fixed the previous account's image list and quota lingering after an account switch.</td></tr>
-  <tr><td data-label="Version">1.3.10</td><td data-label="Main changes">Added a disclosure &amp; consent screen before any transmission; full identifier display; account-switch sync; image replacement counts as one use.</td></tr>
-  <tr><td data-label="Version">1.3.9</td><td data-label="Main changes">Began sending a pseudonymous identifier + usage counts for quota enforcement (after consent).</td></tr>
-  <tr><td data-label="Version">1.3.6 – 1.3.8</td><td data-label="Main changes">Initial trial builds, sent no data to any server.</td></tr>
+  <tr><td data-label="Version"><b>1.4.1</b></td><td data-label="Main changes">Images are scanned on your own machine before upload; if an image cannot be read for checking, the extension refuses it rather than letting it through. The identifier now fits narrow screens and has its own copy button. The data disclosure screen now lists the character name and image/poster addresses that are sent — you will be asked to consent again once.</td></tr>
+  <tr><td data-label="Version">1.4.0</td><td data-label="Main changes">Fixed the previous account's image list and quota lingering after an account switch.</td></tr>
+  <tr><td data-label="Version">1.3.10</td><td data-label="Main changes">Added a disclosure &amp; consent screen before any transmission; account-switch sync.</td></tr>
 </table>
 </div>
 <p class="meta">Any change that broadens data collection is announced in the update description and

@@ -220,7 +220,7 @@ html:not([data-active]) [data-lang="vi"]{display:block}
 <h1>Chính sách quyền riêng tư</h1>
 <div class="meta">
   Áp dụng cho tiện ích trình duyệt <b>AOV Poster — Cá Nhân</b> (Chrome Extension, Manifest V3)<br>
-  Phiên bản chính sách: <b>2.2</b> · Ngày hiệu lực: <b>05/09/2026</b> · Áp dụng từ bản tiện ích <b>1.3.9</b> trở đi<br>
+  Phiên bản chính sách: <b>2.4</b> · Ngày hiệu lực: <b>27/09/2026</b> · Áp dụng cho bản tiện ích <b>1.4.1</b><br>
   Đơn vị vận hành: nhà phát triển cá nhân, bút danh <b>NFSK</b><br>
   Liên hệ: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b>
 </div>
@@ -228,21 +228,11 @@ html:not([data-active]) [data-lang="vi"]{display:block}
 <div class="box">
   <b>Công bố nổi bật (Prominent Disclosure).</b> Tiện ích này có gửi dữ liệu tới máy chủ do
   chúng tôi vận hành. Dữ liệu đó gồm <b>một mã định danh giả danh</b> (chuỗi băm SHA-256 tạo
-  trên máy bạn) và <b>các con số thống kê sử dụng</b> (số lượt đã dùng, số mã đã đổi, mốc thời
-  gian). Việc gửi dữ liệu <b>chỉ bắt đầu sau khi bạn bấm nút “Tôi đồng ý”</b> trong màn hình
+  trên máy bạn), <b>tên nhân vật hiển thị trong game</b>, <b>địa chỉ trên CDN của Garena của ảnh
+  và poster bạn tải lên</b>, và <b>các con số thống kê sử dụng</b> (số lượt đã dùng, số mã đã đổi,
+  mốc thời gian). Việc gửi dữ liệu <b>chỉ bắt đầu sau khi bạn bấm nút “Tôi đồng ý”</b> trong màn hình
   công bố hiện ra ở lần chạy đầu tiên. Nếu bạn không đồng ý, tiện ích không gửi bất kỳ dữ liệu
   nào và các tính năng cần máy chủ sẽ không hoạt động.
-</div>
-
-<div class="box warn">
-  <b>Thay đổi ở bản 2.2 (05/09/2026) — đọc kỹ, vì nó SỬA một chỗ nói sai.</b>
-  Bản 2.1 viết rằng máy chủ “không bao giờ nhận … tên nhân vật của bạn”.
-  <b>Điều đó không đúng với bản tiện ích đang chạy:</b> tên nhân vật hiển thị công khai
-  <b>có</b> được gửi kèm, để đối chiếu khi bạn khiếu nại. Bản 2.2 sửa lại cho đúng, và bổ sung
-  <b>đường dẫn ảnh</b> cùng <b>đường dẫn poster</b> vào mục 3.2 — hai trường này vốn đã được
-  gửi và đã được công bố ngay trong tiện ích, nhưng trang này thì thiếu.
-  Không có trường nào <b>mới</b> bắt đầu được thu thập ở bản này; thay đổi ở đây là
-  <b>nói cho đúng những gì vốn đang xảy ra</b>. Mục 3.2b mới nói rõ đường dẫn ảnh dùng để làm gì.
 </div>
 
 <h2>1. Phạm vi</h2>
@@ -302,6 +292,28 @@ những dịch vụ đó, chính sách riêng của họ được áp dụng.</p
   không nội dung ảnh, không tên tệp ảnh, không lịch sử duyệt web, không danh sách thẻ đang mở.
 </div>
 
+<h3>3.2a. Vì sao cần tên nhân vật — và vì sao lưu kèm thời điểm</h3>
+<p>Mã định danh (Hash ID) là một chuỗi băm. Nó chỉ có nghĩa <b>bên trong hệ thống của
+chúng tôi</b> — không ai ở Garena tra được nó, và chính chúng tôi cũng không đảo ngược
+được nó thành mã nhân vật.</p>
+<p>Điều đó tạo ra một khoảng trống thật: khi bạn <b>khiếu nại</b> rằng một sticker của
+bạn bị xử lý oan, chúng tôi không có cách nào đối chiếu hồ sơ của bạn với hồ sơ vi phạm
+mà Garena ghi nhận, vì hai bên không dùng chung một định danh nào. Tên nhân vật là
+<b>sợi dây duy nhất</b> nối được hai phía.</p>
+<p><b>Vì sao lưu kèm thời điểm chứ không chỉ tên hiện tại:</b> tên nhân vật đổi được bất
+cứ lúc nào. Trang xử phạt của Garena ghi lại tên <b>tại thời điểm vi phạm</b>. Nếu chúng
+tôi chỉ giữ một ô “tên hiện tại” thì đúng vào lúc cần tra — sau khi vi phạm đã bị ghi
+nhận — cái tên đó đã khác rồi và không đối chiếu được gì. Nên mỗi tên từng thấy là một
+dòng riêng, kèm lần đầu và lần cuối nhìn thấy.</p>
+<div class="box ok">
+  <b>Giới hạn chúng tôi tự đặt ra:</b> tối đa 20 tên cho mỗi mã định danh;
+  không lưu ảnh đại diện, cấp bậc, danh sách tướng hay bất cứ trường nào khác —
+  dù chúng nằm ngay trong cùng một phản hồi của trang. Chỉ tên, chỉ khi bạn đã đồng ý.
+</div>
+<div class="box warn">
+  <b>Không đồng ý thì tiện ích thậm chí không đọc tên.</b> Đây không phải là “đọc rồi
+  không gửi”. Khi công tắc gửi dữ liệu đang tắt, đoạn mã đọc tên không hề chạy.
+</div>
 <h3>3.2b. Vì sao cần đường dẫn ảnh — và điều gì KHÔNG xảy ra</h3>
 <p>Ảnh bạn tải lên nằm trên hạ tầng lưu trữ của Garena, không phải của chúng tôi. Cái chúng tôi
 ghi lại là <b>địa chỉ</b> của nó, đã cắt bỏ phần truy vấn.</p>
@@ -339,7 +351,8 @@ tồn tại của mã định danh — không phải để theo dõi bạn.</p>
   <li><b>Cookie, mã thông báo phiên (session token), mã xác thực OTP, mật khẩu</b> — kể cả khi những thứ đó hiện diện trên trang mà tiện ích đang chạy</li>
   <li>Tên tài khoản đăng nhập Garena, và <b>mã nhân vật gốc chưa băm</b>
       <span class="meta">(tên nhân vật hiển thị công khai thì <b>có</b> gửi — xem mục 3.2)</span></li>
-  <li>Nội dung hoặc tên tệp của ảnh bạn tải lên</li>
+  <li>Nội dung ảnh bạn tải lên, và tên tệp gốc trên máy bạn
+      <span class="meta">(đường dẫn của ảnh trên CDN của Garena thì <b>có</b> gửi — xem mục 3.2b)</span></li>
   <li>Vị trí địa lý, lịch sử duyệt web, danh sách thẻ đang mở, dấu trang, tệp tải xuống</li>
   <li>Nội dung liên lạc cá nhân, thông tin sức khoẻ, thông tin tài chính</li>
 </ul>
@@ -408,8 +421,10 @@ của bạn, hay để thay đổi bất kỳ thứ gì ngoài phạm vi tiện 
 <p>Khi bạn chọn một ảnh, trình duyệt của bạn tải ảnh đó <b>trực tiếp</b> lên hạ tầng lưu trữ
 của Garena / Tencent Cloud (<code>kg-camp-ugc.mobagarena.com</code>, và
 <code>kg-camp.mobagarena.com</code> đối với ảnh cũ đăng trước tháng 5/2026) bằng đúng cơ chế tải
-lên mà trang AOV Camp đã có sẵn, kèm thông tin xác thực do chính trang đó cấp. Ảnh <b>không đi qua máy chủ của chúng tôi</b>. Chúng tôi không
-xem, không lưu, không có bản sao và không có quyền truy cập vào ảnh của bạn.</p>
+lên mà trang AOV Camp đã có sẵn, kèm thông tin xác thực do chính trang đó cấp. Ảnh <b>không đi
+qua máy chủ của chúng tôi</b> khi tải lên, và chúng tôi <b>không lưu bản sao</b> nào. Chúng tôi chỉ
+ghi sổ <b>địa chỉ</b> của ảnh (mục 3.2b); ảnh ở địa chỉ đó có thể được rà soát — tự động và bởi
+người vận hành — để bảo đảm nội dung tuân thủ quy định.</p>
 <div class="box danger">
   <b>Hệ quả bạn cần biết trước khi tải ảnh lên.</b> Ảnh được đăng ký như một nhãn dán qua luồng
   chính thức của AOV Camp, nên Garena có bản ghi trong cơ sở dữ liệu và bản sao trên hạ tầng
@@ -426,7 +441,8 @@ từ xa, mạng quảng cáo hay pixel theo dõi nào.</p>
 <div class="tablewrap">
 <table>
   <tr><th>Bên</th><th>Vai trò</th><th>Nhận gì</th></tr>
-  <tr><td data-label="Bên">Cloudflare, Inc.</td><td data-label="Vai trò">Nhà cung cấp hạ tầng máy chủ (Workers, KV). Xử lý dữ liệu theo chỉ dẫn của chúng tôi.</td><td data-label="Nhận gì">Các trường ở mục 3.2</td></tr>
+  <tr><td data-label="Bên">Cloudflare, Inc.</td><td data-label="Vai trò">Nhà cung cấp hạ tầng máy chủ (Workers, D1, KV). Xử lý dữ liệu theo chỉ dẫn của chúng tôi.</td><td data-label="Nhận gì">Các trường ở mục 3.2</td></tr>
+  <tr><td data-label="Bên">Nhà cung cấp dịch vụ rà soát nội dung tự động</td><td data-label="Vai trò">Chấm điểm nội dung ảnh để phát hiện vi phạm — chỉ khi chức năng rà soát được bật. Xử lý dữ liệu theo chỉ dẫn của chúng tôi.</td><td data-label="Nhận gì">Nội dung của ảnh đang được rà soát — <b>không</b> kèm mã định danh, tên nhân vật hay bất kỳ trường nào khác ở mục 3.2</td></tr>
   <tr><td data-label="Bên">Garena / Tencent Cloud</td><td data-label="Vai trò">Chủ sở hữu trang web và hạ tầng lưu ảnh. Quan hệ giữa bạn và họ là trực tiếp, không qua chúng tôi.</td><td data-label="Nhận gì">Ảnh bạn tải lên và thông tin phiên của chính trang họ — chúng tôi không tham gia và không nhận bản sao</td></tr>
   <tr><td data-label="Bên">Cloudinary (<code>res.cloudinary.com</code>)</td><td data-label="Vai trò">Mạng phân phối nội dung, chỉ dùng để tải <b>các biểu tượng giao diện tĩnh</b> của tiện ích (nút Tải lên, Thay ảnh, Xoá…).</td><td data-label="Nhận gì">Như mọi lần tải ảnh trên web: địa chỉ IP và thông tin trình duyệt của bạn. <b>Không</b> mã định danh, <b>không</b> dữ liệu sử dụng, <b>không</b> cookie do chúng tôi đặt</td></tr>
 </table>
@@ -451,32 +467,40 @@ không nắm ảnh, không nắm tên tài khoản và không nắm mã nhân v�
 <table>
   <tr><th>Dữ liệu</th><th>Nơi lưu</th><th>Thời hạn</th></tr>
   <tr><td data-label="Dữ liệu">Dữ liệu cục bộ (mục 3.1)</td><td data-label="Nơi lưu">Trình duyệt của bạn</td><td data-label="Thời hạn">Đến khi bạn gỡ tiện ích hoặc xoá dữ liệu trang</td></tr>
-  <tr><td data-label="Dữ liệu">Bản ghi hạn mức theo chuỗi băm</td><td data-label="Nơi lưu">Cloudflare Workers KV</td><td data-label="Thời hạn">Tự động xoá sau <b>60 ngày</b> không hoạt động</td></tr>
-  <tr><td data-label="Dữ liệu">Nhật ký vận hành (mục 3.2)</td><td data-label="Nơi lưu">Cloudflare Workers KV</td><td data-label="Thời hạn">Tự động xoá sau <b>90 ngày</b></td></tr>
-  <tr><td data-label="Dữ liệu">Danh sách hạn chế do vi phạm</td><td data-label="Nơi lưu">Cloudflare Workers KV</td><td data-label="Thời hạn">Giữ trong thời gian chương trình thử nghiệm còn chạy, hoặc đến khi khiếu nại được giải quyết</td></tr>
-  <tr><td data-label="Dữ liệu">Trạng thái mã quà</td><td data-label="Nơi lưu">Cloudflare Workers KV</td><td data-label="Thời hạn">Đến khi lô mã bị xoá thủ công</td></tr>
+  <tr><td data-label="Dữ liệu">Bản ghi hạn mức theo tuần (số lượt đã dùng, lượt cộng thêm, số mã đã đổi, lượt hoàn, tồn dư)</td><td data-label="Nơi lưu">Cloudflare D1</td><td data-label="Thời hạn">Tự động xoá sau <b>60 ngày</b> không hoạt động</td></tr>
+  <tr><td data-label="Dữ liệu">Vé cấp lượt (một vé cho mỗi lần tải lên)</td><td data-label="Nơi lưu">Cloudflare D1</td><td data-label="Thời hạn">Tự động xoá <b>7 ngày</b> sau khi vé hết hạn</td></tr>
+  <tr><td data-label="Dữ liệu">Bộ đếm lượt theo ngày của từng mã định danh</td><td data-label="Nơi lưu">Cloudflare D1</td><td data-label="Thời hạn">Tự động xoá sau <b>3 ngày</b></td></tr>
+  <tr><td data-label="Dữ liệu">Chuỗi ngày điểm danh</td><td data-label="Nơi lưu">Cloudflare D1</td><td data-label="Thời hạn">Tự động xoá sau <b>90 ngày</b></td></tr>
+  <tr><td data-label="Dữ liệu">Nhật ký vận hành (mục 3.2)</td><td data-label="Nơi lưu">Cloudflare D1</td><td data-label="Thời hạn">Tự động xoá sau <b>90 ngày</b></td></tr>
+  <tr><td data-label="Dữ liệu">Tên nhân vật; địa chỉ ảnh và poster đã ghi sổ (mục 3.2a, 3.2b)</td><td data-label="Nơi lưu">Cloudflare D1</td><td data-label="Thời hạn">Tự động xoá sau <b>180 ngày</b> kể từ lần cuối được ghi nhận</td></tr>
+  <tr><td data-label="Dữ liệu">Hồ sơ rà soát của ảnh không phát hiện vi phạm (địa chỉ ảnh, kết quả rà soát)</td><td data-label="Nơi lưu">Cloudflare D1</td><td data-label="Thời hạn">Tự động xoá sau <b>180 ngày</b> kể từ lần rà soát cuối</td></tr>
+  <tr><td data-label="Dữ liệu">Hồ sơ vi phạm (ảnh bị đánh dấu vi phạm, số lần vi phạm) và danh sách hạn chế</td><td data-label="Nơi lưu">Cloudflare D1</td><td data-label="Thời hạn">Giữ trong thời gian chương trình thử nghiệm còn chạy, hoặc đến khi khiếu nại được giải quyết</td></tr>
+  <tr><td data-label="Dữ liệu">Bảng đối chiếu mã định danh cũ → mới (khi chúng tôi đổi khoá băm phía máy chủ)</td><td data-label="Nơi lưu">Cloudflare D1</td><td data-label="Thời hạn">Giữ trong thời gian chương trình thử nghiệm còn chạy, để khiếu nại mang mã cũ vẫn tra được</td></tr>
+  <tr><td data-label="Dữ liệu">Trạng thái mã quà (kể cả mã định danh đã dùng mã)</td><td data-label="Nơi lưu">Cloudflare D1</td><td data-label="Thời hạn">Đến khi lô mã bị xoá thủ công</td></tr>
 </table>
 </div>
-<p>Khi chương trình thử nghiệm kết thúc, chúng tôi xoá toàn bộ dữ liệu máy chủ.</p>
+<p>Các thời hạn tự động ở trên do một lượt dọn dẹp chạy mỗi ngày lúc 05:00 (giờ Việt Nam) thực
+hiện, nên một bản ghi có thể còn thêm tối đa một ngày sau mốc. Khi chương trình thử nghiệm kết
+thúc, chúng tôi xoá toàn bộ dữ liệu máy chủ.</p>
 
 <h2>9. Quyền của bạn</h2>
 <ul>
   <li><b>Rút lại đồng ý bất cứ lúc nào.</b> Trong tiện ích có nút tắt việc gửi dữ liệu. Sau khi tắt, tiện ích ngừng gọi máy chủ; các tính năng cần máy chủ sẽ dừng.</li>
-  <li><b>Xem dữ liệu của mình.</b> Tiện ích hiển thị <b>đầy đủ 64 ký tự</b> của mã định danh ngay trong giao diện, kèm nút sao chép. Đó là toàn bộ thông tin định danh mà máy chủ nắm giữ về bạn.</li>
+  <li><b>Xem dữ liệu của mình.</b> Tiện ích hiển thị <b>đầy đủ 64 ký tự</b> của mã định danh ngay trong giao diện, kèm nút sao chép. Cùng với tên nhân vật (mục 3.2a), đó là toàn bộ thông tin định danh mà máy chủ nắm giữ về bạn.</li>
   <li><b>Yêu cầu xoá.</b> Gửi email kèm mã định danh đó tới địa chỉ liên hệ. Chúng tôi xoá bản ghi tương ứng trong vòng <b>30 ngày</b> và xác nhận lại bằng email.</li>
   <li><b>Xoá dữ liệu cục bộ.</b> Gỡ tiện ích, hoặc xoá dữ liệu trang của <code>kgvn-camp.mobagarena.com</code> trong cài đặt trình duyệt.</li>
   <li><b>Khiếu nại.</b> Xem trang <a href="./support.html">Hỗ trợ &amp; Khiếu nại</a>.</li>
 </ul>
 <div class="box">
-  Vì máy chủ <b>chỉ</b> lưu chuỗi băm và không lưu bất kỳ thông tin nào có thể liên hệ ngược tới
-  bạn, chúng tôi không thể tự xác định bản ghi nào là của bạn nếu bạn không cung cấp chuỗi đó.
+  Vì máy chủ không lưu tên tài khoản, email hay mã nhân vật gốc của bạn, chúng tôi không thể tự
+  xác định chắc chắn bản ghi nào là của bạn nếu bạn không cung cấp chuỗi đó.
   Đây là hệ quả trực tiếp của việc thu thập tối thiểu, không phải cách né tránh trách nhiệm.
 </div>
 
 <h2>10. Bảo mật</h2>
 <ul>
   <li>Mọi kết nối tới máy chủ của chúng tôi đều dùng HTTPS.</li>
-  <li>Máy chủ chỉ lưu chuỗi băm không thể đảo ngược. Ngay cả khi dữ liệu bị lộ cũng không thể suy ra tài khoản trò chơi của bạn.</li>
+  <li>Mã định danh trên máy chủ là chuỗi băm không thể đảo ngược, và được băm thêm một lớp bằng khoá chỉ máy chủ giữ. Nếu dữ liệu bị lộ, người khác không thể từ chuỗi băm suy ra mã nhân vật của bạn. Tên nhân vật được ghi sổ (mục 3.2a) là tên hiển thị công khai trong game.</li>
   <li>Chuỗi muối dùng cho việc băm và các khoá quản trị được giữ dưới dạng biến bí mật trên hạ tầng máy chủ, không nằm trong mã nguồn tiện ích.</li>
   <li>Chúng tôi ghi nhật ký các mẫu truy cập bất thường (gửi yêu cầu dồn dập, cố gọi lại giao diện lập trình ngoài luồng bình thường) để chặn lạm dụng. Nhật ký này gắn với chuỗi băm, không gắn với con người cụ thể.</li>
 </ul>
@@ -507,30 +531,20 @@ Thời gian phản hồi thông thường: trong vòng 7 ngày làm việc.</p>
 <h1>Privacy Policy</h1>
 <div class="meta">
   Applies to the browser extension <b>AOV Poster — Cá Nhân</b> (Chrome Extension, Manifest V3)<br>
-  Policy version: <b>2.2</b> · Effective date: <b>2026-09-05</b> · Applies to extension version <b>1.3.9</b> and later<br>
+  Policy version: <b>2.4</b> · Effective date: <b>2026-09-27</b> · Applies to extension version <b>1.4.1</b><br>
   Operator: individual developer, publishing as <b>NFSK</b><br>
   Contact: <b><a href="mailto:filesetupqt13@gmail.com">filesetupqt13@gmail.com</a></b>
 </div>
 
 <div class="box">
   <b>Prominent Disclosure.</b> This extension transmits data to a server we operate. That data
-  consists of <b>a pseudonymous identifier</b> (a SHA-256 hash computed on your own device) and
-  <b>usage counters</b> (uses consumed, gift codes redeemed, timestamps). Transmission
+  consists of <b>a pseudonymous identifier</b> (a SHA-256 hash computed on your own device),
+  <b>your in-game character name</b>, <b>the Garena CDN addresses of the images and posters you
+  upload</b>, and <b>usage counters</b> (uses consumed, gift codes redeemed, timestamps). Transmission
   <b>begins only after you press “I agree”</b> on the disclosure screen shown on first run. If
   you decline, the extension sends nothing and the server-backed features remain disabled.
 </div>
 
-<div class="box warn">
-  <b>What changed in version 2.2 (2026-09-05) — please read, it CORRECTS a false statement.</b>
-  Version 2.1 stated that the server “never receives … your character name”.
-  <b>That was not true of the shipped extension:</b> your public in-game character name
-  <b>is</b> sent, so complaints can be cross-referenced. Version 2.2 corrects this and adds the
-  <b>image URL</b> and <b>poster URL</b> to section 3.2 — both were already being sent and were
-  already disclosed inside the extension itself, but this page omitted them.
-  No <b>new</b> field starts being collected in this version; the change here is
-  <b>stating accurately what was already happening</b>. New section 3.2b explains what the image
-  URL is used for.
-</div>
 
 <h2>1. Scope</h2>
 <p>This policy governs only the browser extension <b>AOV Poster — Cá Nhân</b>, which runs
@@ -590,6 +604,29 @@ your Google account or to other devices.</p>
   content, no image file names, no browsing history, no list of open tabs.
 </div>
 
+<h3>3.2a. Why we need the character name — and why we keep timestamps</h3>
+<p>The Hash ID is a hash. It only means something <b>inside our own system</b> — nobody at
+Garena can look it up, and we cannot reverse it back into a character ID either.</p>
+<p>That leaves a real gap. When you <b>appeal</b> a sticker you believe was actioned
+unfairly, we have no way to line your record up against the violation Garena recorded,
+because the two sides share no identifier at all. The character name is the
+<b>only link</b> between them.</p>
+<p><b>Why timestamps rather than just the current name:</b> a character name can be changed
+at any time. Garena's penalty page records the name <b>as it was at the time of the
+violation</b>. If we kept only a single "current name" field, then at the exact moment it
+matters — after a violation has already been recorded — the name would have changed and
+would match nothing. So every name we have seen is its own row, with the first and last
+time we saw it.</p>
+<div class="box ok">
+  <b>Limits we impose on ourselves:</b> at most 20 names per Hash ID; no avatar, no rank,
+  no hero list, no other field — even though they arrive in the very same response from
+  the page. The name only, and only once you have consented.
+</div>
+<div class="box warn">
+  <b>Without consent the extension does not even read the name.</b> This is not
+  "read but do not send". While the data switch is off, the code that reads the name
+  never runs at all.
+</div>
 <h3>3.2b. Why we need the image URL — and what does NOT happen</h3>
 <p>Your images live on Garena's storage, not ours. What we record is their <b>address</b>, with
 the query string stripped.</p>
@@ -627,7 +664,8 @@ does not either. That is the entire reason the identifier exists — not to trac
   <li><b>Cookies, session tokens, one-time passcodes, passwords</b> — even though they are present on the page the extension runs on</li>
   <li>Garena login account name, and the <b>raw un-hashed character ID</b>
       <span class="meta">(the public in-game character name <b>is</b> sent — see section 3.2)</span></li>
-  <li>The content or file names of images you upload</li>
+  <li>The content of images you upload, and their original file names on your device
+      <span class="meta">(the image's URL on Garena's CDN <b>is</b> sent — see section 3.2b)</span></li>
   <li>Geolocation, browsing history, open tabs, bookmarks, downloads</li>
   <li>Personal communications, health information, financial information</li>
 </ul>
@@ -696,8 +734,10 @@ browser, or to change anything outside the extension's own scope.</p>
 <p>When you select an image, your browser uploads it <b>directly</b> to Garena's / Tencent
 Cloud's storage (<code>kg-camp-ugc.mobagarena.com</code>, and <code>kg-camp.mobagarena.com</code>
 for older images posted before May 2026) using the upload mechanism the AOV Camp site already
-provides, with credentials issued by that site. The image <b>never passes through our servers</b>. We do not view, store,
-copy or have any means of accessing your images.</p>
+provides, with credentials issued by that site. The image <b>does not pass through our
+servers</b> when uploaded, and we <b>keep no copy</b>. We record only the image's <b>address</b>
+(§3.2b); the image at that address may be reviewed — automatically and by the operator — to keep
+content within the rules.</p>
 <div class="box danger">
   <b>What you need to understand before uploading.</b> Images are registered as stickers through
   AOV Camp's official flow, so Garena holds a database record and a copy on their storage
@@ -714,7 +754,8 @@ No analytics SDK, crash reporter, ad network or tracking pixel is integrated.</p
 <div class="tablewrap">
 <table>
   <tr><th>Party</th><th>Role</th><th>What they receive</th></tr>
-  <tr><td data-label="Party">Cloudflare, Inc.</td><td data-label="Role">Server infrastructure provider (Workers, KV). Processes data solely on our instructions.</td><td data-label="What they receive">The fields listed in §3.2</td></tr>
+  <tr><td data-label="Party">Cloudflare, Inc.</td><td data-label="Role">Server infrastructure provider (Workers, D1, KV). Processes data solely on our instructions.</td><td data-label="What they receive">The fields listed in §3.2</td></tr>
+  <tr><td data-label="Party">Automated content-review providers</td><td data-label="Role">Score image content to detect violations — only when content review is enabled. Process data solely on our instructions.</td><td data-label="What they receive">The content of the image under review — <b>without</b> your identifier, character name or any other field from §3.2</td></tr>
   <tr><td data-label="Party">Garena / Tencent Cloud</td><td data-label="Role">Owner of the website and the image storage. Your relationship with them is direct and does not involve us.</td><td data-label="What they receive">The images you upload and their own site's session information — we take no part in this and receive no copy</td></tr>
   <tr><td data-label="Party">Cloudinary (<code>res.cloudinary.com</code>)</td><td data-label="Role">Content delivery network, used solely to serve the extension's <b>static interface icons</b> (Upload, Replace, Delete…).</td><td data-label="What they receive">As with any image load on the web: your IP address and browser headers. <b>No</b> identifier, <b>no</b> usage data, <b>no</b> cookie set by us</td></tr>
 </table>
@@ -739,32 +780,40 @@ have — we hold no images, no account names and no raw character IDs.</p>
 <table>
   <tr><th>Data</th><th>Stored in</th><th>Retention</th></tr>
   <tr><td data-label="Data">Local data (§3.1)</td><td data-label="Stored in">Your browser</td><td data-label="Retention">Until you uninstall the extension or clear site data</td></tr>
-  <tr><td data-label="Data">Quota record keyed by hash</td><td data-label="Stored in">Cloudflare Workers KV</td><td data-label="Retention">Automatically deleted after <b>60 days</b> of inactivity</td></tr>
-  <tr><td data-label="Data">Operational logs (§3.2)</td><td data-label="Stored in">Cloudflare Workers KV</td><td data-label="Retention">Automatically deleted after <b>90 days</b></td></tr>
-  <tr><td data-label="Data">Restriction lists arising from violations</td><td data-label="Stored in">Cloudflare Workers KV</td><td data-label="Retention">Kept for the duration of the trial programme, or until an appeal is resolved</td></tr>
-  <tr><td data-label="Data">Gift code state</td><td data-label="Stored in">Cloudflare Workers KV</td><td data-label="Retention">Until the batch is manually deleted</td></tr>
+  <tr><td data-label="Data">Weekly quota record (uses consumed, bonus uses, codes redeemed, refunds, carry-over)</td><td data-label="Stored in">Cloudflare D1</td><td data-label="Retention">Automatically deleted after <b>60 days</b> of inactivity</td></tr>
+  <tr><td data-label="Data">Upload tickets (one per upload)</td><td data-label="Stored in">Cloudflare D1</td><td data-label="Retention">Automatically deleted <b>7 days</b> after the ticket expires</td></tr>
+  <tr><td data-label="Data">Per-identifier daily use counter</td><td data-label="Stored in">Cloudflare D1</td><td data-label="Retention">Automatically deleted after <b>3 days</b></td></tr>
+  <tr><td data-label="Data">Daily check-in streak</td><td data-label="Stored in">Cloudflare D1</td><td data-label="Retention">Automatically deleted after <b>90 days</b></td></tr>
+  <tr><td data-label="Data">Operational logs (§3.2)</td><td data-label="Stored in">Cloudflare D1</td><td data-label="Retention">Automatically deleted after <b>90 days</b></td></tr>
+  <tr><td data-label="Data">Character names; recorded image and poster addresses (§3.2a, §3.2b)</td><td data-label="Stored in">Cloudflare D1</td><td data-label="Retention">Automatically deleted <b>180 days</b> after they were last seen</td></tr>
+  <tr><td data-label="Data">Review records of images with no violation found (image address, review result)</td><td data-label="Stored in">Cloudflare D1</td><td data-label="Retention">Automatically deleted <b>180 days</b> after the last review</td></tr>
+  <tr><td data-label="Data">Violation records (images flagged as violating, violation counts) and restriction lists</td><td data-label="Stored in">Cloudflare D1</td><td data-label="Retention">Kept for the duration of the trial programme, or until an appeal is resolved</td></tr>
+  <tr><td data-label="Data">Old → new identifier mapping (when we rotate the server-side hashing key)</td><td data-label="Stored in">Cloudflare D1</td><td data-label="Retention">Kept for the duration of the trial programme, so appeals quoting an old identifier can still be looked up</td></tr>
+  <tr><td data-label="Data">Gift code state (including the identifier that redeemed it)</td><td data-label="Stored in">Cloudflare D1</td><td data-label="Retention">Until the batch is manually deleted</td></tr>
 </table>
 </div>
-<p>When the trial programme ends, we delete all server-side data.</p>
+<p>The automatic periods above are enforced by a clean-up pass that runs daily at 05:00 (Vietnam
+time), so a record may persist for up to one extra day past its deadline. When the trial programme
+ends, we delete all server-side data.</p>
 
 <h2>9. Your rights</h2>
 <ul>
   <li><b>Withdraw consent at any time.</b> The extension has a switch that disables transmission. Once off, it stops calling the server and the server-backed features stop working.</li>
-  <li><b>See your own data.</b> The extension displays <b>all 64 characters</b> of your identifier in its interface, with a copy button. That is the entirety of what the server holds about you.</li>
+  <li><b>See your own data.</b> The extension displays <b>all 64 characters</b> of your identifier in its interface, with a copy button. Together with your character name (§3.2a), that is all the identifying information the server holds about you.</li>
   <li><b>Request deletion.</b> Email that identifier to the contact address. We delete the corresponding record within <b>30 days</b> and confirm by email.</li>
   <li><b>Delete local data.</b> Uninstall the extension, or clear site data for <code>kgvn-camp.mobagarena.com</code> in your browser settings.</li>
   <li><b>Complain.</b> See the <a href="./support.html">Support &amp; Appeals</a> page.</li>
 </ul>
 <div class="box">
-  Because the server stores <b>only</b> the hash and nothing that links back to you, we cannot
-  identify which record is yours unless you supply that string. This is a direct consequence of
+  Because the server stores no account name, email address or raw character ID, we cannot
+  reliably identify which record is yours unless you supply that string. This is a direct consequence of
   minimal collection, not a way of avoiding responsibility.
 </div>
 
 <h2>10. Security</h2>
 <ul>
   <li>All connections to our server use HTTPS.</li>
-  <li>The server stores only irreversible hashes. Even a breach could not reveal your game account.</li>
+  <li>Identifiers on the server are irreversible hashes, hashed once more with a key only the server holds. Even in a breach, the hashes cannot be turned back into your character ID. The character name we record (§3.2a) is your public in-game display name.</li>
   <li>The hashing salt and administrative keys are held as secret environment variables on the server infrastructure, never in the extension source.</li>
   <li>We log abnormal access patterns (bursts of requests, attempts to call the APIs outside the normal flow) in order to block abuse. Those logs are keyed to the hash, not to an identified person.</li>
 </ul>
